@@ -1,0 +1,67 @@
+<!-- 
+시맨틱 태그 108p
+	분할태그(템플릿 태그) : 화면을 나눠서 처리
+		- div 
+		------------------------------------------
+		로고 			  검색기 <div class="header"> 	-> <header>
+		------------------------------------------
+		메뉴					<div class="nav"> 		-> <nav>
+		------------------------------------------
+		<div class="left_bar">		<div class="right_bar"> -> <aside>
+			광고 |				 		|로그인
+			공지 |						|이벤트
+				|						|
+				|		실제 화면			|
+				|						|
+				  <div class="content"> 			-> <section>
+		------------------------------------------
+		회사정보
+				   <div class="footer"> 			-> <footer>
+		------------------------------------------
+		
+		- <header> : 로고, 검색기
+		- <nav> : 메뉴
+		- <section> : 본문 내용 전체
+		- <aside> : 측면의 부가적인 내용(광고, 인기순위, 로그인창)
+		- <article> : 본문 내 각각 분할된 독립적인 태그
+					  주로 라인선(hr)으로 구분
+		- <footer> : 회사 정보, 개인정보 방침, 사이트 맵
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div><!-- header -->
+		<h1>맛집 & 레시피 & 서울여행</h1>
+	</div>
+	<div><!-- nav -->
+		<ul>
+			<li>홈</li>
+			<li>회원</li>
+			<li>커뮤니티</li>
+			<li>레시피</li>
+			<li>여행</li>
+		</ul>
+	</div>
+	<div><!-- section -->
+		<div><!-- article -->
+			<h1>믿고보는 맛집 리스트</h1>
+			<p>맛집 목록</p>
+		</div>
+		<div>
+			<h1>지역별 인기 맛집</h1>
+			<p>맛집 목록</p>
+		</div>
+		<div>
+			<h1>메뉴별 인기 맛집</h1>
+			<p>맛집 목록</p>
+		</div>
+	</div>
+	<div><!-- footer -->
+		<h1>개인정보 방침</h1>
+	</div>
+</body>
+</html>

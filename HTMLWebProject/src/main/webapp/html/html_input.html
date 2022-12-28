@@ -1,0 +1,87 @@
+<!-- 
+table : 목록 출력
+	속성
+	- width, height
+	- style, id, class, name
+	- border : 두께
+	- bordercolor : 색상
+	- cellpadding
+	- cellspacing
+tr : 한 줄
+	속성
+	- width, height
+	- style, id, class, name
+	- bgcolor : 색상
+th/td : tr 내 데이터 출력 공간
+	속성
+	- width (height는 지정은 가능하나 기본 설정되어있음)
+	- style, id, class, name
+	- bgcolor
+	- 정렬
+		align : left, rignt, center
+				- default -> th : center / td : left
+				- 데이터 길이 동일 : center
+				- 데이터 길이 다름 : left
+				- 숫자 : right
+		valign : top, middle, bottom
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+</head>
+<body>
+	<center><!-- 사용하지 않음, CSS 사용, margin:0px auto 사용 -->
+		<h1>글쓰기</h1>
+		<form><!-- 설정된 범위의 입력된 모든 데이터 한 번에 전송 -->
+		<table id="table_content" width=500>
+			<tr>
+				<th width=20% align="right">이름</th>
+				<td width=80%>
+					<input type=text size=15 required>
+											<!-- 필수 입력 N-N(유효성 검사) -->
+				</td>
+			</tr>
+			<tr>
+				<th width=20% align="right">홈페이지</th>
+				<td width=80%>
+					<input type=text size=35 value="http://">
+				</td>
+			</tr>
+			<tr>
+				<th width=20% align="right">이메일</th>
+				<td width=80%>
+					<input type=text size=35 required">
+				</td>
+			</tr>
+			<tr>
+				<th width=20% align="right">제목</th>
+				<td width=80%>
+					<input type=text size=35 required">
+				</td>
+			</tr>
+			<tr>
+				<th width=20% align="right">내용</th>
+				<td width=80%>
+					<textarea rows="8" cols="35"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th width=20% align="right">비밀번호</th>
+				<td width=80%>
+					<input type=password size=35 required">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align=center>
+					<input type=submit value="글쓰기">
+					<input type=button value="취소">
+				</td>
+			</tr>
+		</table>
+		</form>
+	</center>
+</body>
+</html>
