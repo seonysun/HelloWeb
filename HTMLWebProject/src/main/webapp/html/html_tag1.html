@@ -1,105 +1,191 @@
 <!-- 
-HTML : HTML+CSS+�ڹٽ�ũ��Ʈ
-	- HTML : �������� �����̳� ���� ǥ���ϴ� ���
-	- CSS : ���������� ��Ÿ�� �����ϴ� ��Ÿ�Ͻ�Ʈ �ۼ��ϴ� ���
-	- �ڹٽ�ũ��Ʈ : ������������ ����� ���� �� ó���ϴ� ��ũ��Ʈ �ۼ��ϴ� ���
+0. HTML : HTML + CSS + 자바스크립트
+	- HTML : 웹페이지 서식이나 구조 표현하는 언어
+			-> 정적 페이지(초기값 지정 후에는 변경 불가)
+	- CSS : 웹페이지에 스타일 지정하는 스타일시트 작성하는 언어
+	- 자바스크립트 : 웹페이지에서 사용자 반응 등 처리하는 스크립트 작성하는 언어
+				-> 동적 페이지
+	- ML : 브라우저에서 실행할 수 있는 언어
+		- HTML : 모든 태그와 속성이 고정
+		- XML : 모든 태그와 속성이 사용자 정의, 가변
+			cf. ajax : a
+					   j(javaxcript)
+					   a(and)
+					   x(xml)
 
-1. HTML
-	- ���(��ü) : ���������� �����ϴ� �� ��ǰ
-	- �±� : ��Ҹ� ���� �� ����ϴ� �ۼ� ���
-	- �Ӽ� : �±׿� �߰� ���� �ο�
-	cf. Ư������ ǥ��
-		- &nbsp; ����
-		- &lt; <
-		- &gt; >
-		- &amp; &
-		
+1. HTML = 태그 + 속성
+	1) 구성
+		- 요소(객체) : 웹페이지를 구성하는 각 부품
+		- 태그 : 요소를 만들 때 사용하는 작성 방법
+		- 속성 : 태그에 추가 정보 부여
+			- 기본 태그 : <태그명 속성명="값" ..></태그명>
+				cf. 값 입력할 때 "" -> 공백 포함될 경우 필수
+			- Empty 태그 : <태그명 속성명="값" />
+			cf. 특수문자 표기
+				- &nbsp; 공백
+				- &lt; <
+				- &gt; >
+				- &amp; &
+	2) 구조
+		- <태그명></태그명>
+		- <태그명/>
+		(1) 주의사항
+			- 태그는 소문자로 사용 권장(대소문자 구분은 없음)
+			- 여는 태그와 받는 태그가 정확히 대칭되어야 에러 없음
+			- 항상 속성과 같이 사용하는 것 권장
+				cf. 모든 태그가 갖는 속성 : id, class, name, style
+			- 포함 관계 명확히 할 것
+				<b><a>aaa</a>bbb</b>
+			- 태그 간 순서 없음
+		(2) 체계
+			<!ELEMENT html (head, body)>
+			<!ELEMENT head (title,meta,script,style,link)>
+			<!ATTLIST html lang CDATA>
+			<!ELEMENT table (tr)*>
+			<!ELEMENT tr (td|th)*>
 
------------------------
-1) ȭ��(�������� ���)
-	= <�±׸�>��� ����</�±׸�> : ���� ����, ��� ���
-	= <�±׸� �Ӽ�="��� ����"> : ��Ƽ�̵��, ȭ���̵�, �Է°�
-	= ���� ��� ����
-		1. ���� ���
-			- <h1>��¹�</h1> : �Ӽ� (id, name, class,style)
-				- heading ����
-			- <br>, <p> : ���� ���� (����ȭ), �ܵ��±�(�ݴ� �±� ������� ����)
-				- break �ٹٲ�
-				- paragraph �ܶ�
-				- horizontal rule ������
-			- ������ ���� : <b>, <string>, <em>, <i>;�ο�, <sub>, <sup>
-		2. ��� ���
-			1. ul : ������ ���� �±�(�޴�)
-				|
-			   li : �����Ͱ� �߰�
-			2. ol : ������ �ִ� �±� -> ��� �� ����
-				|
-			   li : �����Ͱ� �߰�
-			3. table : ���� �߰�(�Խ��� ���, �뷡 ���) -> width
-				|
-			   tr : table-row -> bgcolor
-				|
-			  th td : �����Ͱ� �߰� -> colspan, rowspan,sidth,height
-		3. ��Ƽ�̵��
-			- img : �̹��� ���
-				- src -> �̹��� ��� ����, include�ǹǷ� ��� �Է¿� ����(ũ�Ѹ��� ��� ������ ���� �о���� ��/����/ �̹Ƿ� ��δ� ��������� �ӵ��� ����)
+2. 구조
+	(1) <!DOCTYPE html> : HTML5 문서를 가져옴, 항상 맨 첫줄에 위치
+						-> DTD(태그/속성 정의가 되어있음)
+	(2) <html>
+		- <head> : CSS, Javascript, 키워드, 첫화면, 한글 설정 등
+					-> 설정 파일 없는 경우 생략 가능
+			- <meta> : 웹페이지에 추가 정보 전달
+					   문자 인코딩 -> 한글 변환
+				cf. 한글 변환
+					- UTF(Unicode Transfor Format) : 2byte로 읽어서 출력 -> 표준화(모든 운영체제 가능), 사용 추천
+					- EUC-KR
+				ex. <meta charset="UTF-8">
+			- <title> : 웹페이지 제목 지정(브라우저 탭에 적용)
+			- <link>, <style> : CSS 파일 읽기
+				- 외부 CSS(문서) : link -> 프로젝트 파일 전체에서 공통으로 사용
+				- 내부 CSS(HTML) : style -> 한개의 파일 안에서만 사용
+				- 인라인 CSS : <태그 style=""> -> 한개의 태그만 제어
+			- <script> : 이벤트 처리, 데이터 관리
+						-> 바디 안에도 들어갈 수 있음
+		- <body> : 화면 출력(UI)
+			- <태그명>출력 내용</태그명> : 문자 관련, 목록 출력
+			  <태그명 속성="출력 내용"> : 멀티미디어, 화면이동, 입력값
+			1. 글자 관련 태그
+				- 제목 출력 : <h1> ~ <h6> heading
+					- <h1>출력물</h1>
+					- 속성 : id, name, class,style
+				- 구조화(문자 조절) : <br> break, <p> paragraph, <hr> horizontal rule
+				- 문장의 강조
+					- <b>, <strong>, <em> : 강조
+					- <i> : 이탤릭체 -> 인용
+					- <small>, <sub>, <sup>
+					- <font> : 글자 모양 설정 -> 사용 금지 권고, CSS로 대체
+			2. 목록 출력
+				- ul : 순서가 없는 태그(메뉴)
+				   |
+				  li : 데이터값 추가
+				- ol : 순서가 있는 태그 -> 사용 빈도 적음
+				   |
+				  li : 데이터값 추가
+				- table : 제목 추가(게시판 목록, 노래 출력) -> width
+					|
+				   tr : table-row -> bgcolor
+					|
+				  th td : 데이터값 추가 -> colspan, rowspan,sidth,height
+				- <a> : 앵커(화면 변경)
+		3. 멀티미디어
+			- img : 이미지 출력 -> png, gif, jpg만 가능
+				- src -> 이미지 경로 지정, include되므로 경로 입력에 주의(크롤링의 경우 서버의 값을 읽어오는 것/원격/ 이므로 경로는 상관없지만 속도가 늦음)
 				- width
 				- height
-				- title -> ǳ������ (���� art)
-			- a(*) : �����۸�ũ ���� -> ȭ�� �̵�(�ڵ� Ŀ���� �ٲ�)
-				- href : ȭ�� �̵��� ���ϸ� ����
-						-> ��� ȭ�� ���� �� URL �� ���� �� �������� ���ϸ� �߰� �ʿ�
-							- ������ ���� ���� ���� �� ����ڰ� ���� ��û -> ȭ�� ����
-						-> ������ ã�� �� ���� �� 404 ����(������ �ߺ� �Ұ�)
-						cf. PathVariable : ����/���� ���θ� �������� ���ϵ��� ���� ���·� ����
-			- embed : ������ ����
-				- src : ������ ��� ����
+				- title -> 풍선도움말 (기존 art)
+			- a(*) : 하이퍼링크 생성 -> 화면 이동(핸드 커서로 바뀜)
+				- href : 화면 이동할 파일명 제시
+						-> 모든 화면 변경 시 URL 줄 때는 맨 마지막에 파일명 추가 필요
+							- 서버에 파일 만들어서 저장 후 사용자가 파일 요청 -> 화면 변경
+						-> 파일을 찾을 수 없을 때 404 에러(파일은 중복 불가)
+						cf. PathVariable : 폴더/파일 여부를 구분하지 못하도록 숫자 형태로 제시
+			- embed : 동영상 실행
+				- src : 동영상 경로 지정
 				- width
 				- height
-		4. ����� �Է�â : �۾���, �����ϱ�, ȸ������, ����, ���̵�ã��, �α���
+		4. 사용자 입력창 : 글쓰기, 수정하기, 회원가입, 삭제, 아이디찾기, 로그인
 			- <input>
 				- type
-					- ������ ����(size, name �����ؾ� �ڹٿ��� �Է°� ���� �� ����)
-						- text : ���� �ٸ� ������ ������ �Բ� �� �� default -> text
+					- 데이터 종류(size, name 설정해야 자바에서 입력값 받을 수 있음)
+						- text : 서로 다른 종류의 데이터 함께 쓸 때 default -> text
 						- password
 						- file
 						- date
-					- ��ư ����
+					- 버튼 종류
 						- button
 						- reset
-						- submit : ���� ��ư
+						- submit : 제출 버튼
 						- image
-						- radio : �׷� ���� �ʼ�(name �����ϰ� ����)
-						- checkbox : �׷� ���� �ʼ�(name �����ϰ� ����)
+						- radio : 그룹 생성 필수(name 동일하게 설정)
+						- checkbox : 그룹 생성 필수(name 동일하게 설정)
 					- number
 					- range
-			- <textarea> : value �Ӽ� �̿����� �ʰ� �±� ���̿� �� �Է�
-							-> <textarea>��³���</textarea>
-								�̶� ���� �ָ� �� ��, �ٹٲ��� ���� �±� �ݱ�
-			- <select> : �޺�
+			- <textarea> : value 속성 이용하지 않고 태그 사이에 값 입력
+							-> <textarea>출력내용</textarea>
+								이때 공백 주면 안 됨, 줄바꾸지 말고 태그 닫기
+			- <select> : 콤보
 				  |
-			  <option> : ������ ÷��
-		5. ȭ�� ����
+			  <option> : 데이터 첨부
+		5. 화면 분할
 			- div, span, header, section, footer, aside, article
+			1) 속성
+				- src : 파일명 지정
+					- HTML 파일과 같은 폴더(image)에 있는 파일 
+						./image/a.jpg
+						image/a.jpg	
+							cf. "." : 현재 폴더
+					- HTML 파일과 다른 폴더(image)에 있는 파일 
+						../image/a.jpg
+					- CD
+						../../image/../a.jpg
+				- width
+				- height
+				- name : 자바에서 데이터값 받을 때
+				- 구분자
+					- id : 중복 없음
+					- class  : 중복 가능
+				- style
+						- <embed>
+						- <video>, <audio>
+						- 입력창
+							- <input>
+								- text : 한줄 문자열
+								- password : 암호화
+								- radio : 라디오 버튼
+								- checkbox
+								- date(*)
+								- submit : 전송 버튼
+								- button : 자바스크립스에서 처리
+								- reset : 초기화 버튼
+								- number(*)
+							- <textarea>
+							- <select>
+							- form : 입력된 데이터나 선택된 데이터 한번에 모아서 전송
+								- 전송 방식
+									- GET
+									- POST
+					- 화면 분할
+						- <div>
+						- <span>
+					- HTML5 only
+						- header, footer, section, article, nav, aside..
+				</body>
+				</html>	
+
+-----------------------
 	
  -->
  
  <!DOCTYPE html>
 <html>
-<head>	<!-- body �±׿� �ʿ��� ��Ÿ�Ͻ�Ʈ, �ڹٽ�ũ��Ʈ ���� -->
-<!-- 
-meta : ���������� �߰����� ����
-title : �������� ���� ����
-script : ��ũ��Ʈ �߰�
-link ; �ٸ� ���� �߰� ex. �ܺ� ��Ÿ�Ͻ�Ʈ �ҷ�����
-style : ��Ÿ�Ͻ�Ʈ �߰�
-base : �⺻ ��� ����
- -->
+<head>	<!-- body 태그에 필요한 스타일시트, 자바스크립트 제공 -->
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>&lt;select&gt; ��Ƽ����</h1>
+	<h1>&lt;select&gt; 멀티선택</h1>
 	<select>
 		<option>Java</option>
 		<option>Oracle</option>
@@ -109,7 +195,7 @@ base : �⺻ ��� ����
 		<option>Spring</option>
 		<option>AWS</option>
 	</select>
-	<h1>�׷캰 ó��:optgroup</h1>
+	<h1>그룹별 처리:optgroup</h1>
 	<select>
 		<optgroup label="Back-End">
 			<option>Java</option>
@@ -120,9 +206,42 @@ base : �⺻ ��� ����
 		<optgroup label="Front-End">
 			<option>HTML/CSS</option>
 			<option>JavaScript</option>
-			<option>���̺귯��(Ajax,Vue,React)</option>
+			<option>라이브러리(Ajax,Vue,React)</option>
 			<option>TypeScript</option>
 		</optgroup>
 	</select>
+	
+	<p>
+	
+	<img src="image/f1.jpg" width=100 height="100" title="야채볶음밥">
+	 <img src="./image/f2.jpg" width=450 height="450" title="감자옹심이">
+	 <img src="../image/f3.png" width=100%> <!-- 비율로 설정 시 높이 자동 지정(100% = 브라우저 크기) -->
+	 <img src="https://recipe1.ezmember.co.kr/cache/recipe/2022/12/24/b5f37522c67d5f97406ded9c228bbfa81_m.jpg">
+	 <p>
+	 <img src="../image/f4.jpg"><br>
+	 <b>가지구이 만드는법~ 가지스테이크</b>
+	 <p>
+	 	<!-- CARD : 이미지와 설명 동시에 처리 -->
+	 <figure>
+	 	<img src="../image/f4.jpg">
+	 	<figcaption>가지구이 만드는법~ 가지스테이크</figcaption>
+	 </figure>
+	 <p>
+	 	<!-- map : 좌표 영역 선택 시 이동할 페이지 링크 연결 -->
+	 <img src="../image/fm1.jpg" usemap="#fm1">
+	 <map name="fm1">
+	 	<area shape="rect" coords="202,92,344,195" href="tag2.html">
+	 	<!-- 에러 404 : 파일이 존재하지 않는 경우
+	 			 403 : 보안(접속 거부)
+	 			 500 : 자바 오류
+	 			 412 : 한글 변환 오류
+	 			 400 : 매칭이 안되는 경우
+	 	 -->
+	 </map>
+	 <p>
+	 <figure>
+	 	<embed src="http://youtube.com/embed/kihrFxwdMb4" width="450" height="400">
+	 	<figcaption>아바타: 물의 길</figcaption>
+	 </figure>
 </body>
 </html>
