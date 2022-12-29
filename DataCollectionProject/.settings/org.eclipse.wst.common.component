@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="DataCollectionProject">
+        
+    <wb-module deploy-name="DataCollectionProject000">
+                
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="DataCollectionProject"/>
-        <property name="java-output-path" value="/DataCollectionProject/build/classes"/>
+                
+        <property name="java-output-path" value="/DataCollectionProject000/build/classes"/>
+        <property name="context-root" value="DataCollectionProject000"/>
+            
     </wb-module>
+    
 </project-modules>
