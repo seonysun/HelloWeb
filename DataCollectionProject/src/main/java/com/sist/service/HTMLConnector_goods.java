@@ -38,5 +38,4 @@ public class HTMLConnector_goods {
 		HTMLConnector_goods hcg=new HTMLConnector_goods();
 		hcg.goodsAllData();
 	}
-
 }

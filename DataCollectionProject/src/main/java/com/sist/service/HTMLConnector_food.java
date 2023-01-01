@@ -1,24 +1,16 @@
 /* 데이터 크롤링
- * 	text() <태그명>값</태그명>
- * 	attr() <태그명 속성="값>
- * 	data() <script>값</script>
- * 	html() <태그명>
- * 			<태그명>
- * 			</태그명>
- * 		   </태그명>
-					
-	ex.	<div class="a">
-			<ul>
-				<li>
-					제목 ..
-				</li>
-				<li>
-					제목 ..
-				</li>"
-			</ul>
-		</div>
-	-> 데이터 긁을 때 li의 데이터 긁을 것이지만 li만 주면 걸리는 태그가 너무 많아질 수 있음
-	-> 모아진 div부터 차례로 설정해서 읽기
+ *	ex.	<div class="a">
+ *			<ul>
+ *				<li>
+ *					제목 ..
+ *				</li>
+ *				<li>
+ *					제목 ..
+ *				</li>"
+ *			</ul>
+ *		</div>
+ *	-> 데이터 긁을 때 li의 데이터 긁을 것이지만 li만 주면 걸리는 태그가 너무 많아질 수 있음
+ *	-> 모아진 div부터 차례로 설정해서 읽기
  */
 package com.sist.service;
 import com.sist.dao.*;
@@ -38,15 +30,14 @@ public class HTMLConnector_food {
 		try {
 			//사이트 연결 -> HTML 페이지 소스 읽기(Document에 저장)
 			Document doc=Jsoup.connect("https://www.mangoplate.com/").get();
-								//connect() : 주소 연결, get() : 데이터 가져오기
+								//connect() : 주소 연결, get() : 소스 데이터 가져오기
 //			System.out.println(doc.toString());	//소스 toString()으로 확인
 			Elements title=doc.select("div.top_list_slide div.info_inner_wrap span.title");
-				//Elements : 해당 태그의 속성 여러개 모두 모아주는 것 -> span 태그의 클래스명 title(.title)인 속성 
+				//Elements : 해당 태그의 속성 여러개 모두 모아주는 것 ex. span 태그의 클래스명 title(.title)인 속성 
 			Elements subject=doc.select("div.top_list_slide div.info_inner_wrap p.desc");
 			Elements poster=doc.select("div.top_list_slide img.center-croping");
 			Elements link=doc.select("div.top_list_slide a");
 				//a 태그는 클래스가 정의되지 않았으므로 그냥 태그명만 쓰면 됨, 이때 해당 div 안에 a 태그 또 있는지 확인
-			
 			for(int i=0;i<title.size();i++) { 
 				//데이터 확인용 출력
 				System.out.println(i+1);
@@ -55,7 +46,6 @@ public class HTMLConnector_food {
 				System.out.println(poster.get(i).attr("data-lazy"));
 				System.out.println(link.get(i).attr("href"));
 				System.out.println();
-				
 				//DB에 데이터 입력
 				CategoryVO vo=new CategoryVO();
 				vo.setTitle(title.get(i).text());
@@ -66,21 +56,22 @@ public class HTMLConnector_food {
 			}
 		} catch(Exception ex) { }
 	}
-	public void foodDetailData() {
+	public void foodDetailGetData() {
 		FoodDAO dao=new FoodDAO();
 		try {
 			ArrayList<CategoryVO> list=dao.foodCategoryInfoData();
 			for(CategoryVO vo:list) {
+				//참조키 설정
 				FoodVO fvo=new FoodVO();
 				fvo.setCno(vo.getCno());
-				
 				System.out.println(vo.getCno()+"."+vo.getTitle());
+				//맛집목록 링크 가져오기
 				Document doc=Jsoup.connect(vo.getLink()).get();
 				Elements link=doc.select("section#contents_list span.title a");
-					//링크가 사진과 제목 2개 동일하게 데이터 걸려있음 -> a태그 그냥 가져오면 중복으로 2개 가져오므로 span.title 소속 처리 필요
+								//목록에서 상세페이지 접근하는 링크 3개(사진, 제목, 더보기 클릭 시) -> 하나만 연결되도록 태그 소속 상세하게 설정 필요
 				for(int i=0;i<link.size();i++) {
+					//맛집상세 링크 가져오기
 //					System.out.println(link.get(i).attr("href"));
-					//링크 가져오기 -> 링크 안에서 상세 정보 가져옴
 					Document doc2=Jsoup.connect("http://www.mangoplate.com"+link.get(i).attr("href")).get();
 					
 					//이미지
@@ -89,11 +80,12 @@ public class HTMLConnector_food {
 					for(int j=0;j<image.size();j++) {
 						String s=image.get(j).attr("src");
 						poster+=s+"^";
+								//이미지 링크 주소에 없는 기호로 각 이미지 구분
 					}
 					poster=poster.substring(0,poster.lastIndexOf("^"));
 					poster=poster.replace("&", "#");
+								//sql에서 &는 입력창이므로 다른 문자로 바꿔서 들여온 다음 다시 바꿔서 연결 필요
 //					System.out.println(poster);
-						//sql에서 &는 입력창이므로 다른 문자로 바꿔서 들여온 다음 다시 바꿔서 연결 필요
 					fvo.setPoster(poster);
 					
 					//맛집명,평점
@@ -154,7 +146,17 @@ public class HTMLConnector_food {
 					fvo.setParking(parking);
 					fvo.setTime(time);
 					fvo.setMenu(menu);
+					/*
+					데이터 컬럼 순서를 알고 있을 경우 인덱스 넘버로 그냥 설정할 수도 있음
+					Element addr=doc2.selectFirst("table.info tbody tr td");
+					System.out.println(addr.text());
+					Element te=doc2.select("table.info tbody tr td").get(1);
+					System.out.println(te.text());
+					Element ty=doc2.select("table.info tbody tr td").get(2);
+					System.out.println(ty.text());
+					 */
 					
+					//리뷰
 					Element script=doc2.selectFirst("script#reviewCountInfo");
 					String s=script.data();
 					JSONParser jp=new JSONParser();
@@ -177,17 +179,8 @@ public class HTMLConnector_food {
 							fvo.setGood(Integer.parseInt(ss));
 						}
 					}
+					//데이터 DB에 입력
 					dao.foodDetailInsert(fvo);
-					
-//					try {
-//						//th:eq(1)
-//						Element addr=doc2.selectFirst("table.info tbody tr td");
-////						System.out.println(addr.text());
-//						Element te=doc2.select("table.info tbody tr td").get(1);
-//						System.out.println(te.text());
-//						Element ty=doc2.select("table.info tbody tr td").get(2);
-//						System.out.println(ty.text());
-//					} catch(Exception ex) {}
 				}
 			}
 		} catch(Exception ex) { }
@@ -195,6 +188,6 @@ public class HTMLConnector_food {
 	public static void main(String[] args) {
 		HTMLConnector_food hcf=new HTMLConnector_food();
 //		hcf.foodCategoryGetData();
-//		hcf.foodDetailData();
+		hcf.foodDetailGetData();
 	}
 }

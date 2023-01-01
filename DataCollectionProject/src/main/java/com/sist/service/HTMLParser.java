@@ -1,3 +1,11 @@
+/* 데이터 저장 시 사용하는 메소드
+ *  text() <태그명>값</태그명>
+ * 	attr("속성명") <태그명 속성명="값">
+ * 	data() <script>값</script>
+ * 	html() <태그명>
+ * 			<태그명></태그명>
+ * 		   </태그명>
+ * */
 package com.sist.service;
 import java.io.*;
 import java.util.*;
@@ -13,7 +21,7 @@ import org.jsoup.select.Elements;
 public class HTMLParser {
 	public void htmlGetData() {
 		try {
-			Document doc=Jsoup.parse(new File("C:\\Users\\user\\git\\repository\\DataCollectionProject\\src\\main\\webapp\\data\\data1.html"));
+			Document doc=Jsoup.parse(new File("C:\\Users\\csh99\\git\\HelloWeb\\DataCollectionProject\\src\\main\\webapp\\data\\data1.html"));
 							 //connect() : URL 연결, parse() : 파일 열기
 			Elements h1=doc.select("div h1");
 									//selector : 태그 안에서 가져올 값을 지정하는 역할
@@ -112,7 +120,7 @@ public class HTMLParser {
 			  => doc.select("div.a") html() => <span>Hello</span>
 											  	<span>
 											  		<p>HTML/CSS</p>
-											  	</span>
+											    </span>
 			 */
 			System.out.println(div.text());
 								//데이터 출력 text()
@@ -123,11 +131,10 @@ public class HTMLParser {
 	//자바스크립트 읽기
 	public void scriptData() {
 		try {
-			Document doc=Jsoup.parse(new File("C:\\Users\\user\\git\\repository\\DataCollectionProject\\src\\main\\webapp\\data\\data5.html"));
+			Document doc=Jsoup.parse(new File("C:\\Users\\csh99\\git\\HelloWeb\\DataCollectionProject\\src\\main\\webapp\\data\\data5.html"));
 			Element script=doc.selectFirst("script#reviewCountInfo");
 			System.out.println(script.data());
 								//스크립트 데이터 출력 data()
-			
 			/* 1. HTML 데이터 추출 : HTMLParser -> Jsoup
 			 * 2. JSON 데이터 추출 : JSONParser
 			 * 	- ArrayList []
@@ -155,6 +162,6 @@ public class HTMLParser {
 //		hp.foodDetailData();
 //		hp.foodAttributeData();
 //		hp.htmlData();
-//		hp.scriptData();
+		hp.scriptData();
 	}
 }
