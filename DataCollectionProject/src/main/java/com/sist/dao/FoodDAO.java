@@ -6,7 +6,7 @@ public class FoodDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
-	public FoodDAO(){ 
+	public FoodDAO(){
 		try {
 			Class.forName("Oracle.jdbc.driver.OracleDriver");
 		} catch(Exception ex) {}
