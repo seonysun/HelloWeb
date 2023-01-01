@@ -5,7 +5,7 @@ public class CategoryVO {
 	private String title,subject,poster,link;
 	public int getCno() {
 		return cno;
-	}
+	} 
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
