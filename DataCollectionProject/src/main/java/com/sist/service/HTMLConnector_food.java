@@ -71,7 +71,7 @@ public class HTMLConnector_food {
 								//목록에서 상세페이지 접근하는 링크 3개(사진, 제목, 더보기 클릭 시) -> 하나만 연결되도록 태그 소속 상세하게 설정 필요
 				for(int i=0;i<link.size();i++) {
 					//맛집상세 링크 가져오기
-//					System.out.println(link.get(i).attr("href"));
+					System.out.println(link.get(i).attr("href"));
 					Document doc2=Jsoup.connect("http://www.mangoplate.com"+link.get(i).attr("href")).get();
 					
 					//이미지
@@ -85,7 +85,7 @@ public class HTMLConnector_food {
 					poster=poster.substring(0,poster.lastIndexOf("^"));
 					poster=poster.replace("&", "#");
 								//sql에서 &는 입력창이므로 다른 문자로 바꿔서 들여온 다음 다시 바꿔서 연결 필요
-//					System.out.println(poster);
+					System.out.println(poster);
 					fvo.setPoster(poster);
 					
 					//맛집명,평점
@@ -188,6 +188,6 @@ public class HTMLConnector_food {
 	public static void main(String[] args) {
 		HTMLConnector_food hcf=new HTMLConnector_food();
 //		hcf.foodCategoryGetData();
-		hcf.foodDetailGetData();
+//		hcf.foodDetailGetData();
 	}
 }
