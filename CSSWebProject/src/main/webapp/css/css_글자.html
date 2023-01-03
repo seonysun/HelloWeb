@@ -16,12 +16,26 @@
 		- background-size : 이미지 크기
 		- background-clip : 배경 적용 범위 조절
 		- background : 혼합
-	3) 위치
+	3) 레이아웃 스타일(위치, 간격, width, heigth)
+		- 위치
+			top
+			bottom
+			left
+			right
+		- 간격 
+			margin
+			padding
+	- display : 출력 형식
+		- 세로 출력
+		- 가로 출력
+		- block
+		- inline : 크기(width,height)가 지정되지 않은 경우
+		- inline-block : 크기가 지정된 경우
 	4) border
 	5) box모델(*)
-		- margin
-		- padding
-	6) 좌표(절대좌표, 선택좌효)
+		- margin : 태그와 태그 사이의 간격
+		- padding : 테두리와 내용 사이의 여백
+	6) 좌표(절대좌표, 선택좌표)
 	7) 화면 분할
 	8) 기타
 		- 속성 선택자
@@ -44,7 +58,7 @@ table{
 }
 #title{
 	font-family:궁서체;
-	font-size:30px;
+	font-size:28px;
 	font-weight:bold;
 }
 #sub{
@@ -52,18 +66,18 @@ table{
 }
 #percent{
 	color:pink;
-	font-size:30px;
+	font-size:25px;
 	font-weight:bold;
 }
 #price{
-	font-size:30px;
+	font-size:25px;
 	font-weight:bold;
 }
 #label,#price2{
 	color:green;
 }
 #price2{
-	font-size:30px;
+	font-size:25px;
 	font-weight:bold;
 }
 #star{
@@ -75,15 +89,18 @@ table{
 #count{
 	color:gray;
 }
+.icon{
+	width:25px;
+}
 #sel{
 	width:100%;
 	height:30px;
 }
 #cart,#buy{
-	width:150px;
-	height:60px;
+	width:120px;
+	height:40px;
 	border:2px green solid;
-	font-size:25px;
+	font-size:20px;
 	font-weight:bold;
 }
 #cart{
@@ -118,10 +135,10 @@ table{
 			<td width=60%><span id="star">★★★★★</span>&nbsp; <span id="bold">4.9</span> <span id="count">(404)</span></td>
 		</tr>
 		<tr>
-			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_delivery3.png">배송 3,000원 (30,000원이상 무료배송)</td>
+			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_delivery3.png" class="icon">배송 3,000원 (30,000원이상 무료배송)</td>
 		</tr>
 		<tr>
-			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_point.png">적립 40원 적립 (모든 회원 구매액의 0.5% 적립)</td>
+			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_point.png" class="icon">적립 40원 적립 (모든 회원 구매액의 0.5% 적립)</td>
 		</tr>
 		<tr>
 			<td width=60%>
