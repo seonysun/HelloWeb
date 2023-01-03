@@ -95,6 +95,9 @@
 		- <ol> ordered list : 순서가 있는 목록
 		- <li> list item : 목록 요소
 							-> ul, ol 하위 태그
+		- <dl> data list : 상세보기
+     	- <dt> : 제목 
+     	- <dd> : 실제 데이터 
 		- <table> : 표 삽입
 				- <border> : 테두리 두께 조절
 			- <tr> table row : 행 삽입
@@ -213,12 +216,18 @@
 <title>Insert title here</title>
 <style type="text/css">
 a:hover{
-  text-decoration: underline;
-  color:green
+    text-decoration: underline;
+	color:green
 }
 a{
-   text-decoration: none;
-   color:black;
+	text-decoration: none;
+    color:black;
+}
+td{
+	text-align: center
+}
+#foot{
+	text-align: right;
 }
 </style>
 </head>
@@ -255,6 +264,60 @@ a{
 	</figure>
  	<p>
   
+ 	<h3>DL태그(상세보기 dl-dt,dd)</h3>
+	  <dl>
+	    <dt>자바</dt>
+	    <dd>변수,연산자,제어문,클래스,클래스의 종류,예외처리,라이브러리(컬렉션,IO)</dd>
+	    <dt>오라클</dt>
+	    <dd>DML(INSERT,UPDATE,DELETE),DQL(SELECT),DDL(CREATE,ALTER,DROP),TCL(COMMIT,ROLLBACK)<dd>
+	    <dt>HTML</dt>
+	    <dd>태그,속성</dd>
+	  </dl>
+ 	<p>
+ 	
+  	<h2>성적표</h2>
+   <table border=1 width=450>
+     <tr>
+      <thead> <!-- VueJS,ReactJS 제목-->
+        <tr>
+          <th>학번</th>
+          <th>이름</th>
+          <th>국어</th>
+          <th>영어</th>
+          <th>수학</th>
+        </tr>
+      </thead>
+      <tbody> <!-- 실제 데이터 출력 -->
+        <tr>
+          <td>1</td>
+          <td>홍길동</td>
+          <td>80</td>
+          <td>80</td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>심청이</td>
+          <td>80</td>
+          <td>80</td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>이순신</td>
+          <td>80</td>
+          <td>80</td>
+          <td>80</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" id=foot>총점수:720점</td>
+        </tr>
+      </tfoot>
+     </tr>
+   </table>
+   
 	<h1>&lt;select&gt; 멀티선택</h1>
 	<select>
 		<option>Java</option>
