@@ -67,11 +67,6 @@
 			  <태그명 속성="출력 내용"> : 멀티미디어, 화면이동, 입력값
 
 3. HTML 기본 태그
-	- 태그 속성
-		- 블록 속성 : 한줄 전체 사용, 아랫줄에 출력 -> println
-			<hn>, <br>, <p>, <hr>, <ul>, <ol>, <table>, <div>
-		- 인라인 속성 : 지정된 위치만 사용, 옆으로 출력 -> print
-			<a>, <strong>, <em>, <i>, <ins>, <del>, <span> 
 	(1) 문자 관련
 		- 제목 출력 : <h1> ~ <h6> heading
 			- <h1>출력내용</h1>
@@ -85,7 +80,7 @@
 			- <ins> insert : 밑줄
 			- <del> delete : 취소선
 			- <small> : 작은 글자
-			- <sub> subscript : 아래 첨자, <sup> superscript : 위 첨자
+			- <sub>(*) subscript : 아래 첨자, <sup>(*) superscript : 위 첨자
 			- <font> : 글자 모양 설정 -> 사용 금지 권고, CSS로 대체
 		cf. 특수문자 표기
 			- &nbsp; : 공백
@@ -94,6 +89,7 @@
 				cf. 괄호 사용시 태그로 인식하므로 문자로 표기
 					XML에서 <>는 비교연산자
 			- &amp; : &
+			
 	(2) 목록 출력 : 네비게이션 메뉴
 		- <ul> unordered list : 순서가 없는 목록 -> 주로 사용
 		- <ol> ordered list : 순서가 있는 목록
@@ -106,6 +102,7 @@
 			- <td> table data : 표 일반 셀 생성
 				- colspan : 셀 너비(가로 방향 크기) 조절(병합)
 				- rowspan : 셀 높이(세로 방향 크기) 조절(병합)
+				
 	(3) 멀티미디어
 		- <a>(*) anchor : 하이퍼링크 생성 -> 화면 이동(핸드 커서로 바뀜)
 			- href(hyper reference) : 화면 이동할 파일명 제시
@@ -129,6 +126,7 @@
 			- height : 이미지 높이 지정
 		- embed : 동영상 실행
 			- src, width, height
+			
 	(4) 사용자 입력창 : 글쓰기, 수정하기, 회원가입, 삭제, 아이디찾기, 로그인
 		- <form> : 영역 생성(입력 양식의 시작과 끝 표시)
 			- action : 전송 위치 설정
@@ -137,23 +135,23 @@
 				- POST : 주소에 데이터 간접 전달
 		- <input>
 			- type
-				- 데이터 종류 -> size, name 설정해야 자바에서 입력값 받을 수 있음
-					- text : 글자 입력 양식
-							 서로 다른 종류의 데이터 함께 쓸 때 -> default
-					- password : 비밀번호 입력 양식
-					- file : 파일 첨부 양식
-					- date : 날짜 입력 양식
-				- 버튼 종류
-					- button : 버튼
-					- reset : 초기화 버튼
-					- submit : 제출 버튼
-					- image : 이미지 형태
-					- radio : 라디오 버튼(남/녀 선택) 
-							   -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
-					- checkbox : 체크 박스 생성
-								  -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
-				- number
-				- range
+			데이터 종류 -> size, name 설정해야 자바에서 입력값 받을 수 있음
+				- text : 글자 입력 양식
+						 서로 다른 종류의 데이터 함께 쓸 때 -> default
+				- password : 비밀번호 입력 양식
+				- file : 파일 첨부 양식
+				- date : 날짜 입력 양식
+			버튼 종류
+				- button : 버튼
+				- reset : 초기화 버튼
+				- submit : 제출 버튼
+				- image : 이미지 표시
+				- radio : 라디오 버튼(남/녀 선택) 
+						   -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
+				- checkbox : 체크 박스 생성
+							  -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
+			- number
+			- range
 		- <textarea> : 여러 행의 글자 입력 양식
 			- <textarea>출력내용</textarea>
 				-> value 속성 이용하지 않고 태그 사이에 값 입력
@@ -163,6 +161,7 @@
 		- <select> : 콤보(선택 양식)
 		  <optgroup> : 옵션 그룹화
 		  <option> : 상세 옵션
+		  
 	(5) 화면 분할
 		- div, span, header, section, footer, aside, article
 		1) 속성
@@ -224,6 +223,38 @@ a{
 </style>
 </head>
 <body>
+	HTML 문자 관련 태그<br>
+  	<b>HTML 문자 관련 태그</b><br>
+	<strong>HTML 문자 관련 태그</strong><br>
+  	<i>HTML 문자 관련 태그</i><br>
+  	<ins>HTML 문자 관련 태그</ins><br>
+  	<del>HTML 문자 관련 태그</del><br>
+  	<small>HTML 문자 관련 태그</small>
+  	<p>
+  	
+	첫번째 쓰는 게시물입니다 <sup><font color="red">new</font></sup><br>
+	첫번째 쓰는 게시물입니다 <sub><font color="blue">new</font></sub><br>
+	<p>
+	
+	<address>서울시 강남구 역삼동</address><!--  i태그와 유사 --><br>
+	
+	&lt;아바타: 물의 길&gt;은 판도라 행성에서<br>
+	<b>'제이크 설리'</b>와 <b>'네이티리'</b>가 이룬 가족이 겪게 되는 무자비한 위협과<br>
+	살아남기 위해 떠나야 하는 긴 여정과 전투,<br>
+	그리고 견뎌내야 할 상처에 대한 이야기를 그렸다.
+	<p>
+	월드와이드 역대 흥행 순위 1위를 기록한 전편 &lt;아바타&gt;에 이어<br>
+	<mark>제임스 카메론</mark> 감독이 13년만에 선보이는 영화로,<br>
+	샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이 출연하고<br>
+	존 랜도가 프로듀싱을 맡았다.<br>
+	<p>
+	<marquee>월드와이드 역대 흥행 순위 1위를 기록한 전편 &lt;아바타&gt;</marquee>
+	<figure>
+		<embed src="http://youtube.com/embed/kihrFxwdMb4" width="450" height="400">
+		<figcaption>아바타: 물의 길</figcaption>
+	</figure>
+ 	<p>
+  
 	<h1>&lt;select&gt; 멀티선택</h1>
 	<select>
 		<option>Java</option>
@@ -235,7 +266,7 @@ a{
 		<option>AWS</option>
 	</select>
 	
-	<h1>그룹별 처리:optgroup</h1>
+	<h3>&lt;optgroup&gt; 선택 그룹</h3>
 	<select>
 		<optgroup label="Back-End">
 			<option>Java</option>
@@ -259,7 +290,7 @@ a{
   	
 	<img src="image/f1.jpg" width=100 height="100" title="야채볶음밥">
 	<img src="./image/f2.jpg" width=450 height="450" title="감자옹심이">
-	<img src="../image/f3.png" width=100%> <!-- 비율로 설정 시 높이 자동 지정(100% = 브라우저 크기) -->
+	<img src="../image/f3.png" width=50%> <!-- 비율로 설정 시 높이 자동 지정(100% = 브라우저 크기) -->
 	<img src="https://recipe1.ezmember.co.kr/cache/recipe/2022/12/24/b5f37522c67d5f97406ded9c228bbfa81_m.jpg">
 	<p>
 	
@@ -278,10 +309,5 @@ a{
 		<area shape="rect" coords="202,92,344,195" href="tag2.html">
 	</map>
 	<p>
-	
-	<figure>
-		<embed src="http://youtube.com/embed/kihrFxwdMb4" width="450" height="400">
-		<figcaption>아바타: 물의 길</figcaption>
-	</figure>
 </body>
 </html>
