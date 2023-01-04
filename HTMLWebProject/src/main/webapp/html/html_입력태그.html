@@ -1,0 +1,72 @@
+<!-- 
+(4) 사용자 입력창 : 글쓰기, 수정하기, 회원가입, 삭제, 아이디찾기, 로그인
+	- <form> : 영역 생성(입력 양식의 시작과 끝 표시)
+			   입력된 데이터나 선택된 데이터 한번에 모아서 전송
+		- action : 전송 위치 설정
+		- method : 전송 방식 설정
+			- GET : 주소에 데이터 직접 입력
+			- POST : 주소에 데이터 간접 전달
+	- <input>
+		- type
+		데이터 종류 -> size, name 설정해야 자바에서 입력값 받을 수 있음
+			- text : 글자 입력 양식
+					 서로 다른 종류의 데이터 함께 쓸 때 -> default
+			- password : 비밀번호 입력 양식
+			- file : 파일 첨부 양식
+			- date : 날짜 입력 양식
+			- number
+			- range
+		버튼 종류
+			- button : 버튼
+			- reset : 초기화 버튼
+			- submit : 제출 버튼
+			- image : 이미지 표시
+			- radio : 라디오 버튼(남/녀 선택) 
+					   -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
+			- checkbox : 체크 박스 생성
+						  -> 하나만 선택 가능하려면 그룹 생성 필수(name 동일하게 설정)
+	- <textarea> : 여러 행의 글자 입력 양식
+		- <textarea>출력내용</textarea>
+			-> value 속성 이용하지 않고 태그 사이에 값 입력
+			-> 이때 공백 주면 안 됨, 줄바꾸지 말고 태그 닫기
+		- cols : 너비 지정
+		- rows : 높이 지정
+	- <select> : 콤보(선택 양식)
+	  	- <optgroup> : 옵션 그룹화
+	  	- <option> : 상세 옵션
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>&lt;select&gt; 멀티선택</h1>
+	<select>
+		<option>Java</option>
+		<option>Oracle</option>
+		<option>HTML/CSS:BootStrip</option>
+		<option>JavaScript:JQuery(Ajax),VueJS(vue,vuex),ReactJS(react,saga)</option>
+		<option>Jsp:MVC(Java(Model),Servlet(Controller),JSP(View))</option>
+		<option>Spring</option>
+		<option>AWS</option>
+	</select>
+	
+	<h3>&lt;optgroup&gt; 선택 그룹</h3>
+	<select>
+		<optgroup label="Back-End">
+			<option>Java</option>
+			<option>Oracle</option>
+			<option>Jsp</option>
+			<option>Spring</option>
+		</optgroup>
+		<optgroup label="Front-End">
+			<option>HTML/CSS</option>
+			<option>JavaScript</option>
+			<option>라이브러리(Ajax,Vue,React)</option>
+			<option>TypeScript</option>
+		</optgroup>
+	</select>
+</body>
+</html>

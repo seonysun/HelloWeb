@@ -1,0 +1,57 @@
+<!-- 
+(5) 화면 분할(템플릿 태그)
+	- <div> : 블록 형식으로 분할
+	- <span> : 인라인 형식으로 분할
+	- <header>, <nav>, <section>, <aside>, <article>, <footer> : HTML5 only
+				
+cf. 태그 속성
+	- 블록 속성 : 한줄 전체 사용, 아랫줄에 출력 -> println
+		<h1>~<h6>, <br>, <p>, <hr>, <ul>, <ol>, <table>, <div>
+	- 인라인 속성 : 지정된 위치만 사용, 오른쪽으로 쌓이며 출력 -> print
+		<a>, <strong>, <em>, <i>, <ins>, <del>, <input>, <span> 
+	cf. display
+		- inline : width, height(크기 지정 X)
+	    - inline-block : width,height (크기 지정)
+	    - block
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>블록,인라인</h1>
+		<div style="background-color:yellow">HTML/CSS</div>
+		<div style="background-color:green">HTML/CSS</div>
+		<span style="background-color:blue">HTML/CSS</span>
+		<span style="background-color:red">HTML/CSS</span>
+		<span style="background-color:pink">HTML/CSS</span>
+		<span style="background-color:magenta">HTML/CSS</span>
+	<p>
+	<h1 style="background-color:yellow">HTML/CSS</h1>
+		<p style="background-color:green">HTML/CSS</p>	
+		<i style="background-color:red">HTML/CSS</i>
+		<a href="#">HTML/CSS</a>
+	
+	<h1>인기순위</h1>
+	<table border=1 width=300 style="display:inline">
+		<caption>영화 인기 검색어</caption>
+		<tr>
+			<td>아바타: 물의 길</td>
+		</tr>
+		<tr>
+			<td>영웅</td>
+		</tr>
+		<tr>
+			<td>올빼미</td>
+		</tr>
+		<tr>
+			<td>젠틀맨</td>
+		</tr>
+		<tr>
+			<td>오늘 밤, 세계에서 사랑이..</td>
+		</tr>
+	</table>
+</body>
+</html>

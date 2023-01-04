@@ -1,0 +1,84 @@
+<!-- 
+(3) 멀티미디어
+	- <a>(*) anchor : 하이퍼링크 생성 -> 화면 이동(핸드 커서로 바뀜)
+		- href(hyper reference) : 화면 이동할 파일명 제시
+				-> 모든 화면 변경 시 URL 줄 때 맨 마지막에 파일명 추가 필요
+					- 서버에 파일 만들어서 저장 후 사용자가 파일 요청 -> 화면 변경
+					- 링크 없는 경우 "#"
+				-> 파일을 찾을 수 없을 때 404 에러(파일은 중복 불가)
+				cf. 웹에서 발생하는 에러
+					- 404 : 파일이 존재하지 않는 경우
+		 			- 403 : 보안(접속 거부)
+		 			- 500 : 자바 오류
+		 			- 412 : 한글 변환 오류
+		 			- 400 : 매칭이 안되는 경우
+				cf. PathVariable : 폴더/파일 여부를 구분하지 못하도록 숫자 형태로 제시(보안 목적)
+	- <img> : 이미지 출력 -> png, gif, jpg만 가능
+		- src : 이미지 경로 지정
+				-> include되므로 경로 입력에 주의
+				-> 크롤링의 경우 서버의 값을 읽어오는 것(원격)이므로 경로는 상관없지만 속도가 늦음
+			- 경로 지정 방법
+				- HTML 파일과 같은 폴더(image)에 있는 파일 
+					./image/a.jpg
+					image/a.jpg	
+						cf. "." : 현재 폴더
+				- HTML 파일과 다른 폴더(image)에 있는 파일 
+					../image/a.jpg
+				- CD
+					../../image/../a.jpg
+		- title : 풍선도움말, 이미지 없을 시 메시지 (기존 alt)
+		- width : 이미지 너비 지정
+		- height : 이미지 높이 지정
+	- <embed> : 동영상 실행
+		- src, width, height
+	- <video>, <audio>
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+a:hover{
+    text-decoration: underline;
+	color:green
+}
+a{
+	text-decoration: none;
+    color:black;
+}
+</style>
+</head>
+<body>
+	<a href="http://daum.net" target="_blank">다음</a><br><!-- 인라인 태그 target을 생략 -->
+  	<a href="http://naver.com">네이버</a><br>
+  	<a href="http://google.co.kr">구글</a>
+  	<p>
+  	
+	<img src="image/f1.jpg" width=100 height="100" title="야채볶음밥">
+	<img src="./image/f2.jpg" width=450 height="450" title="감자옹심이">
+	<img src="../image/f3.png" width=50%> <!-- 비율로 설정 시 높이 자동 지정(100% = 브라우저 크기) -->
+	<img src="https://recipe1.ezmember.co.kr/cache/recipe/2022/12/24/b5f37522c67d5f97406ded9c228bbfa81_m.jpg">
+	<p>
+	
+	<img src="../image/f4.jpg"><br>
+	<b>가지구이 만드는법~ 가지스테이크</b>
+	<p>
+	<figure><!-- CARD : 이미지와 설명 동시에 처리 -->
+		<img src="../image/f4.jpg">
+	 	<figcaption>가지구이 만드는법~ 가지스테이크</figcaption>
+	</figure>
+	<p>
+	
+	<figure>
+		<embed src="http://youtube.com/embed/kihrFxwdMb4" width="450" height="400">
+		<figcaption>아바타: 물의 길</figcaption>
+	</figure>
+	
+	<!-- map : 좌표 영역 선택 시 이동할 페이지 링크 연결 -->
+	<img src="../image/fm1.jpg" usemap="#fm1">
+	<map name="fm1">
+		<area shape="rect" coords="202,92,344,195" href="tag2.html">
+	</map>
+</body>
+</html>
