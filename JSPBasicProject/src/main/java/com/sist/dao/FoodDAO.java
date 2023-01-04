@@ -8,26 +8,26 @@ public class FoodDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	/* DBCP : 웹에서만 사용 가능(앱 불가)
-	Servers -> 톰캣 -> server.xml -> 마지막 context 안쪽에(마지막에) 추가
-	 <Resource 
-          auth="Container"
-          driverClassName="oracle.jdbc.driver.OracleDriver"
-          username="hr"
-          password="happy"
-          url="jdbc:oracle:thin:@localhost:1521:xe"
-          name="jdbc/oracle"
-          type="javax.sql.DataSource"
-          maxActive="10"
-          maxIdle="10"
-          maxWait="-1"
-        />
-	  * getConnection 새로 설정할 필요 없음, Connection 톰캣에서 자동 생성 -> 만들어진 Connection 가져와서 쓰면 됨
-      * 장점 : 접속 시간 줄일 수 있음(연결 속도 향상), 보안, Connection 갯수 관리 가능(서버 쉽게 무너지지 않음)
-      * DB 관리 : JDBC => DBCP => ORM(Mybatis,JPA);실무
-      * 	ex. SELECT * FROM project_category WHERE cno=1;
-      * 		=> CategoryVO findByCno(int cno);
-      * 		INSERT INTO~
-      * 		=> void save()
+	 * 	-> getConnection 새로 설정할 필요 없음, Connection 톰캣에서 자동 생성 -> 만들어진 Connection 가져와서 쓰면 됨
+     * 	- 장점 : 접속 시간 줄일 수 있음(연결 속도 향상), 보안, Connection 갯수 관리 가능(서버 쉽게 무너지지 않음)
+     * 	- 방법 : Servers -> 톰캣 -> server.xml -> 마지막 context 안쪽에(마지막에) 추가
+			 <Resource 
+		          auth="Container"
+		          driverClassName="oracle.jdbc.driver.OracleDriver"
+		          username="hr"
+		          password="happy"
+		          url="jdbc:oracle:thin:@localhost:1521:xe"
+		          name="jdbc/oracle"
+		          type="javax.sql.DataSource"
+		          maxActive="10"
+		          maxIdle="10"
+		          maxWait="-1"
+		     />
+     * 	- DB 관리 : JDBC => DBCP => ORM(Mybatis,JPA);실무
+     * 		ex. SELECT * FROM project_category WHERE cno=1;
+     * 			=> CategoryVO findByCno(int cno);
+     * 			INSERT INTO~
+     * 			=> void save()
 	*/
 	public void getConnection() { //미리 만들어진 Connection 개체 가져옴
 		try {
