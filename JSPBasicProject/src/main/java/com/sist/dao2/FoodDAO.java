@@ -1,4 +1,4 @@
-package com.sist.dao;
+package com.sist.dao2;
 import java.util.*;
 import java.sql.*;
 import javax.sql.*;
@@ -70,5 +70,64 @@ public class FoodDAO {
 			disConnection();
 		}
 		return list;
+	}
+	public ArrayList<FoodVO> foodListData(){
+		ArrayList<FoodVO> list=new ArrayList<FoodVO>();
+		try {
+			getConnection();
+			String sql="SELECT fno,name,poster,rownum "
+					+ "FROM project_food "
+					+ "WHERE rownum<=20";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				FoodVO vo=new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				String poster=rs.getString(3);
+				poster=poster.substring(0,poster.indexOf("^"));
+				poster=poster.replace("#","&");
+				vo.setPoster(poster);
+				list.add(vo);
+			}
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return list;
+	}
+	public FoodVO foodDetailData() {
+		FoodVO vo=new FoodVO();
+		try {
+			getConnection();
+			String sql="SELECT fno,name,score,tel,type,address,time,parking,price,poster,menu,good,soso,bad "
+					+ "FROM project_food "
+					+ "WHERE fno=1";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setFno(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setScore(rs.getDouble(3));
+			vo.setTel(rs.getString(4));
+			vo.setType(rs.getString(5));
+			vo.setAddress(rs.getString(6));
+			vo.setTime(rs.getString(7));
+			vo.setParking(rs.getString(8));
+			vo.setPrice(rs.getString(9));
+			vo.setPoster(rs.getString(10));
+			vo.setMenu(rs.getString(11));
+			vo.setGood(rs.getInt(12));
+			vo.setSoso(rs.getInt(13));
+			vo.setBad(rs.getInt(14));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return vo;
 	}
 }

@@ -1,4 +1,4 @@
-package com.sist.dao;
+package com.sist.dao2;
 
 public class CategoryVO {
 	private int cno;
