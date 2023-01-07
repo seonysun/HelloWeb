@@ -1,0 +1,67 @@
+<!-- 
+1. 선택자 : 태그 선택 시 사용
+	1) 용도
+		- CSS
+		- 크롤링
+		- JavaScript에서 태그 제어할 때
+	2) 선택자 종류
+		- 태그명
+		- 구분자(속성) : 태그명 사용 시 동일한 태그가 여러 개이므로 제어 어려움 
+						-> 구분자로 구별 용이하게 처리
+			- id : 한개만 제어(중복 불가 Primary key)
+					-> 선택자 : 태그명#아이디명, #아이디명
+			- class : 여러개 동시에 제어(중복 가능)
+					  -> 선택자 : 태그명.클래스명, .클래스명 
+		- 인접선택자 
+			div b + p : b 태그와 같은 계층상의 p 하나 찾기
+			div b ~ p : b 태그와 같은 계층상의 p 여러개 찾기
+		- 자손선택자 : 태그명>태그명 
+			div>b
+			  :	<div>
+					<b></b>
+					<p>
+						<b></b>
+						<p></p>
+					</p>
+				</div>
+		- 후손선택자 : 태그명 태그명 
+			div b
+		- 가상선택자 -> 포함 문자, 시작 문자, 끝 문자
+			ex. img[src*=값] , img[src^=http|https]
+              img[src$='png|jpg|gif']
+cf. css 내의 주석처리 /**/
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+h1{ 
+	color:red;
+}
+h1#js{
+	color:blue;
+}
+h1.hc{
+	color:green;
+}
+/*첫번째, 마지막 요소는 구분자 지정없이 찾을 수 있음*/
+h1:first-child{
+	color:yellow;
+}
+h1:last-child{
+	color:pink;
+}
+</style>
+</head>
+<body>
+	<h1>Java</h1>
+	<h1>Oracle</h1>
+	<h1 class="hc">HTML/CSS</h1>
+	<h1 id="js">JavaScript</h1>
+	<h1 class="hc">Jsp</h1>
+	<h1>Spring</h1>
+	<h1>AWS</h1>
+</body>
+</html>
