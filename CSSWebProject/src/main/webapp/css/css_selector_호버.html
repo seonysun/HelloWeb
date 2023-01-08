@@ -1,3 +1,8 @@
+<!-- 
+10) 반응선택자
+	- :hover : 마우스 커서를 올린 태그 선택
+	- :active : 마우스로 클릭한 태그 선택
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +30,21 @@
 	text-decoration: underline;
 	color: green;
 }
+img:hover{
+	opacity: 0.2;
+	border:2px green solid;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 	<div class="button">
 		<a href="#" class="click">Link</a>
 	</div>
+	<p>
+	<img src="../image/f1.jpg">
+	<img src="../image/f2.jpg">
+	<img src="../image/f3.jpg">
+	<img src="../image/f4.jpg">
 </body>
 </html>

@@ -6,153 +6,33 @@
 		- font-weight : 글자 굵기 -> b(굵게), i(기울임)
 		- color : 글자 색상
 		- text-align : 글자 정렬 -> left, center, right
-		- line-height : 글자 간격(자간)
-	2) 색상 관련 CSS
-		- background-color : 배경색
-		- background-image : 배경이미지
-		- background-repeat : 배경이미지 반복(타일즈)
-								-> 이미지가 화면 크기보다 작은 경우 바둑판식으로 채움
-		- background-position : 이미지 출력 위치
-		- background-size : 이미지 크기
-		- background-clip : 배경 적용 범위 조절
-		- background : 혼합
-	3) 레이아웃 스타일(위치, 간격, width, heigth)
-		- 위치
-			top
-			bottom
-			left
-			right
-		- 간격 
-			margin
-			padding
-	- display : 출력 형식
-		- 세로 출력
-		- 가로 출력
-		- block
-		- inline : 크기(width,height)가 지정되지 않은 경우
-		- inline-block : 크기가 지정된 경우
-	4) border
-	5) box모델(*)
-		- margin : 태그와 태그 사이의 간격
-		- padding : 테두리와 내용 사이의 여백
-	6) 좌표(절대좌표, 선택좌표)
-	7) 화면 분할
-	8) 기타
-		- 속성 선택자
-		- 가상 선택자
-		- 후손 선택자
-		- 자손 선택자
-		- 인접 선택자
+		- line-height : 수직 중앙 정렬(박스 정가운데 위치하도록 설정)
  -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style type="text/css">
-table{
-	width:700px;
+#aaa {
+  font-family: 궁서체;
 }
-#image{
-	width:100%;
+.bbb {
+  font-family: "맑은 고딕", 궁서체, 굴림;
 }
-#title{
-	font-family:궁서체;
-	font-size:28px;
-	font-weight:bold;
-}
-#sub{
-	color:gray;
-}
-#percent{
-	color:pink;
-	font-size:25px;
-	font-weight:bold;
-}
-#price{
-	font-size:25px;
-	font-weight:bold;
-}
-#label,#price2{
-	color:green;
-}
-#price2{
-	font-size:25px;
-	font-weight:bold;
-}
-#star{
-	color:orange;
-}
-#bold{
-	font-weight:bold;
-}
-#count{
-	color:gray;
-}
-.icon{
-	width:25px;
-}
-#sel{
-	width:100%;
-	height:30px;
-}
-#cart,#buy{
-	width:120px;
-	height:40px;
-	border:2px green solid;
-	font-size:20px;
-	font-weight:bold;
-}
-#cart{
-	background-color:white;
-	color:green;
-}
-#buy{
-	background-color:green;
-	color:white;
+.ccc {
+  font-family: 'Nanum Pen Script', cursive;
 }
 </style>
 </head>
 <body>
-	<table>
-		<tr>
-			<td width=40% align="center" rowspan="9">
-			 <img src="https://recipe1.ezmember.co.kr/cache/data/goods/22/03/11/1000026157/1000026157_detail_078.jpg" 
-			 	id="image">
-			</td>
-			<td width=60% align="center"><span id="title">[만개특가] 페레로 악마의 잼 누텔라비스킷/페레로로쉐 초코바 버전 하누타리겔</span></td>
-		</tr>
-		<tr>
-			<td width=60%><span id="sub">SNS화제! Nutella, Ferrero 수입간식 모음</span></td>
-		</tr>
-		<tr>
-			<td width=60%><span id="percent">51%</span>&nbsp; <span id="price">7,900원</span></td>
-		</tr>
-		<tr>
-			<td width=60%><span id="label">첫구매할인가</span>&nbsp; <span id="price2">7,505원</span></td>
-		</tr>
-		<tr>
-			<td width=60%><span id="star">★★★★★</span>&nbsp; <span id="bold">4.9</span> <span id="count">(404)</span></td>
-		</tr>
-		<tr>
-			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_delivery3.png" class="icon">배송 3,000원 (30,000원이상 무료배송)</td>
-		</tr>
-		<tr>
-			<td width=60%><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_point.png" class="icon">적립 40원 적립 (모든 회원 구매액의 0.5% 적립)</td>
-		</tr>
-		<tr>
-			<td width=60%>
-				<select id="sel">
-					<option>옵션선택</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td width=60%>
-				<input type=button value="장바구니" id="cart">
-				<input type=button value="바로구매" id="buy">
-			</td>
-		</tr>
-	</table>
+  <h1 id="aaa">Hello CSS</h1>
+  <h1 class="bbb">안녕하세요</h1>
+  <h1 class="bbb">안녕하세요</h1>
+  <h1 class="ccc">안녕하세요</h1>
+  <h1 class="ccc">안녕하세요</h1>
 </body>
 </html>

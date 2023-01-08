@@ -1,0 +1,43 @@
+<!-- 
+4) 화면 출력 형식
+	- display : 가로/세로
+		- none : 화면에 보이지 않음
+		- block : 블록 형식(세로 출력)
+		- inline : 인라인 형식(가로 출력)
+				   간격(margin/padding) 좌우로만 설정 가능 -> 크기(width,height)가 지정되지 않은 경우 사용
+		- inline-block : 인라인/블록 중간 형식(가로 출력)
+						 간격 상하좌우 모두 설정 가능 -> 크기가 지정된 경우 사용
+	- float : 위치 고정
+		- img태그 : 이미지와 글 어우러지게 배치
+		- left : 태그를 왼쪽으로 고정 -> 수평 정렬
+		- right : 태그를 오른쪽으로 고정 -> 수평 정렬
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	width: 200px;
+	height: 200px;
+	border: 2px solid black;
+	display: inline-block; /* 가로 출력(설정 없으면 세로 출력) */
+}
+.box1{
+	background-color: red;
+}
+.box2{
+	background-color: green;
+}
+.box3{
+	background-color: blue;
+}
+</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>

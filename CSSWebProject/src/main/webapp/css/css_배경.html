@@ -1,3 +1,23 @@
+<!-- 
+2) 색상 관련 CSS
+	- background-color : 배경색
+	- background-image : 배경이미지 삽입
+		- URL 입력
+	- background-repeat : 배경이미지 반복(타일즈)
+							-> 이미지가 화면 크기보다 작은 경우 바둑판식으로 채움
+		- repeat-x : x축 방향으로만 반복
+		- repeat-y : y축 방향으로만 반복
+	- background-position : 배경이미지 출력 위치
+	- background-size : 배경이미지 크기
+	- background-attachment : 배경이미지 화면에 고정하는 속성
+		- fixed : 스크롤해도 배경이미지 고정
+		- scroll : 스크롤과 함께 배경이미지 이동
+	- background-clip : 배경 적용 범위 조절
+    	- border-box
+    	- padding-box
+    	- content-box
+	- background : 모든 속성 한번에 입력
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,26 +30,33 @@ div{
 	border:1px gray solid;
 }
 #back{
-	background-image: url('f1.jpg');
+	background-image: url('../image/back.jpg');
 	background-repeat: no-repeat;
 	background-size: cover; /* 채우기 */
 }
 pre{
-	white-space: pre-wrap; /* 문장이 범위를 벗어난 경우 자동 줄바꿈*/
+	white-space: pre-wrap; /* 문장이 범위를 벗어난 경우 자동 줄바꿈 */
+	text-align: center;
 }
-back2{
-	background-image: url('f1.jpg');
+#back2{
+	background-image: url('../image/f1.jpg');
 	background-size: cover;
-	background-attachment: scroll;
-	overflow-y: auto; /* div 안에서 스크롤바 생성 */
+	/* background-attachment: scroll; */
+	overflow: auto; /* div 안에서 스크롤바 생성 */
+}
+div.bg{
+  padding: 15px; /* top right bottom left -> 15px 15px 15px 15px */
+  width: 350px;
+  height: 200px;
+  background-clip: content-box;
+  border: 3px red dotted;
 }
 </style>
 </head>
 <body>
 	<div>
-		<img src="f1.jpg">
+		<img src="../image/back.jpg">
 	</div>
-	<p>
 	<div id="back"></div>
 	<div id="back2">
 		<h1>장우진, 16세 오준성 한수 가르침</h1>
@@ -52,5 +79,11 @@ back2{
 			국군체육부대는 장우진이 첫 단식에서 오준성을 2-0으로 완파하는 등 위력을 발휘한 끝에 미래에셋증권에 매치스코어 4-0 완승을 거뒀다.
 		</pre>
 	</div>
+	<div class="bg">
+		따따따따 명불허전입니다. 고기의 질, 서비스 등 최고입니다.
+		맡김차림 캐주얼 다이닝으로 먹었는데, 고기의 종류는 그때그때 좀 달라지는 듯하네요.
+		직원분이 정말 딱 알맞게 가장 맛있는 상태로 잘 구워주십니다.
+		소고기 좋아하시는 분은 한번쯤은 가볼만 합니다.
+    </div>
 </body>
 </html>

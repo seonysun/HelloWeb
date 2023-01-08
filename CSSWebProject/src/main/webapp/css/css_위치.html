@@ -1,0 +1,51 @@
+<!-- 
+5) 위치 설정 
+	- position : 좌표 설정
+		- absolute : 절대 좌표, 각 태그끼리 서로 영향주지 않음
+		- fixed : 화면 기준 절대 좌표
+		- relative : 상대 좌표, 각 태그끼리 서로 영향줌
+	    - static : 위 => 아래, 왼쪽 => 오른쪽 순서대로 배치(디폴트)
+	- z-index : 요소 순서 변경, 앞/뒤 배치(z 좌표)
+		- 숫자 클수록 가장 앞에 위치
+	- overflow : 내용이 요소 크기를 벗어날 때
+		- hidden : 감춤
+		- scroll : 스크롤 설정
+			- 특정 방향으로만 스크롤 생성하고자 할 떄는 overflow + x|y
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	width: 200px;
+	height: 200px;
+	position: relative;
+}
+.box1{
+	background-color: red;
+	left: 10px;
+	top: 10px;
+	z-index: 3;
+}
+.box2{
+	background-color: green;
+	left: 50px;
+	top: 50px;
+	z-index: 2;
+}
+.box3{
+	background-color: blue;
+	left: 100px;
+	top: 100px;
+	z-index: 1;
+}
+</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>

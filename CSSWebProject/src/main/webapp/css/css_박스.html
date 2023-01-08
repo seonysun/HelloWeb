@@ -1,0 +1,67 @@
+<!-- 
+3) box(*) : 레이아웃 스타일
+	- 간격 
+		- margin : 태그와 태그 사이의 간격
+			- 중앙 정렬 : 0 auto;
+		- padding : 테두리와 내용 사이의 여백
+			- 4개 입력 -> top / right / bottom / left (시계 방향)
+			- 2개 입력 -> 위아래 / 좌우
+	- 테두리 : border
+		- border-width : 테두리 두꼐
+			- border-top-width	
+			- border-bottom-width
+			- border-left-width
+			- border-right-width
+		- border-style: 라인선
+			- soild, dotted, dashed, double
+		- border-color : 테두리 색상
+		- border-radius : 모서리 각도 둥글게
+		- border : 모든 속성 한번에 입력
+	- 크기
+		- width : 가로 크기
+		- height : 세로 크기
+	- 그림자 : shadow
+		- text-shadow
+		- box-shadow
+			- 좌우 / 위아래 / 흐림도 / 색상
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	width: 150px;
+    height: auto;
+    border: 1px solid black;
+    margin: 15px;
+    display: block;
+    background-color: orange;
+    color: white;
+}
+.box1{
+    padding: 10px 30px;
+}
+.box2{
+    padding: 10px 30px;
+}
+.box3{
+    padding: 30px;
+}
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    margin: 0px auto;
+}
+</style>
+</head>
+<body>
+	<div class="box1">내 인생 레시피,친정 엄마표 “파채무침”</div>
+    <div class="box2">추운 날씨, 따뜻한 국물요리 김치만두 전골</div>
+    <div class="box3">새해 복 많이 받으세요. 굴떡국 레시피</div>
+    
+    <div class="box"></div>
+</body>
+</html>

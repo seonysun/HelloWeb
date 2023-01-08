@@ -7,23 +7,31 @@ https://try.jsoup.org/
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-img#img1{
-	border:2px red solid;
+h1{ 
+	color:red;
 }
-img.img2{
-	border:2px blue solid;
+h1#js{
+	color:blue;
 }
-img:last-child{
-	border:2px green solid;
+h1.hc{
+	color:green;
+}
+/*첫번째, 마지막 요소는 구분자 지정없이 찾을 수 있음*/
+h1:first-child{
+	color:yellow;
+}
+h1:last-child{
+	color:pink;
 }
 </style>
 </head>
 <body>
-	<h1>레시피 목록 출력</h1>
-	<img src="../image/f1.jpg">
-	<img src="../image/f2.jpg" class="img2">
-	<img src="../image/f3.jpg" id="img1">
-	<img src="../image/f4.jpg" class="img2">
-	<img src="../image/f5.png">
+	<h1>Java</h1>
+	<h1>Oracle</h1>
+	<h1 class="hc">HTML/CSS</h1>
+	<h1 id="js">JavaScript</h1>
+	<h1 class="hc">Jsp</h1>
+	<h1>Spring</h1>
+	<h1>AWS</h1>
 </body>
 </html>
