@@ -13,59 +13,65 @@
 		    
 		      //JSP 코딩 위치
 		  }
-		1) request(*) : 요청, HttpServletRequest
-			- 사용자 브라우저/서버 정보
-				URL : http://localhost/JSPBasicProject3/object/basic_input.jsp
-					  ---------------- ---------------------------------------
-					 	  서버 정보				사용자 요청 정보(URI)
-					 	  			   ----------------
-					 	  			      ContextPath
-				- getRequestURL()(*)
-				- getRequestURI()(*)
-				- getContextPath()(*)
-				- getRemoteAddr()(*) : 사용자의 IP 찾기 
-					- 조회수 설정 시 종종 사용(동일 IP는 처리 X)
-				- getServerPort() : 서버 포트 찾기(80)
-					cf. url의 localhost 뒤에 ':80' 생략되어있음
-				- getServerInfo() : localhost
-			- 요청 데이터 관리
-				- getParameter() : 단일 데이터값 수신 -> String
-				- getParameterValues() : 다중 데이터값 수신 -> 배열
-				- getParameterNames() : key값(name값=변수명) 가져옴
-				- request.setCharacterEncoding("UTF-8") : 디코딩(byte[] -> String)
-												  		  브라우저에서 값을 받을 때
-				- URLEncoder.encoder(데이터,"UTF-8") : 인코딩(String -> byte[])
-													 브라우저로 값 전송할 때
-									인코딩 디코딩
-				 	 cf. 브라우저(1byte) <- -> 자바(2byte)
-							byte[]			  String
-				cf. 데이터 전송 
-						- 받는파일명?변수명=값
-						- map 형태 : key(변수명) + value(값)
-						- 모든 데이터값은 String
-						ex. a.jsp?no=10
-							=> a.jsp
-							   request.getParameter("no"); //10
-							a.jsp?id=admin&pw=1234
-							   request.getParameter("id"); //admin
-							   request.getParameter("pw"); //1234
-							a.jsp?hobby=a&hobby=b&hobby=c
-							   request.detParameterValues("hobby");
-			- 추가 기능 : 사용자가 보내준 데이터 + 필요한 데이터 추가해서 전송(MAV, Spring)
-				- setAttribute(키,값) -> Object 첨부
-				- getAttribute(키)
-	    2) response(*) : 응답, HttpServletResponse
-	    	- JSP파일 1개에서 response 1번만 가능
-	    	- setHeader() : 파일 업로드/다운로드
-	    	- sendRedirect() : 서버에서 다른 파일로 이동
-	    		cf. forward()와 구분
-	    3) pageContext(*)
-	    4) session(*)
-	    5) application(*)
-	    6) config
-	    7) out(*)
-	    8) page
-	    9) exception
+	1) request(*) : 요청, HttpServletRequest
+		- 사용자 브라우저/서버 정보
+			URL : http://localhost/JSPBasicProject3/object/basic_input.jsp
+				  ---------------- ---------------------------------------
+				 	  서버 정보				사용자 요청 경로(URI)
+				 	  			   ----------------
+				 	  			      ContextPath
+			- getRequestURL()(*)
+			- getRequestURI()(*)
+			- getContextPath()(*)
+			- getRemoteAddr()(*) : 사용자의 IP 찾기 
+				- 조회수 설정 시 종종 사용(동일 IP는 처리 X)
+			- getServerPort() : 서버 포트 찾기(80)
+				cf. url의 localhost 뒤에 ':80' 생략되어있음
+			- getServerInfo() : localhost
+		- 요청 데이터 관리
+			- getParameter() : 단일 데이터값 수신 -> String
+			- getParameterValues() : 다중 데이터값 수신 -> 배열
+			- getParameterNames() : key값(=name값=변수명) 찾기
+			- request.setCharacterEncoding("UTF-8") : 디코딩(byte[] -> String)
+											  		  브라우저에서 값을 받을 때
+			- URLEncoder.encoder(데이터,"UTF-8") : 인코딩(String -> byte[])
+												 브라우저로 값 전송할 때
+								인코딩 디코딩
+			 	 cf. 브라우저(1byte) <- -> 자바(2byte)
+						byte[]			  String
+			cf. 데이터 전송 request
+					- URL(~받는파일명)?변수명=값
+						-> URL/URI 안에는 ? 포함되지 않음
+					- map 형태 : key(변수명) + value(값)
+					- 모든 데이터값은 String
+					ex. a.jsp?no=10
+						=> a.jsp
+						   request.getParameter("no"); //10
+						a.jsp?id=admin&pw=1234
+						   request.getParameter("id"); //admin
+						   request.getParameter("pw"); //1234
+						a.jsp?hobby=a&hobby=b&hobby=c
+						   request.detParameterValues("hobby");
+		- 추가 기능 : 사용자가 보내준 데이터 + 필요한 데이터 추가해서 전송(MVC, Spring)
+			- setAttribute(키,값) -> Object 첨부
+			- getAttribute(키)
+	2) response(*) : 응답, HttpServletResponse
+	   	- JSP파일 1개에서 response 1번만 가능
+	   	- getContentType() : 데이터 형식 확인
+	   		- text/html(HTML), text/xml(XML), text/plain(JSON)
+	   	- getCharacterEncoding : 한글 변환 코드 확인
+	   	- setHeader() : 파일 업로드/다운로드
+	   	- sendRedirect()(*) : 서버에서 다른 파일로 이동, GET 방식
+	   		- redirect로 jsp가 변경되면 request 초기화 
+	   			-> 사용자가 보내준 값 초기화
+	   			-> request 유지 가능한 forward(pageContext), include(pageContext) 사용
+	3) pageContext(*)
+	4) session(*)
+	5) application(*)
+	6) config
+	7) out(*)
+	8) page
+	9) exception
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -94,9 +100,7 @@
 		<h1>개인정보 전송</h1>
 		<div class="row">
 		  <form method=post action="basic_output.jsp">
-		  <!-- method : get/post
-		  	   action : 받는 파일 지정
-		   -->
+		  <!-- method : get/post, action : 받는 파일 지정 -->
 			<table class="table">
 				<tr>
 				  <th class="text-center" width=20%>이름</th>
