@@ -1,0 +1,130 @@
+<!-- 
+11) 반응선택자
+	- :hover : 마우스 커서를 올린 태그 선택
+	- :active : 마우스로 클릭한 태그 선택
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<style type="text/css">
+h1:active{
+	color: red;
+}
+h1:hover{
+	color: green;
+}
+.table_content a{
+	text-decoration: none; /* underline제거 */
+	color: black;
+}
+.table_content a:hover{
+	text-decoration: underline;
+	color: pink;
+}
+.table_content a:active{
+	color: green;
+}
+.button{
+	width: 150px;
+	height: 70px;
+	background-color: #FC6400;
+	border: 10px solid #FFFFFF;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px #A9A9A9;
+}
+.click{
+	display: block;
+	line-height: 70px;
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+.click:hover{
+	text-decoration: underline;
+	color: yellow;
+}
+table#reply{
+    width: 700px;
+}
+textarea{
+	float: left;
+	margin-left: 10px;
+}
+button{
+    margin-left: 5px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    height: 80px;
+    width: 100px;
+}
+button:hover{
+    background-color: green;
+    opacity: 0.5;
+}
+img:hover{
+	opacity: 0.2;
+	border: 5px red solid;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<h1>반응 선택자</h1>
+	<table class="table_content" width="700">
+	    <tr>
+	      <th width=10%>번호</th>
+	      <th width=45%>제목</th>
+	      <th width=15%>이름</th>
+	      <th width=20%>작성일</th>
+	      <th width=10%>조회수</th>
+	    </tr>
+	    <tr>
+	      <td width=10% class="tdcenter">1</td>
+	      <td width=45%><a href="#">제목</a></td>
+	      <td width=15% class="tdcenter">이름</td>
+	      <td width=20% class="tdcenter">작성일</td>
+	      <td width=10% class="tdcenter">조회수</td>
+	    </tr>
+	    <tr>
+	      <td width=10% class="tdcenter">2</td>
+	      <td width=45%><a href="#">제목2</a></td>
+	      <td width=15% class="tdcenter">이름</td>
+	      <td width=20% class="tdcenter">작성일</td>
+	      <td width=10% class="tdcenter">조회수</td>
+	    </tr>
+	    <tr>
+	      <td width=10% class="tdcenter">3</td>
+	      <td width=45%><a href="#">제목3</a></td>
+	      <td width=15% class="tdcenter">이름</td>
+	      <td width=20% class="tdcenter">작성일</td>
+	      <td width=10% class="tdcenter">조회수</td>
+	    </tr>
+  	</table>
+	
+	<div class="button">
+		<a href="#" class="click">Link</a>
+	</div>
+	<p>
+	
+	<table id=reply>
+	    <tr>
+	      <td>
+	        <textarea rows="5" cols="55"></textarea>
+	        <button>댓글쓰기</button>
+	      </td>
+	    </tr>
+  	</table>
+  	<p>
+	
+	<img src="../image/f1.jpg">
+	<img src="../image/f2.jpg">
+	<img src="../image/f3.jpg">
+	<img src="../image/f4.jpg">
+</body>
+</html>

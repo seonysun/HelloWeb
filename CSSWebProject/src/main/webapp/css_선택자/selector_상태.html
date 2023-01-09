@@ -1,0 +1,42 @@
+<!-- 
+10) 상태선택자 : input 태그 선택 옵션
+	- :checked : 체크 상태의 checkbox/radio 태그
+	- :focus : 포커스 맞춘 입력 태그(입력창 선택)
+	- :enabled : 사용 가능한 입력 태그
+	- :disabled : 사용 불가능한 입력 태그
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+input:checked {
+	accent-color: blue;
+}
+input[type=text]:disabled {
+	background-color: green;
+}
+input[type=text]:focus {
+	background-color: lightgray;
+}
+input[type=text]:enabled {
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+	성별:<input type=radio name=sex checked>남자
+		<input type=radio name=sex>여자
+	<p>
+	취미:<input type="checkbox" checked>등산
+		<input type="checkbox">독서
+		<input type="checkbox">낚시
+		<input type="checkbox" checked>게임
+		<input type="checkbox" checked>개발
+	<p>
+	이름:<input type=text size=15><br>
+	주소:<input type=text size=25 disabled><br>
+	상세주소:<input type=text size=25><br>
+</body>
+</html>

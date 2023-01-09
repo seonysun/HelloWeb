@@ -1,0 +1,72 @@
+<!-- 
+https://try.jsoup.org/
+
+12) 구조선택자 : 특정 위치에 있는 태그 선택
+	- :first-child : 형제 관계에서 첫 번째로 등장하는 태그
+	- :last-child : 형제 관계에서 마지막으로 등장하는 태그 
+	- :nth-child : 앞에서 수열 번째로 등장하는 태그 ex. 짝수번째
+	- :nth-last-child : 뒤에서 수열 번째로 등장하는 태그
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+h1{ 
+	color: red;
+}
+h1#js{
+	color: blue;
+}
+h1.hc{
+	color: green;
+}
+/*첫번째, 마지막 요소는 구분자 지정없이 찾을 수 있음*/
+h1:first-child{
+	color: yellow;
+}
+h1:last-child{
+	color: pink;
+}
+img#img1{
+	border: 2px red solid;
+}
+img.img2{
+	border: 2px blue solid;
+}
+img:last-child{
+	border: 2px green solid;
+}
+h3:nth-child(2n){
+	color: purple;
+}
+</style>
+</head>
+<body>
+	<div>
+		<h1>Java</h1>
+		<h1>Oracle</h1>
+		<h1 class="hc">HTML/CSS</h1>
+		<h1 id="js">JavaScript</h1>
+		<h1 class="hc">Jsp</h1>
+		<h1>Spring</h1>
+		<h1>AWS</h1>
+	</div>
+	<div>
+		<h2>레시피 목록 출력</h2>
+		<img src="../image/f1.jpg">
+		<img src="../image/f2.jpg" class="img2">
+		<img src="../image/f3.jpg" id="img1">
+		<img src="../image/f4.jpg" class="img2">
+		<img src="../image/f5.png">
+	</div>
+	<div>
+		<h3>홍길동1</h3>
+		<h3>홍길동2</h3>
+		<h3>홍길동3</h3>
+		<h3>홍길동4</h3>
+		<h3>홍길동5</h3>
+	</div>
+</body>
+</html>

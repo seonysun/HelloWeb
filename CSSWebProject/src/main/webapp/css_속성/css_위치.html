@@ -7,6 +7,10 @@
 	    - static : 위 => 아래, 왼쪽 => 오른쪽 순서대로 배치(디폴트)
 	- z-index : 요소 순서 변경, 앞/뒤 배치(z 좌표)
 		- 숫자 클수록 가장 앞에 위치
+	- float
+		- left
+		- right
+		- none
 	- overflow : 내용이 요소 크기를 벗어날 때
 		- hidden : 감춤
 		- scroll : 스크롤 설정
@@ -21,7 +25,8 @@
 div{
 	width: 200px;
 	height: 200px;
-	position: relative;
+	position: absolute;
+	/* position: relative; */
 }
 .box1{
 	background-color: red;

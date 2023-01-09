@@ -1,0 +1,49 @@
+<!-- 
+7) 자손선택자 : 태그명 > 태그명 
+8) 후손선택자 : 태그명 태그명 
+	ex. <div>
+			<b></b>		=> 자손: div>b
+			<p>
+				<b></b> => 후손: div b
+				<p></p>
+			</p>
+		</div>
+9) 인접선택자(동위 선택자)
+	- div b + p : b 태그와 같은 계층상의 p 하나 찾기
+	- div b ~ p : b 태그와 같은 계층상의 p 여러개 찾기
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/*
+div > h1{
+	color: pink;
+}
+div h1{
+	color: green;
+}
+*/
+div p+h1{
+	color: orange;
+}
+/*
+div p~h1{
+	color: purple;
+}
+*/
+</style>
+</head>
+<body>
+	<div>
+		<p>홍길동</p>
+		<h1>심청이</h1>
+		<h1>박문수</h1>
+		<span>
+			<h1>이순신</h1>
+		</span>
+	</div>
+</body>
+</html>

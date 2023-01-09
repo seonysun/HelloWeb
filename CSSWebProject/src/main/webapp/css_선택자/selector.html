@@ -1,4 +1,5 @@
 <!-- CSS 내 주석 /**/
+
 1. CSS : HTML에 대한 디자인
 	- HTML 제작 완료 후 스타일시트 디자인 처리
 		cf. 스타일시트 : CSS로 작성된 코드
@@ -79,29 +80,6 @@
 			- name : 자바에서 입력값을 가지고 오는 경우
 		4) 구분이 안 된 태그 : 목록출력(table, ul, dl) -> 번호로 구분 
 				ex. get(0), get(1)
-		5) 자손선택자 : 태그명 > 태그명 
-		6) 후손선택자 : 태그명 태그명 
-			ex. <div>
-					<b></b>		=> 자손: div>b
-					<p>
-						<b></b> => 후손: div b
-						<p></p>
-					</p>
-				</div>
-		7) 속성선택자 : 특정 속성과 값이 있는 태그 선택 -> input, a, img 태그에 주로 사용
-					 선택자[속성=값]
-			ex. input[type="text"]
-				a[href='abcd'] 
-		8) 가상선택자 -> 포함 문자, 시작 문자, 끝 문자
-			ex. a[href^='k'] k로 시작하는 속성값
-				a[href$='k'] k로 끝나는 속성값
-				a[href*='k'] k가 포함된 속성값
-				img[src*=값]
-				img[src^=http|https]
-                img[src$='png|jpg|gif']
-		9) 인접선택자(동위 선택자)
-			div b + p : b 태그와 같은 계층상의 p 하나 찾기
-			div b ~ p : b 태그와 같은 계층상의 p 여러개 찾기
  -->
 <!DOCTYPE html>
 <html>
