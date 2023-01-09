@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /* MVC, Spring의 Controller : Servlet
  * 	- 요청 --> 요청 처리(Model) => Java
- * 	- 웅답 --> 화면 출력(View) => JSP
+ * 	- 응답 --> 화면 출력(View) => JSP
  */
 @WebServlet("/hello.do")
 			//확장자, 파일명 등은 자유롭게 설정 가능 ex. HelloServlet / a.daum / a.nhn
