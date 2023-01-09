@@ -78,7 +78,7 @@
 	
 4. Java/HTML의 구분 -> 스크립트 요소
 	1) Java 영역
-		- <%@ page import=""%>
+		(0) 지시자 : <%@ %>
 		(1) 선언문 : <%! %>
 			- 일반 자바 코딩 영역 -> 자바 문법 적용
 				ex. 자바 주석(//, /* */), 명령문 종료 시 ;
@@ -106,19 +106,20 @@
 			   -> "" 필수, 속성 확인 주의
 	2) HTML 영역 : <%@ <% <%=를 제외한 나머지 영역
 	
-	3) 내장객체 : 미리 객체 생성 후 사용할 수 있도록 함
-		- 사용자 요청값을 받는 경우 클라이언트 정보(*) : request (HTTPServlerRequest)
-		- 사용자 요청 처리 후 응답, 화면 변경(*) : response (HTTPServlerResponse)
-		- 서버에 필요한 데이터 저장(*) : session (HTTPSession)
-		- 서버 정보 관리(*) : application (ServletContext)
-		- 출력 버퍼 관리(메모리 관리) : out (JspWriter)
-		- 환경 설정(web.xml) : config (ServletConfig)
-		- 예외 처리 : exception (Exception)
-		- 내장 객체 관리(*) : pageContext (PageContext)
-							-> 화면 변경 : redirect, forward
-		- JSP 자신의 객체 : page (Object)
-	4) JSTL/EL
-	5) MVC(**)
+5. 내장객체 : 미리 객체 생성 후 사용할 수 있도록 함
+	- 사용자 요청값을 받는 경우 클라이언트 정보(*) : request (HTTPServletRequest)
+	- 사용자 요청 처리 후 응답, 화면 변경(*) : response (HTTPServletResponse)
+	- 서버에 필요한 데이터 저장(*) : session (HTTPSession)
+	- 서버 정보 관리(*) : application (ServletContext)
+	- 출력 버퍼 관리(메모리 관리) : out (JspWriter)
+	- 환경 설정(web.xml) : config (ServletConfig)
+	- 예외 처리 : exception (Exception)
+	- 내장 객체 관리(*) : pageContext (PageContext)
+						-> 화면 변경 : redirect, forward
+	- JSP 자신의 객체 : page (Object)
+
+6. JSTL/EL
+7. MVC(**)
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
