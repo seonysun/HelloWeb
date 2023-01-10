@@ -11,7 +11,7 @@
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">INCLUDE</a>
-	    </div>
+	    </div> 
 	    <ul class="nav navbar-nav">
 	      <li class="active"><a href="main.jsp">Home</a></li>
 	      <li><a href="#">게시판</a></li>

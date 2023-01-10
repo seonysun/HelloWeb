@@ -9,14 +9,14 @@
   		log_jsp="logout.jsp";
   	}
   	
+  	String cate_jsp="";
   	String mode=request.getParameter("mode");
   	if(mode==null) mode="0";
   	int index=Integer.parseInt(mode);
-  	String cate_jsp="";
   	switch(index){
   	case 0:
   		cate_jsp="../food/category.jsp";
-  			//다른 폴더 소속일 때 경로명 주의
+  				//다른 폴더 소속일 때 경로명 주의 -> 404에러
   		break;
   	case 1:
   		cate_jsp="../food/food_list.jsp";
