@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sist.dao.*"%>
-<%-- 전송된 데이터 받아서 요청 처리만 하는 역할 --%>
+<%-- ok 파일 : 전송된 데이터 받아서 요청 처리만 하는 역할 --%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	//1. 사용자 요청 데이터 받음

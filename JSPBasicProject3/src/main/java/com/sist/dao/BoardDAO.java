@@ -38,9 +38,7 @@ public class BoardDAO {
 			int end=page*rowSize;
 			ps.setInt(1, start);
 			ps.setInt(2, end);
-			
 			ResultSet rs=ps.executeQuery();
-			
 			while(rs.next()) {
 				BoardVO vo=new BoardVO();
 				vo.setNo(rs.getInt(1));
@@ -127,8 +125,8 @@ public class BoardDAO {
 			disConnection();
 		}
 	}
-	//게시물 수정
-	public BoardVO boardUpdate(int no){ 
+	//게시물 수정 데이터 불러오기
+	public BoardVO boardUpdateData(int no){ 
 		BoardVO vo=new BoardVO();
 		try {
 			getConnection();
@@ -151,26 +149,69 @@ public class BoardDAO {
 		}
 		return vo;
 	}
+	//게시물 수정 데이터 입력
+	public boolean boardUpdate(BoardVO vo){ 
+		boolean bCheck=false;
+		try {
+			getConnection();
+			//비밀번호 확인
+			String sql="SELECT pwd FROM jsp_board "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getNo());
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			//비밀번호 일치 시 게시물 수정
+			if(db_pwd.equals(vo.getPwd())){
+				bCheck=true;
+				sql="UPDATE jsp_board "
+						+ "SET name=?,subject=?,content=? " //regdate=SYSDATE
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSubject());
+				ps.setString(3, vo.getContent());
+				ps.setInt(4, vo.getNo());
+				ps.executeUpdate();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return bCheck;
+	}
 	//게시물 삭제
-	public void boardDelete(){ 
+	public boolean boardDelete(int no, String pwd){ 
+		boolean bCheck=false;
 		try {
 			getConnection();
-			String sql="";
+			//비밀번호 확인
+			String sql="SELECT pwd FROM jsp_board "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			//비밀번호 일치 시 게시물 삭제
+			if(db_pwd.equals(pwd)) {
+				bCheck=true;
+				sql="DELETE FROM jsp_board "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+			}
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			disConnection();
 		}
+		return bCheck;
 	}
-	//게시물 찾기
-	public void boardFindData(){ 
-		try {
-			getConnection();
-			String sql="";
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			disConnection();
-		}
-	}
+	//게시물 찾기 -> <select> <checkbox> 파일 안에서 처리
 }

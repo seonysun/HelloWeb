@@ -39,7 +39,8 @@ h1{
 <body>
 	<div class="container">
 		<h1>자유게시판</h1>
-		<div class="row"><%-- 게시물 목록 출력 --%>
+		<%-- 게시물 목록 출력 --%>
+		<div class="row">
 			<table class="table">
 				<tr>
 				  <td>
@@ -94,8 +95,10 @@ h1{
 				</tr>
 			</table>
 		</div>
-		<div style="height: 20px"></div><%-- 간격 설정 --%>
-		<div class="row"><%-- 페이지 위치 출력 --%>
+		<%-- 간격 설정 --%>
+		<div style="height: 20px"></div>
+		<%-- 페이지 위치 출력 --%>
+		<div class="row">
 			<div class="text-center">
 				<a href="list.jsp?page=<%=curpage>1?curpage-1:curpage %>" class="btn btn-sm btn-primary">이전</a>
 					<%=curpage %> page / <%=totalpage %> pages

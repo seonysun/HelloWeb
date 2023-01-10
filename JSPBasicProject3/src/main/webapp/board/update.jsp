@@ -3,7 +3,7 @@
 <%
 	String no=request.getParameter("no");
 	BoardDAO dao=new BoardDAO();
-	BoardVO vo=dao.boardUpdate(Integer.parseInt(no));
+	BoardVO vo=dao.boardUpdateData(Integer.parseInt(no));
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,8 @@ h1{
 				<tr>
 				  <th class="text-right warning" width=20%>이름</th>
 				  <td width=80%>
-				  	<input type="text" name=name size=15 class="input-sm" value="<%=vo.getName() %>">
+				  	<input type="text" name=name size=15 class="input-sm" value="<%=vo.getName() %>" required>
+				  																					<!-- 필수 입력 -->
 				  	<input type=hidden name=no value="<%=vo.getNo() %>">
 				  			<!-- hidden : no 데이터가 필요하지만 화면에 출력되지 않게 할 때 -->
 				  </td>
@@ -42,7 +43,7 @@ h1{
 				<tr>
 				  <th class="text-right warning" width=20%>제목</th>
 				  <td width=80%>
-				  	<input type="text" name=subject size=50 class="input-sm" value="<%=vo.getSubject() %>">
+				  	<input type="text" name=subject size=50 class="input-sm" value="<%=vo.getSubject() %>" required>
 				  </td>
 				</tr>
 				<tr>
@@ -54,7 +55,7 @@ h1{
 				<tr>
 				  <th class="text-right warning" width=20%>비밀번호</th>
 				  <td width=80%>
-				  	<input type="password" name=pwd size=10 class="input-sm">
+				  	<input type="password" name=pwd size=10 class="input-sm" required>
 				  </td>
 				</tr>
 				<tr>
