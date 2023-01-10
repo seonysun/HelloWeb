@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>response 메소드</h1>
-	전송 방식: <%=response.getContentType() %><br>
-	한글변환 코드: <%=response.getCharacterEncoding() %><br>
-		<!-- EUC-KR, UTF-8 -->
+	<h1><a href="middle2.jsp?id=admin&pwd=1234">클릭</a></h1>
 </body>
 </html>

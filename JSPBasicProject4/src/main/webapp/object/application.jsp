@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+  	String image=request.getParameter("filename");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>response 메소드</h1>
-	전송 방식: <%=response.getContentType() %><br>
-	한글변환 코드: <%=response.getCharacterEncoding() %><br>
-		<!-- EUC-KR, UTF-8 -->
+	<center>
+		<img src="<%=image %>">
+	</center>
 </body>
 </html>

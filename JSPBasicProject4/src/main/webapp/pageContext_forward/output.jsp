@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    String id=request.getParameter("id");
+    String pwd=pageContext.getRequest().getParameter("pwd");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>response 메소드</h1>
-	전송 방식: <%=response.getContentType() %><br>
-	한글변환 코드: <%=response.getCharacterEncoding() %><br>
-		<!-- EUC-KR, UTF-8 -->
+	ID: <%=id %><br>
+	Password: <%=pwd %><br>
 </body>
 </html>
