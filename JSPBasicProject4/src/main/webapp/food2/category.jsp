@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){ 
 	$('.aaa').click(function(){
 		let no=$(this).attr("data-no");
 		$.ajax({
@@ -33,7 +33,6 @@ $(function(){
    </div>
    <div style="height: 10px"></div>
    <div class="row view">
-     
    </div>
   </div>
 </body>

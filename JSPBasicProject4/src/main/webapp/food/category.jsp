@@ -2,11 +2,11 @@
     pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
 <jsp:useBean id="dao" class="com.sist.dao.FoodDAO"/>
 <%
-     String cate=request.getParameter("cate");
-     if(cate==null) cate="1";
-     int c=Integer.parseInt(cate);
-
-     ArrayList<CategoryVO> list=dao.categoryListData(c);
+	String cate=request.getParameter("cate");
+    if(cate==null) cate="1";
+    int c=Integer.parseInt(cate);
+	 
+    ArrayList<CategoryVO> list=dao.categoryListData(c);
 %>
 <!DOCTYPE html>
 <html>

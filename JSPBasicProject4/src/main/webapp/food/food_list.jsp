@@ -28,13 +28,13 @@
 			<table class="table">
 				<tr>
 				  <td width=30% class="text-center" rowspan=4>
-				    <a href="main.jsp?mode=2&fno=<%=fvo.getFno() %>">
+				    <a href="../food/cookie_food.jsp?fno=<%=fvo.getFno() %>">
 				  	  <img src="<%=fvo.getPoster() %>" style="width: 240px;height: 200px" class="img-rounded">
 				    </a>
 				  </td>
 				  <td width=70% class="text-left">
 				  	<h3>
-				  		<a href="main.jsp?mode=2&fno=<%=fvo.getFno() %>"><%=fvo.getName() %></a>&nbsp;<span style="color: orange"><%=fvo.getScore() %></span>
+				  		<a href="../food/cookie_food.jsp?fno=<%=fvo.getFno() %>"><%=fvo.getName() %></a>&nbsp;<span style="color: orange"><%=fvo.getScore() %></span>
 				  	</h3>
 				  </td>
 				</tr>

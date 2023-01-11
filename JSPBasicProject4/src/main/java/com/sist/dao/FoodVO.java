@@ -1,5 +1,5 @@
 package com.sist.dao;
-
+ 
 public class FoodVO {
 	private int fno,cno,jjim_count,like_count,good,soso,bad;
 	private double score;

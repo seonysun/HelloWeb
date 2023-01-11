@@ -1,5 +1,5 @@
 package com.sist.dao;
-
+ 
 public class CategoryVO {
 	private int cno;
 	private String title,subject,poster;
