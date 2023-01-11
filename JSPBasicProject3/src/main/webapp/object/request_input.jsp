@@ -15,6 +15,7 @@
 		      //JSP 코딩 위치
 		  }
 	cf. 웹의 핵심 : request, response, session, cookie
+	
 	1) request(**) : 요청, HttpServletRequest
 		- 사용자 브라우저/서버 정보
 			URL : http://localhost/JSPBasicProject3/object/basic_input.jsp
@@ -25,14 +26,14 @@
 			- getRequestURL()(*)
 			- getRequestURI()(*)
 			- getContextPath()(*)
-			- getRemoteAddr()(*) : 사용자 IP
+			- getRemoteAddr()(*) : 사용자 IP(클라이언트 주소)
 				- 조회수 설정 시 종종 사용(동일 IP는 처리 X)
-			- getServerPort() : 서버 포트(80)
+			- getServerPort() : 서버 포트(80)(서버 주소)
 				cf. url의 localhost 뒤에 ':80' 생략되어있음
 			- getServerInfo() : localhost
 		- 요청 데이터 관리
-			- getParameter() : 단일 데이터값 수신 -> 데이터형 String, 변환해서 사용
-			- getParameterValues() : 다중 데이터값 수신 -> 배열
+			- String getParameter(name) : 단일 데이터값 수신 -> 데이터형 String, 변환해서 사용
+			- String[] getParameterValues(name) : 다중 데이터값 수신 -> 배열
 			- getParameterNames() : key값(=name값=변수명) 찾기
 			- request.setCharacterEncoding("UTF-8") : 디코딩(byte[] -> String)
 											  		  브라우저에서 값을 받을 때
@@ -55,20 +56,26 @@
 						a.jsp?hobby=a&hobby=b&hobby=c
 						   request.detParameterValues("hobby");
 		- 추가 기능 : 사용자가 보내준 데이터 + 필요한 데이터 추가해서 전송(MVC, Spring)
-			- setAttribute(키,값) -> Object 첨부
+			- setAttribute(키,값)
 			- getAttribute(키)
+				-> 페이지 또는 서블릿 간에 데이터 공유 가능
+				-> 공통 메소드(request, session, application, pageContext)
+				
 	2) response(**) : 응답, HttpServletResponse
 	   	- JSP파일 1개에서 response 1번만 가능
+	   		-> 모든 JSP는 클라이언트로 HTML 전송, response하고 있음
+	   		-> response가 추가로 필요한 경우 HTML 없이 개별적인 파일 생성하여 사용
 	   	- getContentType() : 데이터 형식 확인
 	   		- text/html(HTML), text/xml(XML), text/plain(JSON)
 	   	- getCharacterEncoding : 한글 변환 코드 확인
 	   	- setHeader() : 파일 업로드/다운로드
-	   	- sendRedirect()(*) : 서버에서 다른 파일로 이동, GET 방식
+	   	- sendRedirect()(*) : 서버에서 다른 파일로 이동(지정된 URL로 요청 재전송), GET 방식
 	   		- redirect로 jsp가 변경되면 request 데이터 초기화 
 	   			-> 사용자가 보내준 값 초기화
 	   			-> request 데이터 유지 가능한 pageContext(forward, include) 사용
-	3) pageContext(*)
-		- jsp에서 사용되는 내부 객체 얻어옴 -> 사용 빈도 거의 없음, 각 내부 객체 직접 사용
+	   			
+	3) pageContext(*) : JSP 페이지의 환경 정보 제공, PageContext
+		- 다른 내부 객체에 접근 -> 사용 빈도 거의 없음, 각 내부 객체 직접 사용
 			- getRequest()
 			- getResponse()
 			- getSession()
@@ -82,29 +89,37 @@
 				-> <jsp:include page="파일명">
 			- forward : 파일은 동일, 화면 이동
 			  	-> <jsp:forward>
-	4) session(**) : 서버에 저장, HttpSession
+			  	
+	4) session(**) : 서버에 저장, 요청에 관한 환경 정보 제공, HttpSession
 		- 브라우저 종료, 로그아웃 전까지 지속적으로 유지
-		- 모든 JSP에서 공유 가능
-		- setMaxInactiveInterval(time) : 저장 기간 설정
-		- invalidate() : 해제, 로그아웃
-		- setAttribute(키,값) : Object(값) 등록
-		- Object getAttribute() : 등록된 값 읽기
-		- isNew() : 새로 생성된 것인지 확인
-	5) application(*) : 서버 관리, 데이터 공유
-		- log()(*) : 서블릿 로그 파일에 데이터 기록 -> 서버 관리자만 확인할 수 있도록
+			-> 모든 JSP에서 공유 가능
+		- setMaxInactiveInterval(time) : 저장 기간(세션 유지 기간) 설정, 초 단위
+		- invalidate() : 세션 종료, 로그아웃
+		- setAttribute(키,값) : (Object)값 등록
+		- getAttribute(키) : 등록된 (Object)값 읽기
+		- boolean isNew() : 클라이언트의 세션ID가 할당되었는지 확인
+		
+	5) application(*) : 서버 관리, 데이터 공유, 서블릿의 환경 정보 제공, ServletContext
+		- log(message)(*) : 서블릿 로그 파일에 데이터(message) 기록 -> 서버 관리자만 확인할 수 있음
 		- getInitParameterNames() : web.xml에 등록된 key값 확인
 		- getInitParameter("key") : web.xml에 등록된 value값 확인
-		- getRealPath()(*) : 실제 경로명
+		- getRealPath()(*) : 실제 경로명으로 변환
 		- getServerInfo() : 서버 정보
 		- getMajorVersion(), getMinorVersion() : 버전 정보
-	6) config : 서블릿 정보 저장, ServletConfig
-		- web.xml에 저장된 초기화 정보 저장
-	7) out(*) : 출력 스트림(브라우저에서 읽어가는 메모리) -> JspWriter, ServletContext
+		
+	6) config : 환경 설정, ServletConfig
+		- web.xml에 저장된 초기화(설정) 정보 저장
+			-> 에러처리, 한글 변환, 파일 저장 위치 등록, 서블릿 등록
+			
+	7) out(*) : 출력 스트림(브라우저에서 읽어가는 메모리), JspWriter, ServletContext
 		- 출력 메모리 크기 결정 : buffer
 							 -> default 8kb, 크기 page 지시자에서 설정 가능
 		- getBufferSize() : 메모리 총 크기
-   		- gerRemaining() : 사용 후에 남아있는 버퍼 크기
-	8) page : JSP 페이지 그 자체의 객체(자바의 this) -> 거의 사용 안함
+   		- getRemaining() : 사용 후에 남아있는 버퍼 크기
+   		
+	8) page : JSP 페이지의 서블릿 객체, HttpJspPage
+		- 자바의 this와 같음 -> 거의 사용 안함
+		
 	9) exception : 예외처리 -> 거의 사용 안함, try catch로 대체
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -179,7 +194,7 @@
 				<tr>
 					<td colspan="2" class="text-center">
 						<input type=submit value="전송" class="btn btn-sm btn-danger">
-						<!-- submit을 줘야 파일 넘길 수 있음 -->
+						<!-- 넘겨주는 값 : submit 버튼, a 태그 -->
 					</td>
 				</tr>
 			</table>

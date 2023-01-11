@@ -1,19 +1,21 @@
 <%--
 JSP 액션 태그
-	- <jsp:include> : 동적 -> section
-	- <%@ include %> : 정적 -> header, footer
-	1) <jsp:useBean> : 메모리 할당(객체 생성)
+	1) <jsp:include> : 다른 페이지를 현재 페이지에 포함
+		- <jsp:include page="URL" flush="true">
+		cf. <%@ include %> : 정적 -> header, footer
+		동적 -> section
+	2) <jsp:useBean> : 메모리 할당(객체 생성)
 		- <jsp:useBean id="객체명" class="클래스명">
 			=> A a=new A();
-	2) <jsp:setProperty>
+	3) <jsp:setProperty>
 		- <jsp:setProperty name="객체명(id)" property="*">
 			-> 전체 객체가 가지고 있는 변수 set 메소드 호출
 		- <jsp:setProperty name="객체명" property="변수명" value="값">
 			-> 변수에 값 대입 setName()
-	3) <jsp:getProperty>
+	4) <jsp:getProperty>
 		- <jsp:getProperty name="객체명" property="변수명"/>
 			-> 변수에 입력된 값 출력 getName()
-	4) <jsp:forward> : 화면 이동(내용만 변경)
+	5) <jsp:forward> : 화면 전환(내용만 변경)
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
