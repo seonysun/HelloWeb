@@ -71,3 +71,21 @@ CREATE SEQUENCE jr_no_seq
     INCREMENT BY 1
     NOCYCLE
     NOCACHE;
+    
+CREATE TABLE jsp_databoard(
+    no NUMBER, 
+    name VARCHAR2(34) CONSTRAINT jd_name_nn NOT NULL,
+    subject VARCHAR2(4000) CONSTRAINT jd_subject_nn NOT NULL,
+    content CLOB CONSTRAINT jd_content_nn NOT NULL,
+    pwd VARCHAR2(10) CONSTRAINT jd_pwd_nn NOT NULL,
+    regdate DATE DEFAULT SYSDATE,
+    hit NUMBER DEFAULT 0,
+    filename VARCHAR2(260),
+    filesize NUMBER,
+    CONSTRAINT jd_no_pk PRIMARY KEY(no)
+);
+CREATE SEQUENCE jd_no_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE
+    NOCACHE;
