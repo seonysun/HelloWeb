@@ -7,7 +7,10 @@
 	int curpage=Integer.parseInt(strPage);
 	
 	ArrayList<DataBoardVO> list=dao.dataBoardListData(curpage);
-	int totalpage=0;
+	int totalpage=(int)(Math.ceil(dao.dataBoardRowCount()/10.0));
+	int count=dao.dataBoardRowCount();
+	count=count-((curpage-1)*10);
+			//10개씩 출력되므로 페이지 넘어갈 때마다 게시물 번호 10씩 감소
 %>
 <!DOCTYPE html>
 <html>
@@ -22,7 +25,7 @@
 </head>
 <body>
 	<div class="row row1">
-		<h1 class="text-center">자료실</h1>
+	    <h1 class="text-center">자료실</h1>
 		<table class="table">
 		  <tr>
 		  	<td>
@@ -43,19 +46,22 @@
 		  	for(DataBoardVO vo:list){
 		  	%>
 			  <tr>
-			  	<td width=10% class="text-center"><%=vo.getNo() %></td>
-			  	<td width=40%><%=vo.getSubject() %></td>
+			  	<td width=10% class="text-center"><%=count-- %></td>
+			  									<!-- vo.getNo()로 가져오면 게시물 삭제 시 비는 번호 생김 -> 전체 갯수부터 1씩 줄여가며 출력 -->
+			  	<td width=40%><a href="../main/main.jsp?mode=8&no=<%=vo.getNo() %>"><%=vo.getSubject() %></a></td>
 			  	<td width=10% class="text-center"><%=vo.getName() %></td>
 			  	<td width=20% class="text-center"><%=vo.getDbday() %></td>
 			  	<td width=10% class="text-center"><%=vo.getHit() %></td>
 			  	<td width=10% class="text-center">
-			  		<%
-			  			if(vo.getFilesize()>0){
-			  		%>
-			  			<img src="../images/file/jpg" style="width: 10px;height: 10px" class="img-circle">
-			  		<%
-			  			}
-			  		%>
+			  	<%
+		        	if(vo.getFilesize()>0) {
+		       		%>
+		       		  <a href="../databoard/download.jsp?fn=<%=vo.getFilename() %>">
+		            	<img src="../images/file_icon.jpg" style="width: 20px;height: 20px" class="img-circle">
+		       		  </a>
+		           	<%
+		        	}
+		        %>
 			  	</td>
 			  </tr>
 		  	<%
