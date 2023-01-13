@@ -10,10 +10,10 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">JSPExam</a>
+      <a class="navbar-brand" href="../main/main.jsp?mode=0">JSPExam</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="../main/main.jsp">Home</a></li>
+      <li class="active"><a href="../main/main.jsp?mode=0">Home</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">회원
         <span class="caret"></span></a>

@@ -28,7 +28,7 @@
 			<div class="col-md-3">
 			    <div class="thumbnail">
 			      <a href="#">
-			        <img src="<%=vo.getPoster() %>" style="width:260px;height:260px">
+			        <img src="<%=vo.getPoster() %>" style="width:260px;height:200px">
 			        <div class="caption">
 			          <p style="font-size:10px;font-weight:bold"><%=vo.getTitle() %></p>
 			        </div>
@@ -50,7 +50,7 @@
 			}
 			for(int i=startPage;i<=endPage;i++){
 			%>
-				<li <%= i==curpage?"class=active":"" %>><a href="../main/main.jsp?mode=2page=<%=i %>"><%=i %></a></li>
+				<li <%= i==curpage?"class=active":"" %>><a href="../main/main.jsp?mode=2&page=<%=i %>"><%=i %></a></li>
 			<%
 			}
 			if(endPage<totalpage){

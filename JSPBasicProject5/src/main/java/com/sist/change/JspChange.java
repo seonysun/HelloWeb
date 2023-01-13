@@ -8,7 +8,8 @@ public class JspChange {
 			"../seoul/shop.jsp",
 			"../food/food_find.jsp",
 			"../databoard/list.jsp",
-			"../food/food_detail.jsp"
+			"../food/food_detail.jsp",
+			"../databoard/insert.jsp"
 	};
 	public static String change(int no) {
 		return jsp[no];
