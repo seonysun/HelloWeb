@@ -22,7 +22,7 @@ public class BoardDAO {
 			if(conn!=null) conn.close();
 		} catch(Exception ex) {}
 	}
-	//게시판 목록 출력
+	//게시판 목록보기
 	public ArrayList<BoardVO> boardListData(int page) {
 		ArrayList<BoardVO> list=new ArrayList<BoardVO>();
 		try {
@@ -125,7 +125,7 @@ public class BoardDAO {
 			disConnection();
 		}
 	}
-	//게시물 수정 데이터 불러오기
+	//게시물 수정_데이터 불러오기
 	public BoardVO boardUpdateData(int no){ 
 		BoardVO vo=new BoardVO();
 		try {
@@ -149,7 +149,7 @@ public class BoardDAO {
 		}
 		return vo;
 	}
-	//게시물 수정 데이터 입력
+	//게시물 수정_데이터 입력
 	public boolean boardUpdate(BoardVO vo){ 
 		boolean bCheck=false;
 		try {
