@@ -123,16 +123,4 @@ public class ReplyDAO {
 			disConnection();
 		}
 	}
-	//star
-	public int a2(int fno) {
-		int count=0;
-		try {
-			getConnection();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			disConnection();
-		}
-		return count;
-	}
 }

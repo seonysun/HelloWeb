@@ -5,13 +5,6 @@
 <%
 	String fno=request.getParameter("fno");
 	FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
-	/*
-	String address=vo.getAddress();
-	String addr1=address.substring(0,address.lastIndexOf("지"));
-	addr1=addr1.trim();
-	String addr2=address.substring(address.lastIndexOf("지")+3);
-	addr2=addr2.trim();
-	*/
 	ArrayList<ReplyVO> list=rdao.replyListData(Integer.parseInt(fno));
 	int count=rdao.replyCount(Integer.parseInt(fno));
 %>
@@ -165,8 +158,8 @@
 				  		  	<td class="text-left">♡&nbsp;<%=rvo.getName() %>&nbsp;(<%=rvo.getDbday() %>)</td>
 				  		  	<td class="text-right">
 				  		  	<%
-				  		  		if(id!=null){
-				  		  			if(id.equals(rvo.getId())){
+				  		  		if(id!=null){ //로그인 상태일 때
+				  		  			if(id.equals(rvo.getId())){ //작성자에게만 수정,삭제 옵션 제공
 					  		  	%>
 					  		  		<span class="btn btn-xs btn-primary ups" data-no="<%=rvo.getNo() %>">수정</span>
 					  		  		<a href="../reply/reply_delete.jsp?no=<%=rvo.getNo() %>&fno=<%=fno %>" class="btn btn-xs btn-danger">삭제</a>
@@ -220,7 +213,6 @@
 			%>
 		</div>
 		<div class="col-sm-4">
-			
 			<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 		</div>
 	</div>
