@@ -89,3 +89,49 @@ CREATE SEQUENCE jd_no_seq
     INCREMENT BY 1
     NOCYCLE
     NOCACHE;
+    
+CREATE TABLE jsp_replyBoard(
+    no NUMBER, 
+    name VARCHAR2(34) CONSTRAINT jrb_name_nn NOT NULL,
+    subject VARCHAR2(4000) CONSTRAINT jrb_subject_nn NOT NULL,
+    content CLOB CONSTRAINT jrb_content_nn NOT NULL,
+    pwd VARCHAR2(10) CONSTRAINT jrb_pwd_nn NOT NULL,
+    regdate DATE DEFAULT SYSDATE,
+    hit NUMBER DEFAULT 0,
+    group_id NUMBER,
+    group_step NUMBER DEFAULT 0,
+    group_tab NUMBER DEFAULT 0,
+    root NUMBER DEFAULT 0,
+    depth NUMBER DEFAULT 0,
+    CONSTRAINT jrb_no_pk PRIMARY KEY(no)
+);
+CREATE SEQUENCE jrb_no_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',1);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',2);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',3);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',4);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',5);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',6);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',7);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',8);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',9);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,1,1);
+INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab) 
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,2,2);
+COMMIT;
