@@ -39,7 +39,7 @@
 	  	  </tr>
 	  	</table>
 	  	<table class="table">
-	  	  <tr class="warning">
+	  	  <tr class="success">
 	  	  	<th width=10% class="text-center">번호</th>
 	  	  	<th width=45% class="text-center">제목</th>
 	  	  	<th width=15% class="text-center">이름</th>
@@ -50,20 +50,20 @@
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${vo.no }</td>
 		  	  	<td width=45%>
-		  	  		<c:if test="${vo.group_tab>0 }"> <!-- group_tab : =0(기본댓글), >0(답글) -->
+		  	  		<c:if test="${vo.group_tab>0 }"> <!-- group_tab : =0(기존 게시글), >0(답변) -->
 		  	  			<c:forEach var="i" begin="0" end="${vo.group_tab }">
-		  	  				&nbsp;&nbsp; <!-- 대댓글, 대대댓글 tab에 맞게 간격 생성 -->
+		  	  				&nbsp;&nbsp; <!-- 답변 위계(대댓글, 대대댓글) tab에 맞게 간격 생성 -->
 		  	  			</c:forEach>
 		  	  			<img src="re_icon.png">
 		  	  		</c:if>
-		  	  		<c:if test="${vo.subject==msg }">
+		  	  		<c:if test="${vo.subject==msg }"> <!-- 삭제 멘트 처리된 게시글 회색 처리 -->
 		  	  			<span style="color: gray">${vo.subject }</span>
 		  	  		</c:if>
-		  	  		<c:if test="${vo.subject!=msg }">
+		  	  		<c:if test="${vo.subject!=msg }"> <!-- 다른 게시글에만 링크 연결 -->
 			  	  		<a href="detail.jsp?no=${vo.no }">${vo.subject }</a>
 		  	  		</c:if>
 		  	  		&nbsp;
-		  	  		<c:if test="${today==vo.dbday }">
+		  	  		<c:if test="${today==vo.dbday }"> <!-- 오늘 작성된 게시글 new 아이콘 추가 -->
 		  	  			<sup><img src="new.gif"></sup>
 		  	  		</c:if>
 		  	  	</td>

@@ -87,9 +87,8 @@ public class ReBoardModel {
 			msg="no";
 		}
 		request.setAttribute("msg", msg);
-		request.setAttribute("no", no);
 	}
-	public void boardDelete(HttpServletRequest request, HttpServletResponse response) {
+	public void boardDelete(HttpServletRequest request,HttpServletResponse response) {
 		String no=request.getParameter("no");
 		String pwd=request.getParameter("pwd");
 		ReBoardDAO dao=new ReBoardDAO();

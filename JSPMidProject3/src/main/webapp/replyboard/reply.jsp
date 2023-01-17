@@ -13,7 +13,7 @@
 	margin-top: 10px;
 }
 .row{
-	width: 800px;
+	width: 600px;
 	margin: 0px auto;
 }
 </style>
@@ -25,43 +25,42 @@
 	</div>
 	<div style="height: 5px"></div>
 	<div class="row">
-	  <form method=post action="reply_ok.jsp">
-		<table class="table">
-		  <tr>
-		  	<th width=15% class="text-right warning">이름</th>
-		  	<td width=85%>
-		  		<input type=text name=name size=15 class="input-sm" required>
-		  		<input type=hidden name=pno value="${param.pno }">
-		  										<!-- request.getParameter("pno") : detail에서 보내준 no -->
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<th width=15% class="text-right warning">제목</th>
-		  	<td width=85%>
-		  		<input type=text name=subject size=45 class="input-sm" required>
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<th width=15% class="text-right warning">내용</th>
-		  	<td width=85%>
-		  		<textarea rows=10 cols=50 name=content required></textarea>
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<th width=15% class="text-right warning">비밀번호</th>
-		  	<td width=85%>
-		  		<input type=password name=pwd size=10 class="input-sm" required>
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<td colspan=2 class="text-center">
-		  		<input type=submit value="답변" class="btn btn-sm btn-primary">
-		  		<input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
-		  	</td>
-		  </tr>
-		</table>
-	  </form>
-	</div>
-	</div>
+    <form method="post" action="reply_ok.jsp">
+    <table class="table">
+      <tr>
+        <th width=15% class="text-center success">이름</th>
+        <td width=85%>
+          <input type=text name=name size=15 class="input-sm" required>
+          <input type=hidden name=pno value="${param.pno }">
+        </td>
+      </tr>
+      <tr>
+        <th width=15% class="text-center success">제목</th>
+        <td width=85%>
+          <input type=text name=subject size=45 class="input-sm" required>
+        </td>
+      </tr>
+      <tr>
+        <th width=15% class="text-center success">내용</th>
+        <td width=85%>
+          <textarea rows="10" cols="50" name=content required></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th width=15% class="text-center success">비밀번호</th>
+        <td width=85%>
+          <input type="password" name=pwd size=10 class="input-sm" required>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center">
+          <input type=submit value="답변" class="btn btn-sm btn-primary">
+          <input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
+        </td>
+      </tr>
+    </table>
+    </form>
+  </div>
+  </div>
 </body>
 </html>

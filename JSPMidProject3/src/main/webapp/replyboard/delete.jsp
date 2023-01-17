@@ -24,13 +24,13 @@
 	</div>
 	<div style="height: 5px"></div>
 	<div class="row">
-	  <form method=post action="delete_ok.jsp">
+	  <form method="post" action="delete_ok.jsp">
 		<table class="table">
 		  <tr>
 		  	<td width=40% class="text-center">비밀번호</td>
 		  	<td width=60%>
-		  		<input type=hidden name=no value="${param.no }">
 		  		<input type=password name=pwd size=15 class="input-sm" required>
+		  		<input type=hidden name=no value="${param.no }">
 		  	</td>
 		  </tr>
 		  <tr>

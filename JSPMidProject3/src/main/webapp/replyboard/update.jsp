@@ -17,14 +17,14 @@
    margin-top:10px;
 }
 .row{
-   width: 800px;
+   width: 600px;
    margin: 0px auto;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	//id=sendBtn 클릭 시 처리 과정
+	//버튼(id=sendBtn) 클릭 시 처리 과정
 	$('#sendBtn').click(function(){
 		//데이터 받기
 		let name=$('#name').val();
@@ -32,7 +32,7 @@ $(function(){
 		let content=$('#content').val();
 		let pwd=$('#pwd').val();
 		let no=$('#sendBtn').attr("data-no")
-		//비밀번호 미입력시 포커스
+		//비밀번호 미입력시 포커스(커서 위치)
 		if(pwd.trim()=="")
 		{
 			$('#pwd').focus();
@@ -43,15 +43,11 @@ $(function(){
 			type:'post',
 			url:'update_ok.jsp',
 			data:{"name":name,"subject":subject,"content":content,"pwd":pwd,"no":no},
-			success:function(res)
-			{
+			success:function(res) {
 				let result=res.trim();
-				if(result=='yes')
-				{
+				if(result=='yes') {
 					location.href="detail.jsp?no="+no
-				}
-				else
-				{
+				} else {
 					alert("비밀번호가 틀립니다!!");
 					$('#pwd').val("")
 					$('#pwd').focus();

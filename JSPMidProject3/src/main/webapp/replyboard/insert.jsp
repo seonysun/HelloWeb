@@ -13,7 +13,7 @@
 	margin-top: 10px;
 }
 .row{
-	width: 800px;
+	width: 600px;
 	margin: 0px auto;
 }
 </style>
@@ -28,25 +28,25 @@
 	  <form method=post action="insert_ok.jsp">
 		<table class="table">
 		  <tr>
-		  	<th width=15% class="text-right warning">이름</th>
+		  	<th width=15% class="text-right success">이름</th>
 		  	<td width=85%>
 		  		<input type=text name=name size=15 class="input-sm" required>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right warning">제목</th>
+		  	<th width=15% class="text-right success">제목</th>
 		  	<td width=85%>
 		  		<input type=text name=subject size=45 class="input-sm" required>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right warning">내용</th>
+		  	<th width=15% class="text-right success">내용</th>
 		  	<td width=85%>
 		  		<textarea rows=10 cols=50 name=content required></textarea>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right warning">비밀번호</th>
+		  	<th width=15% class="text-right success">비밀번호</th>
 		  	<td width=85%>
 		  		<input type=password name=pwd size=10 class="input-sm" required>
 		  	</td>

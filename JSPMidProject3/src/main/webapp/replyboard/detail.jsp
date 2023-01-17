@@ -54,7 +54,7 @@
 		  </tr>
 		  <tr>
 		  	<td colspan=4 class="text-right">
-		  		<a href="reply.jsp?no=${vo.no }" class="btn btn-sm btn-warning">답변</a>
+		  		<a href="reply.jsp?pno=${vo.no }" class="btn btn-sm btn-warning">답변</a>
 		  		<a href="update.jsp?no=${vo.no }" class="btn btn-sm btn-success">수정</a>
 		  		<a href="delete.jsp?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
 		  		<a href="list.jsp" class="btn btn-sm btn-info">목록</a>

@@ -132,31 +132,32 @@ public class ReBoardDAO {
 			getConnection();
 			//1. 기존 게시글(답변 달릴 게시글) group 정보(id,step,tab) 가져오기
 			String sql="SELECT group_id,group_step,group_tab "
-					+ "FROM jsp_replyBoard "
-					+ "WHERE no=?";
+  				  + "FROM jsp_replyBoard "
+  			      + "WHERE no=?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, pno);
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			ReBoardVO pvo=new ReBoardVO();
-			pvo.setGroup_id(rs.getInt(1));
-			pvo.setGroup_step(rs.getInt(2));
-			pvo.setGroup_tab(rs.getInt(3));
-			rs.close();
+	  		ps.setInt(1, pno);
+	  		ResultSet rs=ps.executeQuery();
+	  		rs.next();
+	  		ReBoardVO pvo=new ReBoardVO();
+	  		pvo.setGroup_id(rs.getInt(1));
+	  		pvo.setGroup_step(rs.getInt(2));
+	  		pvo.setGroup_tab(rs.getInt(3));
+	  		rs.close();
 			
 			//2. group_step 조절
-			sql="UPDATE jsp_replyBoard "
-					+ "SET group_step=group_step+1 " 
-					+ "WHERE group_id=? AND group_step>?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, pvo.getGroup_id()); //그룹 번호 동일(같은 그룹)
-			ps.setInt(2, pvo.getGroup_step()); //기존보다 출력 순서는 커지도록
-			ps.executeUpdate();
+	  		sql="UPDATE jsp_replyBoard "
+	     		   + "SET group_step=group_step+1 "
+	     		   + "WHERE group_id=? "
+	     		   + "AND group_step>?";
+	     	ps=conn.prepareStatement(sql);
+	     	ps.setInt(1, pvo.getGroup_id()); //그룹 번호 동일(같은 그룹)
+	     	ps.setInt(2, pvo.getGroup_step()); //기존보다 출력 순서는 커지도록
+	     	ps.executeUpdate();
 			
 			//3. 답변 삽입
-			sql="INSERT INTO jsp_replyBoard(no,name,subejct,content,pwd,regdate,hit,"
-					+ "group_id,group_step,group_tab,root,depth) "
-					+ "VALUES(jrb_no_seq.nextval,?,?,?,?,SYSDATE,0,?,?,?,?,0)";
+	     	sql="INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,regdate,hit,"
+	     		   + "group_id,group_step,group_tab,root,depth) "
+	     		   + "VALUES(jrb_no_seq.nextval,?,?,?,?,SYSDATE,0,?,?,?,?,0)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getSubject());
@@ -164,11 +165,11 @@ public class ReBoardDAO {
 			ps.setString(4, vo.getPwd());
 			ps.setInt(5, pvo.getGroup_id());
 			ps.setInt(6, pvo.getGroup_step()+1); //출력 순서 +1
-			ps.setInt(7, pvo.getGroup_tab()+1); //댓글 위계 +1
-			ps.setInt(8, pno); //댓글 소속 = 기존 게시글 번호
+			ps.setInt(7, pvo.getGroup_tab()+1); //답변 위계 +1
+			ps.setInt(8, pno); //답변 소속 = 기존 게시글 번호
 			ps.executeUpdate();
 			
-			//4. 기존 게시글에 depth(포함 댓글 수) 증가
+			//4. 기존 게시글에 depth(포함 답변 수) 증가
 			sql="UPDATE jsp_replyBoard "
 					+ "SET depth=depth+1 "
 					+ "WHERE no=?";
@@ -237,7 +238,7 @@ public class ReBoardDAO {
 					ps=conn.prepareStatement(sql);
 					ps.setInt(1, no);
 					ps.executeUpdate();
-				} else { //답변이 있는 경우 -> 답변 내용만 삭제
+				} else { //답변이 있는 경우 -> 게시글 유지, 관리자 멘트 처리
 					String msg="삭제된 게시물입니다";
 					sql="UPDATE jsp_replyBoard "
 							+ "SET subject=?,content=? "
@@ -249,12 +250,12 @@ public class ReBoardDAO {
 					ps.executeUpdate();
 				}
 				//depth 감소
-				if(root!=0) {
+				if(root!=0) { //root : =0(기존 게시글), !=0(답변 게시글일 때 소속 기존 게시글 번호 부여)
 					sql="UPDATE jsp_replyBoard "
 							+ "SET depth=depth-1 "
 							+ "WHERE no=?";
 					ps=conn.prepareStatement(sql);
-					ps.setInt(1, root);
+					ps.setInt(1, root);	//답변 소속 기존 게시글의 depth 감소
 					ps.executeUpdate();
 				}
 			}
