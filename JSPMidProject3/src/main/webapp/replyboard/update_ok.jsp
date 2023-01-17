@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="model" class="com.sist.model.ReBoardModel"/>
 <%
-	model.boardInsert(request, response);
+	model.boardUpdate(request, response);
 %>
 ${msg }
 <%--
