@@ -99,7 +99,7 @@ CREATE TABLE jsp_replyBoard(
     regdate DATE DEFAULT SYSDATE,
     hit NUMBER DEFAULT 0,
     group_id NUMBER,
-    group_step NUMBER DEFAULT 0,
+    group_step NUMBER DEFAULT 1,
     group_tab NUMBER DEFAULT 0,
     root NUMBER DEFAULT 0,
     depth NUMBER DEFAULT 0,
@@ -131,7 +131,7 @@ INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id)
 INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) 
     VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10);
 INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab) 
-    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,1,1);
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,2,1);
 INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab) 
-    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,2,2);
+    VALUES(jrb_no_seq.nextval,'홍길동','답변형게시판','답변형게시판 = Chapter 15','1234',10,3,2);
 COMMIT;
