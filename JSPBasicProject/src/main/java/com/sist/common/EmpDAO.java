@@ -1,7 +1,6 @@
-package com.sist.db;
+package com.sist.common;
 import java.util.*;
 import java.sql.*;
-import com.sist.common.*;
 
 public class EmpDAO {
 	private Connection conn;
