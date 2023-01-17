@@ -73,4 +73,196 @@ public class ReBoardDAO {
 		}
 		return count;
 	}
+	public ReBoardVO boardDetailData(int no, int type) {
+		ReBoardVO vo=new ReBoardVO();
+		try {
+			getConnection();
+			String sql="";
+			if(type==1) {
+				//게시글 수정 시에는 조회수 증가하지 않도록 설정 -> type 숫자만 다르게 하면 model에서 재사용 가능
+				sql="UPDATE jsp_replyBoard "
+						+ "SET hit=hit+1 "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+			}
+			sql="SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+					+ "FROM jsp_replyBoard "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setDbday(rs.getString(5));
+			vo.setHit(rs.getInt(6));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return vo;
+	}
+	public void boardInsert(ReBoardVO vo) {
+		try {
+			getConnection();
+			String sql="INSERT INTO jsp_replyBoard(no,name,subject,content,pwd,group_id) "
+					+ "VALUES(jrb_no_seq.nextval,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1) "
+																//null 처리 함수
+					+ "FROM jsp_replyBoard))";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+	}
+	public void boardReplyInsert(int pno, ReBoardVO vo) {
+		try {
+			getConnection();
+			//1. 기존 게시글(답변 달릴 게시글) group 정보(id,step,tab) 가져오기
+			String sql="SELECT group_id,group_step,group_tab "
+					+ "FROM jsp_replyBoard "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			ReBoardVO pvo=new ReBoardVO();
+			pvo.setGroup_id(rs.getInt(1));
+			pvo.setGroup_step(rs.getInt(2));
+			pvo.setGroup_tab(rs.getInt(3));
+			rs.close();
+			
+			//2. group_step 조절
+			sql="UPDATE jsp_replyBoard "
+					+ "SET group_step=group_step+1 " 
+					+ "WHERE group_id=? AND group_step>?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pvo.getGroup_id()); //그룹 번호 동일(같은 그룹)
+			ps.setInt(2, pvo.getGroup_step()); //기존보다 출력 순서는 커지도록
+			ps.executeUpdate();
+			
+			//3. 답변 삽입
+			sql="INSERT INTO jsp_replyBoard(no,name,subejct,content,pwd,regdate,hit,"
+					+ "group_id,group_step,group_tab,root,depth) "
+					+ "VALUES(jrb_no_seq.nextval,?,?,?,?,SYSDATE,0,?,?,?,?,0)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.setInt(5, pvo.getGroup_id());
+			ps.setInt(6, pvo.getGroup_step()+1); //출력 순서 +1
+			ps.setInt(7, pvo.getGroup_tab()+1); //댓글 위계 +1
+			ps.setInt(8, pno); //댓글 소속 = 기존 게시글 번호
+			ps.executeUpdate();
+			
+			//4. 기존 게시글에 depth(포함 댓글 수) 증가
+			sql="UPDATE jsp_replyBoard "
+					+ "SET depth=depth+1 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+	}
+	public boolean boardUpdate(ReBoardVO vo) {
+		boolean bCheck=false;
+		try {
+			getConnection();
+			String sql="SELECT pwd FROM jsp_replyBoard "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getNo());
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd())) {
+				bCheck=true;
+				sql="UPDATE jsp_replyBoard "
+						+ "SET name=?,subject=?,content=? "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSubject());
+				ps.setString(3, vo.getContent());
+				ps.setInt(4, vo.getNo());
+				ps.executeUpdate();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return bCheck;
+	}
+	public boolean boardDelete(int no, String pwd) {
+		boolean bCheck=false;
+		try {
+			getConnection();
+			String sql="SELECT pwd,root,depth "
+					+ "FROM jsp_replyBoard "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			int root=rs.getInt(2);
+			int depth=rs.getInt(3);
+			rs.close();
+			
+			if(db_pwd.equals(pwd)) {
+				bCheck=true;
+				if(depth==0){ //답변이 없는 경우
+					sql="DELETE FROM jsp_replyBoard "
+							+ "WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setInt(1, no);
+					ps.executeUpdate();
+				} else { //답변이 있는 경우 -> 답변 내용만 삭제
+					String msg="삭제된 게시물입니다";
+					sql="UPDATE jsp_replyBoard "
+							+ "SET subject=?,content=? "
+							+ "WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, msg);
+					ps.setString(2, msg);
+					ps.setInt(3, no);
+					ps.executeUpdate();
+				}
+				//depth 감소
+				if(root!=0) {
+					sql="UPDATE jsp_replyBoard "
+							+ "SET depth=depth-1 "
+							+ "WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setInt(1, root);
+					ps.executeUpdate();
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return bCheck;
+	}
 }

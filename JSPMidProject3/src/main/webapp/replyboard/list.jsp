@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.sist.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="model" class="com.sist.model.ReBoardModel"></jsp:useBean>
+<jsp:useBean id="model" class="com.sist.model.ReBoardModel"/>
 <%
 	model.boardListData(request, response);
 %>
@@ -34,7 +34,7 @@
 	  	<table class="table">
 	  	  <tr>
 	  	  	<td>
-	  	  		<a href="#" class="btn btn-sm btn-danger">새글</a>
+	  	  		<a href="insert.jsp" class="btn btn-sm btn-danger">새글</a>
 	  	  	</td>
 	  	  </tr>
 	  	</table>
@@ -48,17 +48,21 @@
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }">
 		  	  <tr>
-		  	  	<td width=10% class="text-center">
-		  	  	
-		  	  	</td>
+		  	  	<td width=10% class="text-center">${vo.no }</td>
 		  	  	<td width=45%>
-		  	  		<c:if test="${vo.group_tab>0 }"> <!-- group_tab : =0(기본댓글), >0(대댓글 이상) -->
+		  	  		<c:if test="${vo.group_tab>0 }"> <!-- group_tab : =0(기본댓글), >0(답글) -->
 		  	  			<c:forEach var="i" begin="0" end="${vo.group_tab }">
 		  	  				&nbsp;&nbsp; <!-- 대댓글, 대대댓글 tab에 맞게 간격 생성 -->
 		  	  			</c:forEach>
 		  	  			<img src="re_icon.png">
 		  	  		</c:if>
-			  	  	${vo.subject }&nbsp;
+		  	  		<c:if test="${vo.subject==msg }">
+		  	  			<span style="color: gray">${vo.subject }</span>
+		  	  		</c:if>
+		  	  		<c:if test="${vo.subject!=msg }">
+			  	  		<a href="detail.jsp?no=${vo.no }">${vo.subject }</a>
+		  	  		</c:if>
+		  	  		&nbsp;
 		  	  		<c:if test="${today==vo.dbday }">
 		  	  			<sup><img src="new.gif"></sup>
 		  	  		</c:if>

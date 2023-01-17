@@ -2,12 +2,19 @@ package com.sist.vo;
 import java.util.*;
 
 public class ReBoardVO {
-	/* 댓글,게시글 계층
-	group_id : 각 댓글 번호
-	group_step : 댓글 그룹 내 출력 순서
+	/* 계층형 댓글,게시글
+	group_id : 댓글 그룹 번호
+	group_step : 그룹 내 출력 순서
 	group_tab : 댓글/대댓글/대대댓글
 	root : 댓글 소속
 	depth : 포함 대댓글 갯수
+	                     group_id   group_step    group_tab    root    depth 
+        1AAAAAA             1           1             0          0       2           
+          => 2BBBBBB        1           2             1          1       0
+          => 3CCCCCC        1           3             1          1       1
+             => 4DDDDDDDD   1           4             2          3       0
+        EEEEEE              2           1             0
+          =>KKKKKK          2           2             1
 	*/
 	private int no,hit,group_id,group_step,group_tab,root,depth;
 	private String name,subject,content,pwd,dbday;
