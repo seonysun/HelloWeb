@@ -19,7 +19,7 @@
 	        <span class="caret"></span></a>
 	        <ul class="dropdown-menu">
 	          <li><a href="#">회원가입</a></li>
-	          <li><a href="#">ID 찾기</a></li>
+	          <li><a href="#">아이디 찾기</a></li>
 	          <li><a href="#">비밀번호 찾기</a></li>
 	        </ul>
 	      </li>
@@ -27,9 +27,7 @@
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">서울여행
 	        <span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <%-- 블록별 페이지 나누기 --%>
 	          <li><a href="../main/main.jsp?mode=1">명소</a></li>
-	          <%-- 페이지 나누기 숙제 --%>
 	          <li><a href="../main/main.jsp?mode=2">자연&관광</a></li>
 	          <li><a href="../main/main.jsp?mode=3">쇼핑</a></li>
 	        </ul>
@@ -45,7 +43,7 @@
 	        </ul>
 	      </li>
 	      <li><a href="../main/main.jsp?mode=5">커뮤니티</a></li>
-	      <li><a href="../main/main.jsp?mode=4">맛집검색</a></li>
+	      <li><a href="../main/main.jsp?mode=4">맛집 검색</a></li>
 	    </ul>
 	  </div>
 	</nav>
