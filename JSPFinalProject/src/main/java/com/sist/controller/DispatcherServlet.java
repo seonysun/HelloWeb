@@ -22,14 +22,15 @@ import org.w3c.dom.NodeList;
 
 @WebServlet("*.do")
 /* 1. MVC 동작 과정
- * 	1) 사용자 요청 -> URL 주소로(~.do) DispatcherServlet 찾기
- * 	2) 컨트롤러가 요청 받음 -> model로 요청 전송(request)
- * 	3) model : 요청에 대한 처리
+ * 	1) 사용자 요청 -> 컨트롤러가 요청 받음
+ * 	2) URL 주소로(~.do) DispatcherServlet 호출
+ * 	3) service() -> 해당하는 RequestMapping 찾기, Model로 요청 전송(request)
+ * 	4) model : 요청에 대한 처리(RequestMapping 아래 메소드 호출)
  * 		- 데이터베이스 처리
  * 		- 크롤링
  * 		- request.setAttribute()
- * 	4) 컨트롤러가 request 데이터 view로 전송(forward)
- * 	5) view : request에 담긴 데이터 출력(JSP)
+ * 	5) 컨트롤러가 request 데이터 view로 전송(forward)
+ * 	6) view : request에 담긴 데이터 출력(JSP)
  * 
  *	- DispatcherServlet은 고정
  *	- Model이 가지고 있는 모든 메소드 자동 호출 => 어노테이션 invoke()
@@ -52,7 +53,7 @@ import org.w3c.dom.NodeList;
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	//application.xml에 등록된 클래스 모아둘 컬렉션 정의 
+	//application.xml에 등록된 Model 클래스 모아둘 컬렉션
 	ArrayList<String> clsList=new ArrayList<String>();
 	
 	/* 1. init() : 초기화 
@@ -152,7 +153,6 @@ public class DispatcherServlet extends HttpServlet {
 					}
 				}
 			}
-			
 			//-> 등록된 모델의 해당되는 메소드 찾기 -> 호출 -> request/session JSP로 전송
 		} catch(Exception ex) {}
 	}
