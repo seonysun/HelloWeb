@@ -26,9 +26,9 @@ public class Controller extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* http ://localhost/JSPMVCProject2/list.do
-		 * uri : /JSPMVCProject2/list.do
-		 * 		 --------------- contextPath
+		/* http://localhost/JSPMVCProject2/list.do
+		 * 				   ----------------------- uri
+		 * 				   --------------- contextPath
 		 */
 		String uri=request.getRequestURI();
 		uri=uri.substring(request.getContextPath().length()+1);
