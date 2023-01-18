@@ -12,8 +12,8 @@
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
       <h1><a href="../main/main.do">서울 맛집 & 서울 여행</a></h1>
-      	<!-- ".do" : 데이터 처리할 수 있는 모델 찾아서 데이터 request로 받은 jsp 파일을 보여줌
-      			-> 그냥 jsp 파일로 받으면 데이터 없음 -->
+      	<!-- ".do" : 데이터 처리할 수 있는 Model에 연결 -> request로 받은 jsp 파일을 보여줌
+      		 ".jsp" : 데이터 없는 jsp 파일 보여줌 -->
     </div>
     <div class="fl_right">
       <ul class="inline">

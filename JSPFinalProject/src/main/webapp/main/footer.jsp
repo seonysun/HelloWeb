@@ -63,7 +63,7 @@
 <div class="wrapper row5">
   <div id="copyright" class="clear"> 
     <p class="fl_left">2023 - SIST 강남쌍용 - <a href="#">3강의장</a></p>
-    <p class="fl_right">Project by <a target="_blank" href="http://github.com/south00n" title="GitHub">South00n</a></p>
+    <p class="fl_right">Project by <a target="_blank" href="http://github.com/seonysun" title="GitHub">seonysun</a></p>
   </div>
 </div>
 </body>
