@@ -51,9 +51,11 @@
        <c:forEach var="vo" items="${list }" varStatus="s">
         <c:if test="${s.index>=0 && s.index<12 }">
 	        <li>
+	         <a href="../food/food_list.do?cno=${vo.cno }">
 	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-	            <figcaption><a href="#">${vo.title }</a></figcaption>
+	            <figcaption>${vo.title }</figcaption>
 	          </figure>
+	         </a>
 	        </li>
         </c:if>
        </c:forEach>
@@ -65,9 +67,11 @@
         <c:forEach var="vo" items="${list }" varStatus="s">
         <c:if test="${s.index>=12 && s.index<18 }">
 	        <li>
+	         <a href="../food/food_list.do?cno=${vo.cno }">
 	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-	            <figcaption><a href="#">${vo.title }</a></figcaption>
+	            <figcaption>${vo.title }</figcaption>
 	          </figure>
+	         </a>
 	        </li>
         </c:if>
        </c:forEach>
@@ -79,9 +83,11 @@
         <c:forEach var="vo" items="${list }" varStatus="s">
         <c:if test="${s.index>=18 && s.index<30 }">
 	        <li>
+	         <a href="../food/food_list.do?cno=${vo.cno }">
 	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
-	            <figcaption><a href="#">${vo.title }</a></figcaption>
+	            <figcaption>${vo.title }</figcaption>
 	          </figure>
+	         </a>
 	        </li>
         </c:if>
        </c:forEach>

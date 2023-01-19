@@ -1,9 +1,51 @@
 package com.sist.vo;
 
 public class FoodVO {
-	private int fno;
+	private int fno,cno,good,soso,bad,hit,like_count,jjim_count;
 	private double score;
 	private String poster,name,address,tel,type,price,parking,menu,time;
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	public int getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
+	public int getJjim_count() {
+		return jjim_count;
+	}
+	public void setJjim_count(int jjim_count) {
+		this.jjim_count = jjim_count;
+	}
+	public int getCno() {
+		return cno;
+	}
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getSoso() {
+		return soso;
+	}
+	public void setSoso(int soso) {
+		this.soso = soso;
+	}
+	public int getBad() {
+		return bad;
+	}
+	public void setBad(int bad) {
+		this.bad = bad;
+	}
 	public int getFno() {
 		return fno;
 	}

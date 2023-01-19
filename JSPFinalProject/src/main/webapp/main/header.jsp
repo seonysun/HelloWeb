@@ -35,7 +35,7 @@
           <li><a href="pages/sidebar-left.html">비밀번호찾기</a></li>
         </ul>
       </li>
-      <li><a class="drop" href="#">맛집</a>
+      <li><a class="drop" href="../food/food_location.do">맛집</a>
         <ul>
           <li><a href="../food/food_location.do">지역별 맛집 검색</a></li>
           <li><a href="pages/full-width.html">맛집 추천</a></li>
