@@ -6,14 +6,15 @@ import com.sist.vo.*;
 public class SeoulDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	public ArrayList<SeoulVO> seoulListData(int page, String tab){
+	public ArrayList<SeoulVO> seoulListData(int page, int type){
 		ArrayList<SeoulVO> list=new ArrayList<SeoulVO>();
+		String[] table= {"","location","nature","shop","hotel","guest"};
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT no,title,poster,num "
 					+ "FROM (SELECT no,title,poster,rownum as num "
 					+ "FROM (SELECT no,title,poster "
-					+ "FROM seoul_"+tab+" ORDER BY no)) "
+					+ "FROM seoul_"+table[type]+" ORDER BY no)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=20;
@@ -37,12 +38,13 @@ public class SeoulDAO {
 		}
 		return list;
 	}
-	public int seoulTotalPage(String tab) {
+	public int seoulTotalPage(int type) {
 		int total=0;
+		String[] table= {"","location","nature","shop","hotel","guest"};
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT CEIL(COUNT(*)/20.0) "
-					+ "FROM seoul_"+tab;
+					+ "FROM seoul_"+table[type];
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();

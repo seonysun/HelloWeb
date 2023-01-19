@@ -53,13 +53,14 @@
          </c:if>
         </ul>
       </li>
-      <li><a class="drop" href="#">여행</a>
+      <li><a class="drop" href="../seoul/seoul_list.do?type=1">여행</a>
         <ul>
-          <li><a href="pages/gallery.html">명소</a></li>
-          <li><a href="pages/full-width.html">자연&관광</a></li>
-          <li><a href="pages/full-width.html">쇼핑</a></li>
-          <li><a href="pages/full-width.html">호텔</a></li>
-          <li><a href="pages/full-width.html">게스트하우스</a></li>
+          <li><a href="../seoul/seoul_list.do?type=1">명소</a></li>
+          									<!-- type값은 반드시 넘어가므로 default 설정 필요 없음 -->
+          <li><a href="../seoul/seoul_list.do?type=2">자연&관광</a></li>
+          <li><a href="../seoul/seoul_list.do?type=3">쇼핑</a></li>
+          <li><a href="../seoul/seoul_list.do?type=4">호텔</a></li>
+          <li><a href="../seoul/seoul_list.do?type=5">게스트하우스</a></li>
          <c:if test="${sessionScope.id!=null }">
           <li><a href="pages/full-width.html">여행 코스</a></li>
          </c:if>

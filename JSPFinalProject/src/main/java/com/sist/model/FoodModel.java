@@ -13,6 +13,21 @@ import com.sist.controller.RequestMapping;
 public class FoodModel {
 	@RequestMapping("food/food_location.do")
 	public String food_location(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String ss=request.getParameter("ss");
+		if(ss==null) ss="역삼";
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
+		FoodDAO dao=new FoodDAO();
+		ArrayList<FoodVO> list=dao.foodLocationFindData(curpage, ss);
+		int totalpage=dao.foodLocationTotalPage(ss);
+		request.setAttribute("ss", ss);
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("main_jsp", "../food/food_location.jsp");
 		return "../main/main.jsp";
 	}

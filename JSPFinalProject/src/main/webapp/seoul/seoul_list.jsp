@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>맛집 & 여행</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Insert title here</title>
 </head>
 <body>
 <div class="wrapper row3">
@@ -26,15 +25,11 @@
       <div id="gallery">
         <figure>
           <header class="heading">
-           <form method=post action="../food/food_location.do" class="inline">
-           														<!-- 기본 css가 블록으로 설정되어있어서 인라인으로 설정해줘야 함 -->
-          	<input type="text" name=ss size=25 class="input-sm" value="${ss }">
-          	<input type=submit value="검색">
-           </form>
+          	<h2 class="sectiontitle">${title }</h2>
           </header>
           <ul class="nospace clear">
            <c:forEach var="vo" items="${list }" varStatus="s">
-            <li class="one_quarter ${s.index%4==0?'first':'' }"><a href="#"><img src="${vo.poster }" title="${vo.name }"></a></li>
+            <li class="one_quarter ${s.index%4==0?'first':'' }"><a href="#"><img src="${vo.poster }" title="${vo.title }"></a></li>
            </c:forEach>
           </ul>
           <figcaption></figcaption>
@@ -42,9 +37,15 @@
       </div>
       <nav class="pagination">
         <ul>
-         <c:forEach var="i" begin="1" end="${totalpage }">
-          <li ${i==curpage?'class=current':'' }><a href="../food/food_location.do?ss=${ss }&page=${i }">${i }</a></li>
-         </c:forEach>
+         <c:if test="${startPage>1 }">
+          <li><a href="../seoul/seoul_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
+         </c:if>
+          <c:forEach var="i" begin="${startPage }" end="${endPage }" >
+          	<li ${i==curpage?"class=current":"" }><a href="..//seoul/seoul_list.do?page=${i }">${i }</a></li>
+          </c:forEach>
+         <c:if test="${endPage<totalpage }">
+          <li><a href="..//seoul/seoul_list.do?page=${endPage+1 }">Next &raquo;</a></li>
+         </c:if>
         </ul>
       </nav>
     </div>
