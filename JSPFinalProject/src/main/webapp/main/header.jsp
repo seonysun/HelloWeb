@@ -32,7 +32,7 @@
       <li><a class="drop" href="#">회원</a>
        <c:if test="${sessionScope.id==null }">
         <ul>
-          <li><a href="pages/gallery.html">회원가입</a></li>
+          <li><a href="../member/join.do">회원가입</a></li>
           <li><a href="pages/full-width.html">아이디찾기</a></li>
           <li><a href="pages/sidebar-left.html">비밀번호찾기</a></li>
         </ul>
@@ -80,7 +80,7 @@
           <li><a href="../goods/goods_sp.do">특가</a></li>
         </ul>
       </li>
-      <li><a class="drop" href="#">커뮤니티</a>
+      <li><a class="drop" href="../freeboard/list.do">커뮤니티</a>
         <ul>
           <li><a href="pages/gallery.html">공지사항</a></li>
           <li><a href="../freeboard/list.do">자유게시판</a></li>
