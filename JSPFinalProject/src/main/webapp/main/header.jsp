@@ -66,9 +66,9 @@
          </c:if>
         </ul>
       </li>
-      <li><a class="drop" href="#">레시피</a>
+      <li><a class="../recipe/list.do" href="#">레시피</a>
         <ul>
-          <li><a href="pages/gallery.html">레시피</a></li>
+          <li><a href="../recipe/list.do">레시피</a></li>
           <li><a href="pages/full-width.html">쉐프</a></li>
         </ul>
       </li>
