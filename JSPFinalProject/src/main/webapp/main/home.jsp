@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맛집 & 여행</title>
 </head>
 <body>
 <div class="wrapper row3">
