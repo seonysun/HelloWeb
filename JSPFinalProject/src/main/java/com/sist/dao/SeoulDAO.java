@@ -6,6 +6,7 @@ import com.sist.vo.*;
 public class SeoulDAO {
 	private Connection conn;
 	private PreparedStatement ps;
+	//서울 모음 목록 출력
 	public ArrayList<SeoulVO> seoulListData(int page, int type){
 		ArrayList<SeoulVO> list=new ArrayList<SeoulVO>();
 		String[] table= {"","location","nature","shop","hotel","guest"};
@@ -38,6 +39,7 @@ public class SeoulDAO {
 		}
 		return list;
 	}
+	//페이징
 	public int seoulTotalPage(int type) {
 		int total=0;
 		String[] table= {"","location","nature","shop","hotel","guest"};

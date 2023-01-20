@@ -1,19 +1,19 @@
 package com.sist.model;
 import java.util.*;
-import com.sist.dao.*;
-import com.sist.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 @Controller
 public class FoodModel {
 	@RequestMapping("food/food_location.do")
 	public String food_location(HttpServletRequest request, HttpServletResponse response) {
-		try {
+		try { //한글 입력값(ss) 있으므로 한글 변환 처리 필수
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String ss=request.getParameter("ss");

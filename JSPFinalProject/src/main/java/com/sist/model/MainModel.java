@@ -1,7 +1,5 @@
 package com.sist.model;
 import java.util.*;
-import com.sist.dao.*;
-import com.sist.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 @Controller 
 	//구분자를 올려줘야 Controller가 인식해서 DispatcherServlet이 찾을 수 있음

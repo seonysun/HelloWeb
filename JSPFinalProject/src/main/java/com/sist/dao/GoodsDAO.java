@@ -38,6 +38,7 @@ public class GoodsDAO {
 		}
 		return list;
 	}
+	//페이징 전체페이지
 	public int goodsAllTotalPage() {
 		int total=0;
 		try {
