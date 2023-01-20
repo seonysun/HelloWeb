@@ -138,8 +138,8 @@ public class ReBoardDAO {
 	  		ps.setInt(1, pno);
 	  		ResultSet rs=ps.executeQuery();
 	  		rs.next();
-	  		ReBoardVO pvo=new ReBoardVO();
-	  		pvo.setGroup_id(rs.getInt(1));
+	  		ReBoardVO pvo=new ReBoardVO(); //답변 기존 게시글과 group 정보 동일하게 set
+	  		pvo.setGroup_id(rs.getInt(1)); 
 	  		pvo.setGroup_step(rs.getInt(2));
 	  		pvo.setGroup_tab(rs.getInt(3));
 	  		rs.close();
@@ -151,7 +151,7 @@ public class ReBoardDAO {
 	     		   + "AND group_step>?";
 	     	ps=conn.prepareStatement(sql);
 	     	ps.setInt(1, pvo.getGroup_id()); //그룹 번호 동일(같은 그룹)
-	     	ps.setInt(2, pvo.getGroup_step()); //기존보다 출력 순서는 커지도록
+	     	ps.setInt(2, pvo.getGroup_step()); //기존 게시글 다음에 출력되므로 step(출력 순서)+1
 	     	ps.executeUpdate();
 			
 			//3. 답변 삽입
