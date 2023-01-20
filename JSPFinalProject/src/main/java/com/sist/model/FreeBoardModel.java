@@ -30,6 +30,12 @@ public class FreeBoardModel {
 	
 	@RequestMapping("freeboard/insert.do")
 	public String freeboard_insert(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../freeboard/insert.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("freeboard/insert_ok.do")
+	public String freeboard_insert_ok(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
@@ -44,15 +50,16 @@ public class FreeBoardModel {
 		vo.setContent(content);
 		vo.setPwd(pwd);
 		dao.boardInsert(vo);
-		request.setAttribute("main_jsp", "../freeboard/insert.jsp");
-		return "../main/main.jsp";
+		return "redirect:list.do";
 	}
 	
-	@RequestMapping("freeboard/insert_ok.do")
-	public String freeboard_insert_ok(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			
-		} catch(Exception ex) {}
-		return "redirect:list.do";
+	@RequestMapping("freeboard/detail.do")
+	public String freeboard_detail(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		FreeBoardDAO dao=new FreeBoardDAO();
+		FreeBoardVO vo=dao.boardDetailData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../freeboard/detail.jsp");
+		return "../main/main.jsp";
 	}
 }

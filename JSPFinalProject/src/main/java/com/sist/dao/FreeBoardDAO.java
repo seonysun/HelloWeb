@@ -14,7 +14,7 @@ public class FreeBoardDAO {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
 					+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
-					+ "FROM (SELECT /*+ INDEX_ASC(project_freeBoard pfb_no_pk)*/no,subject,name,regdate,hit "
+					+ "FROM (SELECT /*+ INDEX_DESC(project_freeBoard pfb_no_pk)*/no,subject,name,regdate,hit "
 					+ "FROM project_freeBoard)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
@@ -78,6 +78,37 @@ public class FreeBoardDAO {
 		}
 	}
 	//게시물 상세보기
+	public FreeBoardVO boardDetailData(int no) {
+		FreeBoardVO vo=new FreeBoardVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE project_freeBoard "
+					+ "SET hit=hit+1 "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.executeUpdate();
+			sql="SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+					+ "FROM project_freeBoard "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setDbday(rs.getString(5));
+			vo.setHit(rs.getInt(6));
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
 	//게시물 수정
 	//게시물 삭제
 	//게시물 검색
