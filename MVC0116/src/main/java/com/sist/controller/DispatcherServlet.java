@@ -151,7 +151,7 @@ public class DispatcherServlet extends HttpServlet {
 						String jsp=(String)m.invoke(obj, request,response);
 						//JSP 전송 -> forward로 request 포함 | sendRedirect로 request 초기화
 						if(jsp.startsWith("redirect:")) { //sendRedirect -> ok_jsp : Controller가 직접 처리
-							response.sendRedirect(jsp.substring(jsp.indexOf(":"))+1);
+							response.sendRedirect(jsp.substring(jsp.indexOf(":")+1));
 						} else { //forward
 							RequestDispatcher rd=request.getRequestDispatcher(jsp);
 							rd.forward(request, response);
