@@ -19,7 +19,7 @@ public class RecipeModel {
 		RecipeDAO dao=new RecipeDAO();
 		List<RecipeVO> list=dao.recipeListData(curpage);
 		int count=dao.recipeRowCount();
-		int totalpage=(int)(Math.ceil(count)/20.0);
+		int totalpage=(int)(Math.ceil(count/20.0));
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
