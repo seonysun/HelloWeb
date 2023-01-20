@@ -9,8 +9,7 @@ import com.sist.controller.RequestMapping;
 @Controller
 public class MemberModel {
   @RequestMapping("member/join.do")
-  public String member_join(HttpServletRequest request,HttpServletResponse response)
-  {
+  public String member_join(HttpServletRequest request,HttpServletResponse response) {
 	  request.setAttribute("main_jsp", "../member/join.jsp");
 	  return "../main/main.jsp";
   }

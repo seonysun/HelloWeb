@@ -14,7 +14,7 @@
   <div id="breadcrumb" class="clear"> 
     <!-- ################################################################################################ -->
     <ul>
-      <li>회원 가입</li>
+      <li>회원가입</li>
     </ul>
     <!-- ################################################################################################ --> 
    </div>
@@ -103,12 +103,8 @@
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-         <input type=button class="btn btn-sm btn-primary" value="회원가입"
-           id="joinBtn"
-         >
-         <input type=button class="btn btn-sm btn-danger" value="취소"
-          onclick="javascript:history.back()"
-         >
+         <input type=button class="btn btn-sm btn-primary" value="회원가입" id="joinBtn">
+         <input type=button class="btn btn-sm btn-danger" value="취소" onclick="javascript:history.back()">
         </td>
       </tr>
     </table>
