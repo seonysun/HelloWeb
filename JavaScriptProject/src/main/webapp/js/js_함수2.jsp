@@ -10,15 +10,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 .container{
-	margin-top: 100px;
+	margin-top: 30px;
 }
 .row{
-	width: 800px;
+	width: 100%;
 	margin: 0px auto;
 }
 </style>
 <script type="text/javascript">
-let movies = [{"startYearDate":"2023.01.24","endYearDate":"2023.01.24","startDate":"2023년 01월 24일(화)","endDate":"2023년 01월 24일(화)","movieCd":"20190808","showDt":"20230124","thumbUrl":"/common/mast/movie/2022/12/thumb/thn_115acdd9e2844399b21c49e67718919c.jpg","movieNm":"교섭","movieNmEn":"The Point Men","synop":"“어떤 경우라도 희생자를 안 만드는 게 이 협상의 기조 아닙니까?”\r\n\r\n분쟁지역 아프가니스탄에서 한국인들이 탈레반에게 납치되는 최악의 피랍사건이 발생한다.\r\n교섭 전문이지만 아프가니스탄은 처음인 외교관 재호(황정민)가 현지로 향하고,\r\n국정원 요원 대식(현빈)을 만난다.\r\n원칙이 뚜렷한 외교관과 현지 사정에 능통한 국정원 요원.\r\n입장도 방법도 다르지만, 두 사람은 인질을 살려야 한다는 목표를 향해 함께 나아간다.\r\n살해 시한은 다가오고, 협상 상대, 조건 등이 시시각각 변하는 상황에서\r\n교섭의 성공 가능성은 점점 희박해져 가는데...","prdtYear":"2022","indieYn":null,"artmovieYn":null,"multmovieYn":null,"showTm":"108","showTs":"3","director":"임순례","prNm":"(주)영화사수박,원테이크필름","dtNm":"플러스엠 엔터테인먼트","repNationCd":"한국","movieType":"장편","moviePrdtStat":"개봉","genre":"드라마","watchGradeNm":"12세이상관람가","openDt":"20230118","salesAmt":1973468456,"audiCnt":190290,"scrCnt":1231,"showCnt":5390,"rank":1,"rankInten":0,"rankOldAndNew":"OLD","rownum":1},
+let movies1 = [{"startYearDate":"2023.01.24","endYearDate":"2023.01.24","startDate":"2023년 01월 24일(화)","endDate":"2023년 01월 24일(화)","movieCd":"20190808","showDt":"20230124","thumbUrl":"/common/mast/movie/2022/12/thumb/thn_115acdd9e2844399b21c49e67718919c.jpg","movieNm":"교섭","movieNmEn":"The Point Men","synop":"“어떤 경우라도 희생자를 안 만드는 게 이 협상의 기조 아닙니까?”\r\n\r\n분쟁지역 아프가니스탄에서 한국인들이 탈레반에게 납치되는 최악의 피랍사건이 발생한다.\r\n교섭 전문이지만 아프가니스탄은 처음인 외교관 재호(황정민)가 현지로 향하고,\r\n국정원 요원 대식(현빈)을 만난다.\r\n원칙이 뚜렷한 외교관과 현지 사정에 능통한 국정원 요원.\r\n입장도 방법도 다르지만, 두 사람은 인질을 살려야 한다는 목표를 향해 함께 나아간다.\r\n살해 시한은 다가오고, 협상 상대, 조건 등이 시시각각 변하는 상황에서\r\n교섭의 성공 가능성은 점점 희박해져 가는데...","prdtYear":"2022","indieYn":null,"artmovieYn":null,"multmovieYn":null,"showTm":"108","showTs":"3","director":"임순례","prNm":"(주)영화사수박,원테이크필름","dtNm":"플러스엠 엔터테인먼트","repNationCd":"한국","movieType":"장편","moviePrdtStat":"개봉","genre":"드라마","watchGradeNm":"12세이상관람가","openDt":"20230118","salesAmt":1973468456,"audiCnt":190290,"scrCnt":1231,"showCnt":5390,"rank":1,"rankInten":0,"rankOldAndNew":"OLD","rownum":1},
 	{"startYearDate":"2023.01.24","endYearDate":"2023.01.24","startDate":"2023년 01월 24일(화)","endDate":"2023년 01월 24일(화)","movieCd":"20225061","showDt":"20230124","thumbUrl":"/common/mast/movie/2022/11/thumb/thn_87e132235b634767b9c22e8483cfbba7.jpg","movieNm":"아바타: 물의 길","movieNmEn":"Avatar: The Way of Water","synop":"<아바타: 물의 길>은 판도라 행성에서 \r\n'제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 \r\n살아남기 위해 떠나야 하는 긴 여정과 전투, \r\n그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. \r\n \r\n월드와이드 역대 흥행 순위 1위를 기록한 전편 <아바타>에 이어\r\n제임스 카메론 감독이 13년만에 선보이는 영화로, \r\n샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이 출연하고\r\n존 랜도가 프로듀싱을 맡았다.","prdtYear":"2022","indieYn":null,"artmovieYn":null,"multmovieYn":null,"showTm":"192","showTs":"24","director":"제임스 카메론","prNm":null,"dtNm":"월트디즈니컴퍼니코리아 유한책임회사","repNationCd":"미국","movieType":"장편","moviePrdtStat":"개봉","genre":"액션,어드벤처,SF,스릴러","watchGradeNm":"12세이상관람가","openDt":"20221214","salesAmt":1660795036,"audiCnt":121887,"scrCnt":909,"showCnt":2111,"rank":2,"rankInten":0,"rankOldAndNew":"OLD","rownum":2},
 	{"startYearDate":"2023.01.24","endYearDate":"2023.01.24","startDate":"2023년 01월 24일(화)","endDate":"2023년 01월 24일(화)","movieCd":"20228555","showDt":"20230124","thumbUrl":"/common/mast/movie/2022/12/thumb/thn_de3eb9d23b1b49e58b5f06b96d5fa6b5.jpg","movieNm":"더 퍼스트 슬램덩크","movieNmEn":"The First Slam Dunk","synop":"전국 제패를 꿈꾸는 북산고 농구부 5인방의 꿈과 열정, 멈추지 않는 도전을 그린 영화","prdtYear":"2022","indieYn":null,"artmovieYn":null,"multmovieYn":null,"showTm":"124","showTs":"26","director":"이노우에 다케히코","prNm":null,"dtNm":"(주)넥스트엔터테인먼트월드(NEW)","repNationCd":"일본","movieType":"장편","moviePrdtStat":"개봉","genre":"애니메이션","watchGradeNm":"12세이상관람가","openDt":"20230104","salesAmt":1105119929,"audiCnt":105995,"scrCnt":1035,"showCnt":2884,"rank":3,"rankInten":0,"rankOldAndNew":"OLD","rownum":3},
 	{"startYearDate":"2023.01.24","endYearDate":"2023.01.24","startDate":"2023년 01월 24일(화)","endDate":"2023년 01월 24일(화)","movieCd":"20214823","showDt":"20230124","thumbUrl":"/common/mast/movie/2022/12/thumb/thn_59f5f908a3a246bbb7a362e14406353b.jpg","movieNm":"유령","movieNmEn":"Phantom","synop":"“유령에게 고함. 작전을 시작한다”\r\n\r\n1933년, 일제강점기 경성. 항일조직 ‘흑색단’의 스파이인 ‘유령’이 비밀리에 활약하고 있다.\r\n새로 부임한 경호대장 카이토는 ‘흑색단’의 총독 암살 시도를 막기 위해\r\n조선총독부 내의 ‘유령’을 잡으려는 덫을 친다.\r\n영문도 모른 채, ‘유령’으로 의심받고 벼랑 끝 외딴 호텔에 갇힌 용의자들.\r\n총독부 통신과 감독관 쥰지, 암호문 기록 담당 차경, 정무총감 비서 유리코, \r\n암호 해독 담당 천계장, 통신과 직원 백호. 이들에게 주어진 시간은 단 하루 뿐.\r\n기필코 살아나가 동지들을 구하고 총독 암살 작전을 성공시켜야 하는 ‘유령’과\r\n무사히 집으로 돌아가고 싶은 이들 사이, 의심과 경계는 점점 짙어지는데…\r\n\r\n과연 ‘유령’은 작전에 성공할 수 있을 것인가?\r\n“성공할 때까지 멈춰서는 안 된다”\r\n","prdtYear":"2022","indieYn":null,"artmovieYn":null,"multmovieYn":null,"showTm":"132","showTs":"34","director":"이해영","prNm":"더램프(주)","dtNm":"(주)씨제이이엔엠","repNationCd":"한국","movieType":"장편","moviePrdtStat":"개봉","genre":"액션","watchGradeNm":"15세이상관람가","openDt":"20230118","salesAmt":757595783,"audiCnt":71818,"scrCnt":876,"showCnt":2854,"rank":4,"rankInten":0,"rankOldAndNew":"OLD","rownum":4},
@@ -60,7 +60,7 @@ let movies4 = [{"rownum":1,"saleTotcnt":15673,"movieCd":"20227762","salesDate":"
 	{"rownum":10,"saleTotcnt":1184,"movieCd":"20194376","salesDate":"20230122","startDate":"2023년 01월 22일(일)","movieNm":"탑건: 매버릭","opendt":"2022-06-22","repgenrenm":"액션","rank":10,"rankInten":0,"rankOldAndNew":"OLD","synop":"한순간의 실수도 용납되지 않는 하늘 위, 가장 압도적인 비행이 시작된다!\r\n\r\n최고의 파일럿이자 전설적인 인물 매버릭(톰 크루즈)은 자신이 졸업한 훈련학교 교관으로 발탁된다. \r\n그의 명성을 모르던 팀원들은 매버릭의 지시를 무시하지만 \r\n실전을 방불케 하는 상공 훈련에서 눈으로 봐도 믿기 힘든 전설적인 조종 실력에 모두가 압도된다. \r\n\r\n매버릭의 지휘 아래 견고한 팀워크를 쌓아가던 팀원들에게 국경을 뛰어넘는 위험한 임무가 주어지자 \r\n매버릭은 자신이 가르친 동료들과 함께 마지막이 될지 모를 하늘 위 비행에 나서는데…","movieNmEn":"Top Gun: Maverick","repNationCd":"미국","movieType":"장편","moviePrdtStat":"개봉","genre":"액션","showTm":"130","showTs":"3","watchGradeNm":"12세이상관람가","openDt":"20220622","thumbUrl":"/common/mast/movie/2022/06/thumb/thn_fa28d4efd4ed492f86cd892ed31913e1.jpg","prdtYear":"2021","indieYn":null,"artmovieYn":null,"multmovieYn":null,"director":"조셉 코신스키","prNm":null,"dtNm":"롯데컬처웍스(주)롯데엔터테인먼트"}]
 
 window.onload=function(){
-	
+	movieList(1)
 }
 function movieList(no){
 	switch (no) {
@@ -82,7 +82,7 @@ function movieList(no){
 }
 function movieData1(){
 	let html=' ';
-	movies.map(function(movie){
+	movies1.map(function(movie){
 		html+='<tr>'
 			+'<td class="text-center">'+movie.rank+'</td>'
 			+'<td class="text-center"><img src="https://www.kobis.or.kr'+movie.thumbUrl+'" width=35 height=35></td>'

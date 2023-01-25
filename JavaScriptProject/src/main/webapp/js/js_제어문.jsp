@@ -46,7 +46,7 @@
 				반복수행문장
 				증가식
 			} while(조건문)
-	4) 반복제어문
+	4) 반복제어문 : break, continue
  --%>
 <!DOCTYPE html>
 <html>
