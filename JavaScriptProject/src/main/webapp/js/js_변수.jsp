@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 
-1. 자바스크립트
+1. 자바스크립트 
 	1) 역할 : 브라우저에서 이벤트 기능 처리 (정적 -> 동적 화면)
 		- 태그 제어, CSS 추가, 사용자 입력에 대한 유효성 검사
 		- 라이브러리(표준화) : JQuery(Ajax), Vue, React, VueJS

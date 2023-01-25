@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%--
-4. 제어문
+4. 제어문 
 	1) 조건문
 		- 단일조건문 => 삼항연산자
 			if(조건문){
