@@ -24,7 +24,7 @@
 			- for of : 배열에 실제 값을 가지고 옴
 				for(let 변수명 of 배열명){
 				}
-			- for in : 인덱스 번호로 값을 가지고 옴
+			- for in : 인덱스 번호를 가지고 옴
 				for(let 변수명 in 배열명){
 				}
 			- forEach(*)
