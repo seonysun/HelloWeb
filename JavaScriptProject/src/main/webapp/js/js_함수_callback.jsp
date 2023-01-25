@@ -7,14 +7,15 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 window.onload=function(){
-	let a=10
-	console.log("a="+a)
-	a="AAA"
-	console.log("a="+a)
-	a=[1,2,3,4,5,"홍길동"]
-	console.log("a="+a)
-	a={name:"홍길동",age:20}
-	console.log("a="+a.name+","+a.age)
+	send(callback)
+}
+function send(callback){
+	for(let i=1;i<10;i++){
+		callback()
+	}
+}
+function callback(){
+	document.write("callback Call..")
 }
 </script>
 </head>

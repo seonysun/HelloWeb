@@ -108,7 +108,7 @@ window.onload=function(){
 	console.log("c="+c);
 	console.log("d="+d);
 	console.log("e="+e);
-	console.log("f="+f);
+	console.log("f="+f.name+","+f.sex+","+f.age);
 	
 	//출력 - 브라우저
 	document.write("a="+a+"<br>");
