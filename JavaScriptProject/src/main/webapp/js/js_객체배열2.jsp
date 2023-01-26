@@ -68,7 +68,7 @@ function detail(rank){
 		  	  	<td width=30% class="text-center" valign=top rowspan=5>
 		  	  		<img src="" style="width:100%" id=image>
 		  	  	</td>
-		  	  	<td width=70% id=name></td>
+		  	  	<td colspan=2 id=name></td>
 		  	  </tr>
 		  	  <tr>
 		  	  	<td width=20%>장르</td>
