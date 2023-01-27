@@ -2,8 +2,15 @@
     pageEncoding="UTF-8"%>
 <!-- 
 1. JQuery : 자바스크립트 라이브러리
+	- 특징
+		- 대부분의 브라우저에서 사용 가능
+		- HTML, CSS 간단하게 조작 가능
+		- 오픈 소스 
+			-> 자바스크립트 표준화(형식 동일)
+		- 라이브러리가 많아서 무거움, 속도 느림
+		
 	1) selector : 태그 선택
-		$("선택자") => document.querySelector("선택자")
+		$('선택자') => document.querySelector("선택자")
 		
 	2) 메인 함수
 		$(function(){}) => window.onload=function(){}
@@ -33,6 +40,7 @@
 		- focus() : 커서 갖다대기
 		- hide() : 숨김
 		- show() : 더보기 클릭 시 보여주기
+			- show(fast) : 속도 이펙트
 		- disable() : 비활성화
 	
 	5) 이벤트

@@ -34,6 +34,7 @@ $(function(){
 	$('#delBtn').on('click',function(){
 		if(fileIndex>0){
 			$('#m'+(fileIndex-1)).remove()
+					//addBtn에서 index++ 처리된 상태이므로 -1
 			fileIndex--
 		}
 	})
