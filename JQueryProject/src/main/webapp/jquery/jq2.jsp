@@ -41,10 +41,16 @@ $(function(){
 	})
 	$('#user-table tbody').html(html)
 	
+	//키워드 입력 이벤트처리
 	$('#keyword').keyup(function(){
+		//입력값 변수에 저장
 		let k=$('#keyword').val()
+		//내용 전체 숨기고
 		$('#user-table tbody tr').hide()
+		//입력값에 해당되는 값만 선택
 		let temp=$('#user-table tbody tr td:nth-child(5n+3):contains("'+k+'")')
+										//td에서 5열 중 3열, 입력값 내용을 포함하는지 확인
+		//선택된 내용만 나타내기
 		$(temp).parent().show()
 	})
 })
@@ -58,7 +64,7 @@ $(function(){
 			  <tr>
 			  	<td>
 			  		<input type=text size=30 class="input-sm" id=keyword autocomplete="off" placeholder="검색어를 입력하세요">
-			  															<!-- 이전검색어 창 없애기 -->
+			  															<!-- 자동완성(이전검색어) 없애기 -->
 			  	</td>
 			  </tr>
 			</table>

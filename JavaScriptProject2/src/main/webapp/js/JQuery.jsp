@@ -29,8 +29,13 @@
 			html()
 			html("값") 
 				- JSON 배열과 주로 사용 -> 반복문으로 배열의 요소에 맞는 html 생성
-				- 태그 삽입 시 html 대신 text로 입력 시 문자 취급하여 태그 실행 불가
-		- append() : 첨부 -> 태그 첨부 시 주로 사용
+				- 태그 삽입 시 html 대신 text로 입력 시 문자 취급 -> 태그 실행 불가
+		- append() : 첨부
+			- html()과의 비교
+				html() : 기존의 내용 초기화 후 새로운 내용 추가
+				append() : 기존 내용에 추가(더해짐)
+							-> 기존 내용 초기화 시 empty(), remove() 사용
+			- 대량 코드 첨부 시 주로 사용
 		- remove() : 삭제
 		- css() : css 관리
 			css("속성","값") : 속성 1개 추가
@@ -44,12 +49,17 @@
 		- disable() : 비활성화
 	
 	5) 이벤트
-		- click(function(){}) : 마우스 클릭
-		 	= on("click",function(){})
-		- change(function(){}) : 콤보박스 선택
-		- keyup(function(){}) : 키보드에 입력
-		- hover(function(){}) : 마우스 갖다댔을 때
-		- mousedown(function(){}) : 마우스 누르고있을 때
+		- 키보드 이벤트
+			- keydown : 키를 누를 때
+			- keyup : 키를 놓을 때
+		
+		- 마우스 이벤트
+			- click : 마우스 클릭
+			 	= on("click",function(){})
+			- hover : 마우스 갖다댔을 때
+			- mousedown : 마우스 누르고있을 때
+		- 기타
+			- change : 콤보박스 선택
 
 2. 내장객체
 	- window > document, location, history, screen
