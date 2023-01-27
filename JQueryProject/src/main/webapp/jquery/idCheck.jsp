@@ -23,6 +23,7 @@ $(function(){
 	//확인 버튼은 일단 감춰놓고 시작
 	$('#sh').hide()
 	$('#checkBtn').click(function(){
+		let id=$('#id').val()
 		//입력 유효성체크
 		if(id.trim()==""){
 			$('#id').focus()
