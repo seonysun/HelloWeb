@@ -112,4 +112,23 @@ public class FoodDAO {
 		}
 		return vo;
 	}
+	public int idCheck(String id) {
+		int count=0;
+		try {
+			getConnection();
+			String sql="SELECT COUNT(*) FROM jsp_member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			count=rs.getInt(1);
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return count;
+	}
 }

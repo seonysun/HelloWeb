@@ -13,32 +13,41 @@
 	margin-top: 30px;
 }
 .row{
-	width: 700px
+	width: 700px;
 	margin: 0px auto;
 }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- daum 우편번호 검색 라이브러리 -->
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- 다음 우편번호 검색 라이브러리 -->
+<!-- shadow 라이브러리(윈도우창 말고 팝업으로 작은 화면 뜨게) -->
 <script type="text/javascript" src="shadow/js/shadowbox.js"></script>
 <link rel="stylesheet" href="shadow/css/shadowbox.css">
-<!-- shadow 라이브러리 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 Shadowbox.init({
 	players:['iframe']
 })
 $(function(){
-	<!-- 다음 우편번호 검색 라이브러리 사용 -->
 	$('#postBtn').click(function(){
 		new daum.Postcode({
 			oncomplete:function(data){
+								//data를 받아서 내용 자동으로 채우기
 				$('#post').val(data.zonecode)
 				$('#addr').val(data.address)
 			}
 		}).open()
+			//새로운 창으로 뜨게 설정
 	})
 	$('#idCheckBtn').click(function(){
-		
+		//팝업창으로 만들기 : window.open('idCheck.jsp','idCheck','width:330,height:220')
+		//shadowbox로 만들기
+		Shadowbox.open({
+			content:'idCheck.jsp',
+			player:'iframe',
+			title:'아이디 중복체크',
+			width:330,
+			height:220
+		})
 	})
 })
 </script>
@@ -52,7 +61,7 @@ $(function(){
 			  <tr>
 			  	<th class="text-right" width=15%>ID</th>
 			  	<td width=85%>
-			  		<input type=text id=td size=15 class="input-sm" readonly name=id>
+			  		<input type=text id=id size=15 class="input-sm" readonly name=id>
 			  		<input type=button value="아이디중복체크" class="btn btn-sm btn-danger" id="idCheckBtn">
 			  	</td>
 			  </tr>
