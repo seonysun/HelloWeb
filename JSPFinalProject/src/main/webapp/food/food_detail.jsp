@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>맛집 & 여행</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
+</head> 
 <body>
 <div class="wrapper row3">
   <div id="breadcrumb" class="clear"> 
