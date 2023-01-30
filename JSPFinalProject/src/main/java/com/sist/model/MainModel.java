@@ -15,15 +15,11 @@ import com.sist.vo.*;
 public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(HttpServletRequest request, HttpServletResponse response) {
-		/*
-		HttpSession session=request.getSession();
-		session.setAttribute("id", "hong");
-		session.setAttribute("admin", "n");
-		*/
 		FoodDAO dao=new FoodDAO();
 		ArrayList<CategoryVO> list=dao.foodCategoryData();
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../main/home.jsp"); //include할 파일명 전송
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

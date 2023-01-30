@@ -25,6 +25,7 @@ public class FreeBoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("today", new SimpleDateFormat("YYYY-MM-DD").format(new Date()));
 		request.setAttribute("main_jsp", "../freeboard/list.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -60,6 +61,7 @@ public class FreeBoardModel {
 		FreeBoardVO vo=dao.boardDetailData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../freeboard/detail.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

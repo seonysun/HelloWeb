@@ -29,6 +29,7 @@ public class FoodModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("main_jsp", "../food/food_location.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -41,6 +42,7 @@ public class FoodModel {
 		request.setAttribute("list", list);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../food/food_list.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -58,6 +60,7 @@ public class FoodModel {
 		request.setAttribute("addr2", addr2);
 		//레시피, 재료, 상품, 인근 명소 정보 추가
 		request.setAttribute("main_jsp", "../food/food_detail.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

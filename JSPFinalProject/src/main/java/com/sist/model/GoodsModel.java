@@ -29,6 +29,7 @@ public class GoodsModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../goods/goods_all.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("goods/goods_best.do")
@@ -49,6 +50,7 @@ public class GoodsModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../goods/goods_best.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("goods/goods_sp.do")
@@ -69,6 +71,7 @@ public class GoodsModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../goods/goods_sp.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("goods/goods_new.do")
@@ -89,6 +92,7 @@ public class GoodsModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../goods/goods_new.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

@@ -31,6 +31,7 @@ public class RecipeModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../recipe/list.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

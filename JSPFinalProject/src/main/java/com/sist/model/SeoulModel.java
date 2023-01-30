@@ -38,6 +38,7 @@ public class SeoulModel {
 		String[] title= {"","서울 명소","서울 자연 & 관광","서울 쇼핑","서울 호텔","서울 게스트하우스"};
 		request.setAttribute("title", title[Integer.parseInt(type)]);
 		request.setAttribute("main_jsp", "../seoul/seoul_list.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 }

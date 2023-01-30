@@ -2,6 +2,7 @@ package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -14,6 +15,7 @@ public class MemberModel {
 	@RequestMapping("member/join.do")
 	public String member_join(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("main_jsp", "../member/join.jsp");
+		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -100,6 +102,31 @@ public class MemberModel {
 		vo.setPhone(tel1+"-"+tel2);
 		vo.setContent(content);
 		dao.memberInsert(vo);
+		return "redirect:../main/main.do";
+	}
+	
+	@RequestMapping("member/login.do")
+	public String member_login(HttpServletRequest request,HttpServletResponse response) {
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		MemberDAO dao=new MemberDAO();
+		MemberVO vo=dao.memberLogin(id, pwd);
+		if(vo.getMsg().equals("OK")) {
+			//로그인 성공 시 session에 저장 -> 모든 jsp 파일에서 사용 가능(전역변수)
+			HttpSession session=request.getSession();
+			//session, cookie 생성 -> request 이용
+			session.setAttribute("id", vo.getId());
+			session.setAttribute("name", vo.getName());
+			session.setAttribute("admin", vo.getAdmin());
+		}
+		request.setAttribute("result", vo.getMsg());
+		return "../member/login.jsp";
+	}
+	
+	@RequestMapping("member/logout.do")
+	public String member_logout(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		session.invalidate();
 		return "redirect:../main/main.do";
 	}
 }
