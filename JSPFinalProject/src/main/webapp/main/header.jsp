@@ -7,6 +7,52 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#logBtn').click(function(){
+		let id=$('#log_id').val()
+		if(id.trim()===""){
+			$('#log_id').focus()
+			return
+		}
+		let pwd=$('#log_pwd').val()
+		if(pwd.trim()===""){
+			$('#log_pwd').focus()
+			return
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(result){
+				let res=result.trim()
+				if(res==='NOID'){
+					alert("존재하지 않는 ID입니다!")
+					$('#log_id').val("")
+					$('#log_pwd').val("")
+					$('#log_id').focus()
+				}else if(res==='NOPWD'){
+					alert("비밀번호를 확인해주세요!")
+					$('#log_pwd').val("")
+					$('#log_pwd').focus()
+				}else{
+					location.href="../main/main.do"
+				}
+			}
+		})
+	})
+	$('#logoutBtn').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../member/logout.do',
+			success:function(result){
+				location.href="../main/main.do"
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 <div class="wrapper row1">
@@ -17,11 +63,19 @@
       		 ".jsp" : 데이터 없는 jsp 파일 보여줌 -->
     </div>
     <div class="fl_right">
+     <c:if test="${sessionScope.id==null }">
       <ul class="inline">
-        <li>ID&nbsp;<input type="text" name=id size=10 class="input-sm" placeholder="ID"></li>
-        <li>PW&nbsp;<input type="password" name=pwd size=10 class="input-sm" placeholder="Password"></li>
-        <li><input type="button" class="btn btn-lg btn-danger" value="로그인"></li>
+        <li>ID&nbsp;<input type="text" name=id size=10 class="input-sm" placeholder="ID" id=log_id></li>
+        <li>PW&nbsp;<input type="password" name=pwd size=10 class="input-sm" placeholder="Password" id=log_pwd></li>
+        <li><input type="button" class="btn btn-lg btn-danger" value="로그인" id=logBtn></li>
       </ul>
+     </c:if>
+     <c:if test="${sessionScope.id!=null }">
+      <ul class="inline">
+      	<li>${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</li>
+        <li><input type="button" class="btn btn-lg btn-danger" value="로그아웃" id=logoutBtn></li>
+      </ul>
+     </c:if>
     </div>
   </header>
 </div>

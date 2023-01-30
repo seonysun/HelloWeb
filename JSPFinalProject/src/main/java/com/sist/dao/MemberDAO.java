@@ -140,6 +140,50 @@ public class MemberDAO {
 		return count;
 	}
 	//로그인
+	public MemberVO memberLogin(String id, String pwd) {
+		MemberVO vo=new MemberVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			
+			if(count==0) {
+				vo.setMsg("NOID");
+			} else {
+				sql="SELECT id,pwd,name,admin FROM project_member "
+						+ "WHERE id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, id);
+				rs=ps.executeQuery();
+				rs.next();
+				String db_id=rs.getString(1);
+				String db_pwd=rs.getString(2);
+				String db_name=rs.getString(3);
+				String db_admin=rs.getString(4);
+				rs.close();
+				
+				if(db_pwd.equals(pwd)) {
+					vo.setMsg("OK");
+					vo.setId(db_id);
+					vo.setName(db_name);
+					vo.setAdmin(db_admin);
+				} else {
+					vo.setMsg("NOPWD");
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
 	//회원수정
 	//ID 찾기
 	//PWD 찾기
