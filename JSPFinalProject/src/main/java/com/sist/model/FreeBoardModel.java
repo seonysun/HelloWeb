@@ -141,5 +141,47 @@ public class FreeBoardModel {
 		return "redirect:detail.do?no="+bno;
 					//넘어가는 값이 String이므로 숫자 변환형이 아닌 String으로 삽입
 	}
+	
+	@RequestMapping("freeboard/reply_update.do")
+	public String freeboard_reply_update(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String bno=request.getParameter("bno");
+		String rno=request.getParameter("rno");
+		String msg=request.getParameter("msg");
+		FreeBoardDAO dao=new FreeBoardDAO();
+		dao.replyUpdate(Integer.parseInt(rno), msg);
+		return "redirect:detail.do?no="+bno;
+	}
+	
+	@RequestMapping("freeboard/reply_delete.do")
+	public String freeboard_reply_delete(HttpServletRequest request, HttpServletResponse response) {
+		String bno=request.getParameter("bno");
+		String rno=request.getParameter("rno");
+		FreeBoardDAO dao=new FreeBoardDAO();
+		dao.replyDelete(Integer.parseInt(rno));
+		return "redirect:detail.do?no="+bno;
+	}
 
+	@RequestMapping("freeboard/reply_reply_insert.do")
+	public String freeboard_reply_reply_insert(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String bno=request.getParameter("bno");
+		String pno=request.getParameter("pno");
+		String msg=request.getParameter("msg");
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		String name=(String)session.getAttribute("name");
+		FreeBoardDAO dao=new FreeBoardDAO();
+		BoardReplyVO vo=new BoardReplyVO();
+		vo.setBno(Integer.parseInt(bno));
+		vo.setId(id);
+		vo.setName(name);
+		vo.setMsg(msg);
+		dao.replyReplyInsert(Integer.parseInt(pno), vo);
+		return "redirect:detail.do?no="+bno;
+	}
 }

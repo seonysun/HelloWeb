@@ -242,4 +242,127 @@ public class FreeBoardDAO {
 		}
 		return list;
 	}
+	//댓글 수정
+	public void replyUpdate(int rno, String msg) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE project_reply "
+					+ "SET msg=? "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, msg);
+			ps.setInt(2, rno);
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+	//댓글 삭제
+	public void replyDelete(int rno) {
+		try {
+			conn=CreateConnection.getConnection();
+			//일괄처리 : 트랜젝션
+			conn.setAutoCommit(false);
+				//sql 문장이 3단계로 들어가고 각각 commit 실행 -> 중간에서 에러 시 commit 적용되는 것 방지
+			String sql="SELECT root,depth "
+					+ "FROM project_reply "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int root=rs.getInt(1);
+			int depth=rs.getInt(2);
+			rs.close();
+			
+			if(depth==0) {
+				sql="DELETE FROM project_reply "
+						+ "WHERE rno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, rno);
+				ps.executeUpdate();
+			} else {
+				String msg="삭제된 게시물입니다";
+				sql="UPDATE project_reply "
+						+ "SET msg=? "
+						+ "WHERE rno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, msg);
+				ps.setInt(2, rno);
+				ps.executeUpdate();
+			}
+			conn.commit(); //정상수행 시 실행될 commit
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			try {
+				conn.rollback();
+			} catch(Exception e) {}
+		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch(Exception e) {}
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+	//대댓글 작성
+	public void replyReplyInsert(int root, BoardReplyVO vo) {
+		try {
+			conn=CreateConnection.getConnection();
+			conn.setAutoCommit(false); 
+			String sql="SELECT group_id,group_step,group_tab "
+					+ "FROM project_reply "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, root);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int gi=rs.getInt(1);
+			int gs=rs.getInt(2);
+			int gt=rs.getInt(3);
+			rs.close();
+			
+			sql="UPDATE project_reply "
+					+ "SET group_step=group_step+1 "
+					+ "WHERE group_id=? "
+					+ "AND group_step>?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, gi);
+			ps.setInt(2, gs);
+			ps.executeUpdate();
+			
+			sql="INSERT INTO project_reply(rno,bno,id,name,msg,group_id,group_step,group_tab,root) "
+					+ "VALUES(pr_rno_seq.nextval,?,?,?,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getBno());
+			ps.setString(2, vo.getId());
+			ps.setString(3, vo.getName());
+			ps.setString(4, vo.getMsg());
+			ps.setInt(5, gi);
+			ps.setInt(6, gs+1);
+			ps.setInt(7, gt+1);
+			ps.setInt(8, root);
+			ps.executeUpdate();
+			
+			sql="UPDATE project_reply "
+					+ "SET depth=depth+1 "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, root);
+			ps.executeUpdate();
+			
+			conn.commit();
+		} catch(Exception ex) {
+			try {
+				conn.rollback();
+			} catch(Exception e) {}
+			ex.printStackTrace();
+		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch(Exception e) {}
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
 }
