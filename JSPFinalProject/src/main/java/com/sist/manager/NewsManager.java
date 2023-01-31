@@ -11,7 +11,6 @@ import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
 public class NewsManager{
-
 	
 	public static String newsData(String ss)
 	{
