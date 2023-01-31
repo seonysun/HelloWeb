@@ -151,7 +151,7 @@ public class ReBoardDAO {
 	     		   + "AND group_step>?";
 	     	ps=conn.prepareStatement(sql);
 	     	ps.setInt(1, pvo.getGroup_id()); //그룹 번호 동일(같은 그룹)
-	     	ps.setInt(2, pvo.getGroup_step()); //기존 게시글 다음에 출력되므로 step(출력 순서)+1
+	     	ps.setInt(2, pvo.getGroup_step()); //기존 게시글 다음에 출력될 것이므로 다른 애들 step(출력 순서)+1 -> 하나씩 미루기
 	     	ps.executeUpdate();
 			
 			//3. 답변 삽입
