@@ -7,6 +7,61 @@
 <meta charset="UTF-8">
 <title>맛집 & 여행</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0
+let u=0
+let r=0
+$(function(){
+	$('#delete').click(function(){
+		if(i===0){ //여러번 클릭할 때 모션 설정 가능 -> 클릭 전 0, 클릭 후 1
+			$('#del').show()
+			$('#delete').text("취소")
+			i=1
+		}else{
+			$('#del').hide()
+			$('#delete').text("삭제")
+			i=0
+		}
+	})
+	$('#delBtn').click(function(){
+		let no=$('#del').attr("data-no")
+		let pwd=$('#del_pwd').val()
+		if(pwd.trim()===""){
+			$('#del_pwd').focus()
+			return
+		}
+		$.ajax({
+			type:'post',
+			url:'../freeboard/delete.do',
+			data:{"no":no,"pwd":pwd},
+			success:function(result){
+				let res=result.trim()
+				if(res==='yes'){
+					location.href="../freeboard/list.do"
+				}else{
+					alert("비밀번호가 틀립니다!\n다시 입력하세요")
+					$('#del_pwd').val("")
+					$('#del_pwd').focus()
+				}
+			}
+		})
+	})
+	
+	$('.ups').click(function(){
+		$('.rinsert').hide()
+		$('.rupdate').hide()
+		let no=$(this).attr("data-no")
+		if(u===0){
+			$('#u'+no).show()
+			u=1
+		}else{
+			$('#u'+no).hide()
+			u=0
+		}
+	})
+})
+</script>
 </head>
 <body>
 <div class="wrapper row3">
@@ -21,7 +76,7 @@
 </div>
 <div class="wrapper row3">
   <main class="container clear"> 
-  <h2 class="sectiontitle">게시물 상세보기</h2>
+  <h2 class="sectiontitle">상세보기</h2>
   	<div style="height: 5px"></div>
   	<table class="table">
   	  <tr>
@@ -45,12 +100,105 @@
   	  </tr>
   	  <tr>
   	  	<td class="text-right" colspan=4>
-  	  		<a href="../freeboard/update.do" class="btn btn-xs btn-success">수정</a>
-  	  		<a href="../freeboard/delete.do" class="btn btn-xs btn-warning">삭제</a>
+  	  		<a href="../freeboard/update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
+  	  		<span class="btn btn-xs btn-warning" id=delete>삭제</span>
   	  		<a href="../freeboard/list.do" class="btn btn-xs btn-info">목록</a>
   	  	</td>
   	  </tr>
+  	  <tr id=del style="display: none" data-no="${vo.no }">
+  	  	<td colspan=4 class="text-right">
+  	  	  <form id="del_frm" class=inline>
+  	  		비밀번호: <input type=password size=10 class="input-sm" id=del_pwd>
+  	  		<input type=button value="삭제" class="btn btn-xs btn-danger" id=delBtn>
+  	  	  </form>
+  	  	</td>
+  	  </tr>
   	</table>
+  	<div style="height: 5px"></div>
+  	<div class="content three_quarter first"> 
+	  <h4 class="sectiontitle">댓글(${count })</h4>
+	  	<c:if test="${count==0 }">
+	  		<table class=table>
+	  		  <tr>
+	  		  	<td class=text-center>등록된 댓글이 없습니다</td>
+	  		  </tr>
+	  		</table>
+	  	</c:if>
+	  	<c:if test="${count>0 }">
+	  		<table class=table>
+	  		  <tr>
+				<td>
+					<c:forEach var="rvo" items="${list }">
+						<table class=table>
+						  <tr>
+						  	<td class=text-left>
+						  		<c:if test="${rvo.group_tab>0 }">
+						  			<c:forEach var="i" begin="1" end="${rvo.group_tab }">
+						  			&nbsp;&nbsp;
+						  			</c:forEach>
+						  			<img src="../freeboard/image/re_icon.png">
+						  		</c:if>
+						  		♡<span style="color: orange">${rvo.name }</span>&nbsp;(${rvo.dbday })
+						  	</td>
+						  	<td class=text-right>
+						  		<c:if test="${sessionScope.id!=null }">
+						  		  <c:if test="${sessionScope.id==rvo.id }">
+						  			<span class="btn btn-xs btn-success ups" data-no="${rvo.rno }">수정</span>
+						  			<a href="#" class="btn btn-xs btn-warning">삭제</a>
+						  		  </c:if>
+						  			<a href="#" class="btn btn-xs btn-info">댓글</a>
+						  		</c:if>
+						  	</td>
+						  </tr>
+						  <tr>
+						  	<td colspan=2>
+						  		<pre style="white-space: pre-wrap;background-color: white;border:none">${rvo.msg }</pre>
+						  	</td>
+						  </tr>
+						  <tr id="i${rvo.rno }" class="rinsert" style="display: none">
+						  	<td colspan=2>
+						  		<form method=post action="../freeboard/reply_insert.do">
+								  	<input type=hidden name=bno value=${vo.no }>
+								  	<input type=hidden name=pno value=${rvo.rno }>
+								  	<textarea rows="3" cols="80" name=msg style="float: left"></textarea>&nbsp;
+								  	<input type=submit value="댓글" class="btn btn-sm btn-danger" style="height: 65px">
+								</form>
+						  	</td>
+						  </tr>
+						  <tr id="u${rvo.rno }" class="rupdate" style="display: none">
+						  	<td colspan=2>
+						  		<form method=post action="../freeboard/reply_update.do">
+								  	<input type=hidden name=bno value=${vo.no }>
+								  	<input type=hidden name=rno value=${rvo.rno }>
+								  	<textarea rows="3" cols="80" name=msg style="float: left">${rvo.msg }</textarea>&nbsp;
+								  	<input type=submit value="수정" class="btn btn-sm btn-danger" style="height: 65px">
+								</form>
+						  	</td>
+						  </tr>
+						</table>
+					</c:forEach>
+				</td>
+			  </tr>
+			</table>
+		</c:if>
+		<c:if test="${sessionScope.id!=null }">
+	  		<table class=table>
+	  		  <tr>
+				<td>
+				  <form method=post action="../freeboard/reply_insert.do">
+				  	<input type=hidden name=bno value=${vo.no }>
+				  	<textarea rows="3" cols="80" name=msg style="float: left"></textarea>&nbsp;
+				  	<input type=submit value="댓글쓰기" class="btn btn-sm btn-danger" style="height: 65px">
+				  </form>
+				</td>
+			  </tr>
+			</table>
+		</c:if>
+    </div>
+	<div class="sidebar one_quarter"> 
+	  <h4 class="sectiontitle">인기게시물 Top5</h4>
+	  
+	</div>
   </main>
 </div>
 </body>
