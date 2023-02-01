@@ -192,7 +192,7 @@ public class FoodDAO {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT title,poster,chef,rownum "
-					+ "FROM recipe "
+					+ "FROM project_recipe "
 					+"WHERE REGEXP_LIKE(title,?) AND rownum<=5";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, type);
