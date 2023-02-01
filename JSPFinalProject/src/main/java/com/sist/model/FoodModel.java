@@ -69,8 +69,8 @@ public class FoodModel {
 		if(index>-1) {
 			type=type.replace('/', '|');
 		}
-		List<RecipeVO> nList=dao.food_recipe_data(type);
-		request.setAttribute("nList", nList);
+		List<RecipeVO> rcList=dao.food_recipe_data(type);
+		request.setAttribute("rcList", rcList);
 		
 		request.setAttribute("main_jsp", "../food/food_detail.jsp");
 		CommonsModel.footerData(request);

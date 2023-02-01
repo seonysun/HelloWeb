@@ -217,8 +217,27 @@ $(function(){
 			</script>
       </div>
 
-	  <%-- 인근 명소 --%>
+	  <%-- 관련 레시피 --%>
       <div class="sdb_holder">
+      	<h2 class="sectiontitle">레시피</h2>
+      	<table class=table>
+      	  <tr>
+      	  	<td>
+      	  		<c:forEach var="kvo" items="${rcList }">
+      	  			<table class=table>
+      	  			  <tr>
+      	  			  	<td>
+      	  			  		<img src="${kvo.poster }" style="width: 100%">
+      	  			  	</td>
+      	  			  </tr>
+      	  			  <tr>
+      	  			  	<td>${kvo.title }</td>
+      	  			  </tr>
+      	  			</table>
+      	  		</c:forEach>
+      	  	</td>
+      	  </tr>
+      	</table>
       </div>
     </div>
     <div class="clear"></div>
