@@ -2,9 +2,16 @@ package com.sist.vo;
 import java.util.*;
 
 public class NoticeVO {
-	private int no,hit;
-	private String type,name,subject,content,dbday;
+	private int no,type,hit;
+	private String name,subject,content,dbday,prefix;
+				//1: 일반 공지, 2:이벤트 공지, 3:맛집 공지, 4:스토어 공지, 5:서울여행 공지
 	private Date regdate;
+	public String getPrefix() {
+		return prefix;
+	}
+	public void setPrefix(String prefix) {
+		this.prefix = prefix;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -17,10 +24,10 @@ public class NoticeVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public String getName() {
