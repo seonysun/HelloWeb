@@ -59,4 +59,67 @@ public class SeoulDAO {
 		}
 		return total;
 	}
+	//상세보기
+	public SeoulVO seoulDetailData(int no) {
+		SeoulVO vo=new SeoulVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE seoul_location "
+					+ "SET hit=hit+1 "
+					+ "WHERE no=?";
+				//Spring에서는 조회수 trigger 이용
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.executeUpdate();
+			
+			sql="SELECT no,title,poster,msg,address "
+					+ "FROM seoul_location "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setTitle(rs.getString(2));
+			vo.setPoster(rs.getString(3));
+			vo.setMsg(rs.getString(4));
+			vo.setAddress(rs.getString(5));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	//인근 맛집
+	public List<FoodVO> seoulFoodFindData(String addr){
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT fno,poster,name,type,rownum "
+					+ "FROM food_location "
+					+ "WHERE address LIKE '%'||?||'%' "
+					+ "AND rownum<=12";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, addr);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				FoodVO vo=new FoodVO();
+				vo.setFno(rs.getInt(1));
+				String poster=rs.getString(2);
+				poster=poster.substring(0,poster.indexOf("^"));
+				vo.setPoster(poster);
+				vo.setName(rs.getString(3));
+				vo.setType(rs.getString(4));
+				list.add(vo);
+			}
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
 }

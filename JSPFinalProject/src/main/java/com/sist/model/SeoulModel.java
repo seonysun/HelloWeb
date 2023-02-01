@@ -41,4 +41,34 @@ public class SeoulModel {
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("seoul/seoul_detail.do")
+	public String seoul_detail(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		SeoulDAO dao=new SeoulDAO();
+		SeoulVO vo=dao.seoulDetailData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		String address=vo.getAddress(); //04084 서울 마포구 양화진길 46 (합정동, 양화진홍보관)
+		String[] addr=address.split(" ");
+		/*
+		String addr1=address.substring(address.indexOf(" ")+1);
+		addr1=addr1.trim(); //04084
+		String addr2=addr1.substring(addr1.indexOf(" ")+1);
+		addr2=addr2.trim(); //서울
+		String addr3=addr2.substring(0,addr2.indexOf(" "));
+		addr3=addr3.trim(); //마포구
+		*/
+		request.setAttribute("addr", addr[2]+" 맛집");
+		List<FoodVO> list=dao.seoulFoodFindData(addr[2]);
+		request.setAttribute("list", list);
+		
+		AllReplyDAO rdao=new AllReplyDAO();
+		List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(no), 1);
+		request.setAttribute("rList", rList);
+		request.setAttribute("count", rList.size());
+		
+		request.setAttribute("main_jsp", "../seoul/seoul_detail.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
 }

@@ -8,4 +8,5 @@
 	<bean class="com.sist.model.FreeBoardModel"/>
 	<bean class="com.sist.model.MemberModel"/>
 	<bean class="com.sist.model.RecipeModel"/>
+	<bean class="com.sist.model.AllReplyModel"/>
 </beans>

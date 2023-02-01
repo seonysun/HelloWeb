@@ -58,7 +58,20 @@ public class FoodModel {
 		request.setAttribute("vo", vo);
 		request.setAttribute("addr1", addr1);
 		request.setAttribute("addr2", addr2);
-		//레시피, 재료, 상품, 인근 명소 정보 추가
+
+		AllReplyDAO rdao=new AllReplyDAO();
+		List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(fno), 2);
+		request.setAttribute("rList", rList);
+		request.setAttribute("count", rList.size());
+		
+		String type=vo.getType();
+		int index=type.indexOf('/');
+		if(index>-1) {
+			type=type.replace('/', '|');
+		}
+		List<RecipeVO> nList=dao.food_recipe_data(type);
+		request.setAttribute("nList", nList);
+		
 		request.setAttribute("main_jsp", "../food/food_detail.jsp");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
