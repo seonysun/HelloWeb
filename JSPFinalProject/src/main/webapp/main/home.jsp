@@ -94,7 +94,13 @@
       </ul>
     </div>
     <h2 class="sectiontitle">최근 방문 맛집</h2>
-   
+      <div class=inline>
+   		<c:forEach var="vo" items="${cList }" varStatus="s">
+   			<c:if test="${s.index<9 }">
+   				<img src="${vo.poster }" style="width: 100px;height: 100px">
+   			</c:if>
+   		</c:forEach>
+      </div>
     <!-- / main body -->
     <div class="clear"></div>
   </main>

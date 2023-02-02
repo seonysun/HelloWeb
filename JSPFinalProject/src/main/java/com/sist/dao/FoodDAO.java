@@ -186,7 +186,7 @@ public class FoodDAO {
 		}
 		return vo;
 	}
-	// 관련 레시피 출력 
+	//관련 레시피 출력 
 	public List<RecipeVO> food_recipe_data(String type) {
 		List<RecipeVO> list=new ArrayList<RecipeVO>();
 		try {
