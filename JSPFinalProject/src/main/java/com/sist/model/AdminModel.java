@@ -12,7 +12,6 @@ import com.sist.controller.RequestMapping;
 public class AdminModel {
 	@RequestMapping("adminpage/admin_main.do")
 	public String admin_main(HttpServletRequest request, HttpServletResponse response) {
-		
 		request.setAttribute("admin_jsp", "../adminpage/admin_home.jsp");
 		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		CommonsModel.footerData(request);
@@ -42,10 +41,69 @@ public class AdminModel {
 	
 	@RequestMapping("adminpage/notice_insert.do")
 	public String admin_notice_insert(HttpServletRequest request, HttpServletResponse response) {
-		
 		request.setAttribute("admin_jsp", "../adminpage/notice_insert.jsp");
 		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("adminpage/notice_insert_ok.do")
+	public String admin_notice_insert_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String type=request.getParameter("type");
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		NoticeVO vo=new NoticeVO();
+		vo.setType(Integer.parseInt(type));
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		NoticeDAO dao=new NoticeDAO();
+		dao.noticeInsert(vo);
+		return "redirect:notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_delete.do")
+	public String admin_notice_delete(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		NoticeDAO dao=new NoticeDAO();
+		dao.noticeDelete(Integer.parseInt(no));
+		return "redirect:notice_list.do";
+	}
+	
+	@RequestMapping("adminpage/notice_update.do")
+	public String admin_notice_update(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		NoticeDAO dao=new NoticeDAO();
+		NoticeVO vo=dao.noticeDetailData(Integer.parseInt(no),2);
+		request.setAttribute("vo", vo);
+		request.setAttribute("admin_jsp", "../adminpage/notice_update.jsp");
+		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("adminpage/notice_update_ok.do")
+	public String admin_notice_update_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String type=request.getParameter("type");
+		String name=request.getParameter("name");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		NoticeDAO dao=new NoticeDAO();
+		NoticeVO vo=new NoticeVO();
+		vo.setNo(Integer.parseInt(no));
+		vo.setType(Integer.parseInt(type));
+		vo.setName(name);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		dao.noticeUpdate(vo);
+		return "redirect:notice_list.do";
 	}
 }

@@ -1,8 +1,15 @@
 package com.sist.model;
 import java.util.*;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
@@ -68,6 +75,19 @@ public class SeoulModel {
 		request.setAttribute("count", rList.size());
 		
 		request.setAttribute("main_jsp", "../seoul/seoul_detail.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("seoul/seoul_weather.do") //홈페이지에서 접근 막아서 출력 불가
+	public String seoul_weather(HttpServletRequest request, HttpServletResponse response) {
+		String html="";
+		try {
+			Document doc=Jsoup.connect("https://korean.visitseoul.net/weather").get();
+			Element elem=doc.selectFirst("section.content");
+			html=elem.html();
+		} catch(Exception ex) {}
+		request.setAttribute("main_jsp", "../seoul/seoul_weather.jsp");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}

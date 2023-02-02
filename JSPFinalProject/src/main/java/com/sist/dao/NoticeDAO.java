@@ -35,7 +35,7 @@ public class NoticeDAO {
 		}
 		return list;
 	}
-	//공지사항 게시판
+	//공지사항 목록 출력
 	public List<NoticeVO> noticeListData(int page){
 		List<NoticeVO> list=new ArrayList<NoticeVO>();
 		try {
@@ -88,5 +88,94 @@ public class NoticeDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return total;
+	}
+	//공지사항 등록
+	public void noticeInsert(NoticeVO vo) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="INSERT INTO project_notice "
+					+ "VALUES((SELECT NVL(MAX(no)+1,1) FROM project_notice),?,?,?,?,SYSDATE,0)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getType());
+			ps.setString(2, vo.getName());
+			ps.setString(3, vo.getSubject());
+			ps.setString(4, vo.getContent());
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+	//공지사항 삭제
+	public void noticeDelete(int no) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="DELETE FROM project_notice "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+	//공지사항 상세 출력
+	public NoticeVO noticeDetailData(int no, int type) {
+		NoticeVO vo=new NoticeVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="";
+			if(type==1) {
+				sql="UPDATE project_notice "
+						+ "SET hit=hit+1 "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+			} else {
+				sql="SELECT no,name,subject,content,type,hit,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+						+ "FROM project_notice "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				vo.setNo(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setType(rs.getInt(5));
+				vo.setHit(rs.getInt(6));
+				vo.setDbday(rs.getString(7));
+				rs.close();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	//공지사항 수정
+	public void noticeUpdate(NoticeVO vo) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE project_notice "
+					+ "SET type=?,subject=?,content=? "
+					+ "WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getType());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setInt(4, vo.getNo());
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
 	}
 }
