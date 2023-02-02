@@ -25,6 +25,7 @@
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
 <!-- JAVASCRIPTS --> 
 <script src="../js/jquery.min.js"></script> 
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="../js/jquery.backtotop.js"></script> 
 <script src="../js/jquery.mobilemenu.js"></script> 
 <script src="../js/jquery.flexslider-min.js"></script>

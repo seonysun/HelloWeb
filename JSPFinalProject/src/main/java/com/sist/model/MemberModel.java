@@ -8,6 +8,8 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
+
+import java.io.PrintWriter;
 import java.util.*;
 
 @Controller
@@ -17,6 +19,40 @@ public class MemberModel {
 		request.setAttribute("main_jsp", "../member/join.jsp");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/join_ok.do")
+	public String member_insert(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		String name=request.getParameter("name");
+		String sex=request.getParameter("sex");
+		String birthday=request.getParameter("birthday");
+		String email=request.getParameter("email");
+		String post=request.getParameter("post");
+		String addr1=request.getParameter("addr1");
+		String addr2=request.getParameter("addr2");
+		String tel1=request.getParameter("tel1");
+		String tel2=request.getParameter("tel2");
+		String content=request.getParameter("content");
+		MemberDAO dao=new MemberDAO();
+		MemberVO vo=new MemberVO();
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setName(name);
+		vo.setSex(sex);
+		vo.setBirth(birthday);
+		vo.setEmail(email);
+		vo.setPost(post);
+		vo.setAddr1(addr1);
+		vo.setAddr2(addr2);
+		vo.setPhone(tel1+"-"+tel2);
+		vo.setContent(content);
+		dao.memberInsert(vo);
+		return "redirect:../main/main.do";
 	}
 	
 	@RequestMapping("member/idcheck.do")
@@ -70,41 +106,6 @@ public class MemberModel {
 		return "../member/postfind_result.jsp";
 	}
 	
-	@RequestMapping("member/join_ok.do")
-	public String member_insert(HttpServletRequest request,HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch(Exception ex) {}
-		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");
-		String name=request.getParameter("name");
-		String sex=request.getParameter("sex");
-		String birthday=request.getParameter("birthday");
-		String email=request.getParameter("email");
-		String post=request.getParameter("post");
-		String addr1=request.getParameter("addr1");
-		String addr2=request.getParameter("addr2");
-		String tel1=request.getParameter("tel1");
-		String tel2=request.getParameter("tel2");
-		String content=request.getParameter("content");
-		
-		MemberDAO dao=new MemberDAO();
-		MemberVO vo=new MemberVO();
-		vo.setId(id);
-		vo.setPwd(pwd);
-		vo.setName(name);
-		vo.setSex(sex);
-		vo.setBirth(birthday);
-		vo.setEmail(email);
-		vo.setPost(post);
-		vo.setAddr1(addr1);
-		vo.setAddr2(addr2);
-		vo.setPhone(tel1+"-"+tel2);
-		vo.setContent(content);
-		dao.memberInsert(vo);
-		return "redirect:../main/main.do";
-	}
-	
 	@RequestMapping("member/login.do")
 	public String member_login(HttpServletRequest request,HttpServletResponse response) {
 		String id=request.getParameter("id");
@@ -128,5 +129,107 @@ public class MemberModel {
 		HttpSession session=request.getSession();
 		session.invalidate();
 		return "redirect:../main/main.do";
+	}
+	
+	@RequestMapping("member/idfind.do")
+	public String member_idfind(HttpServletRequest request,HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../member/idfind.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/idfind_ok.do")
+	public void member_idfind_ok(HttpServletRequest request,HttpServletResponse response) {
+		String tel=request.getParameter("tel");
+		MemberDAO dao=new MemberDAO();
+		String res=dao.memberIdfind(tel);
+		try {
+			PrintWriter out=response.getWriter(); //데이터를 받아서
+			out.println(res); //화면에 출력(데이터 전송)
+		} catch(Exception ex) {}
+	}
+	
+	@RequestMapping("member/idfind2_ok.do")
+	public void member_idfind2_ok(HttpServletRequest request,HttpServletResponse response) {
+		String email=request.getParameter("email");
+		MemberDAO dao=new MemberDAO();
+		String res=dao.memberIdfind2(email);
+		try {
+			PrintWriter out=response.getWriter();
+			out.println(res);
+		} catch(Exception ex) {}
+	}
+	
+	@RequestMapping("member/join_update.do")
+		//회원 정보 수정, 탈퇴 -> session 새로 저장
+	public String member_join_update(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		MemberDAO dao=new MemberDAO();
+		MemberVO vo=dao.memberJoinUpdateData(id);
+		String phone=vo.getPhone();
+		phone=phone.substring(phone.indexOf("-")+1);
+		vo.setPhone(phone);
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../member/join_update.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/join_update_ok.do")
+	public String member_join_update_ok(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		String name=request.getParameter("name");
+		String sex=request.getParameter("sex");
+		String birthday=request.getParameter("birthday");
+		String email=request.getParameter("email");
+		String post=request.getParameter("post");
+		String addr1=request.getParameter("addr1");
+		String addr2=request.getParameter("addr2");
+		String tel1=request.getParameter("tel1");
+		String tel2=request.getParameter("tel2");
+		String content=request.getParameter("content");
+		MemberDAO dao=new MemberDAO();
+		MemberVO vo=new MemberVO();
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setName(name);
+		vo.setSex(sex);
+		vo.setBirth(birthday);
+		vo.setEmail(email);
+		vo.setPost(post);
+		vo.setAddr1(addr1);
+		vo.setAddr2(addr2);
+		vo.setPhone(tel1+"-"+tel2);
+		vo.setContent(content);
+		dao.memberInsert(vo);
+		return "redirect:../main/main.do";
+	}
+	
+	@RequestMapping("member/join_delete.do")
+	public String member_join_delete(HttpServletRequest request,HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../member/join_delete.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("member/join_delete_ok.do")
+	public void member_join_delete_ok(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		String pwd=request.getParameter("pwd");
+		MemberDAO dao=new MemberDAO();
+		boolean bCheck=dao.memberJoinDelete(id, pwd);
+		try {
+			PrintWriter out=response.getWriter();
+			if(bCheck==true) {
+				out.println("n");
+			}
+		} catch(Exception ex) {}
+		
 	}
 }

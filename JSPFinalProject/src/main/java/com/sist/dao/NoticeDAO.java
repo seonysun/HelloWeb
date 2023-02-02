@@ -135,8 +135,8 @@ public class NoticeDAO {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, no);
 				ps.executeUpdate();
-			} else {
-				sql="SELECT no,name,subject,content,type,hit,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+			} 
+			sql="SELECT no,name,subject,content,type,hit,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
 						+ "FROM project_notice "
 						+ "WHERE no=?";
 				ps=conn.prepareStatement(sql);
@@ -151,7 +151,6 @@ public class NoticeDAO {
 				vo.setHit(rs.getInt(6));
 				vo.setDbday(rs.getString(7));
 				rs.close();
-			}
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {

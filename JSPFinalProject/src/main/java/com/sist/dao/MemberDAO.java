@@ -185,7 +185,157 @@ public class MemberDAO {
 		return vo;
 	}
 	//회원수정
+	public MemberVO memberJoinUpdateData(String id) {
+		MemberVO vo=new MemberVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT id,name,sex,birth,email,post,addr1,addr2,phone,content "
+					+ "FROM project_member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setId(rs.getString(1));
+			vo.setName(rs.getString(2));
+			vo.setSex(rs.getString(3));
+			vo.setBirth(rs.getString(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPost(rs.getString(6));
+			vo.setAddr1(rs.getString(7));
+			vo.setAddr2(rs.getString(8));
+			vo.setPhone(rs.getString(9));
+			vo.setContent(rs.getString(10));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	public boolean memberJoinUpdate(MemberVO vo) {
+		boolean bCheck=false;
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="INSERT INTO project_member(name,sex,birth,email,post,addr1,addr2,phone,content) "
+					+ "VALUES(?,?,?,?,?,?,?,?,?) "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSex());
+			ps.setString(3, vo.getBirth());
+			ps.setString(4, vo.getEmail());
+			ps.setString(5, vo.getPost());
+			ps.setString(6, vo.getAddr1());
+			ps.setString(7, vo.getAddr2());
+			ps.setString(8, vo.getPhone());
+			ps.setString(9, vo.getContent());
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 	//ID 찾기
+	public String memberIdfind(String phone) {
+		String result="";
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE phone=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, phone);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			
+			if(count==0) {
+				result="n";
+			} else {
+				sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') "
+							//id의 1번부터 1개만 출력하고 나머지 *로 출력
+						+ "FROM project_member "
+						+ "WHERE phone=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, phone);
+				rs=ps.executeQuery();
+				rs.next();
+				result=rs.getString(1);
+				rs.close();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+	}
+	public String memberIdfind2(String email) {
+		String result="";
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			
+			if(count==0) {
+				result="n";
+			} else {
+				sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') "
+						//id의 1번부터 1개만 출력하고 나머지 *로 출력
+						+ "FROM project_member "
+						+ "WHERE email=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, email);
+				rs=ps.executeQuery();
+				rs.next();
+				result=rs.getString(1);
+				rs.close();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+	}
 	//PWD 찾기
 	//회원탈퇴
+	public boolean memberJoinDelete(String id, String pwd) {
+		boolean bCheck=false;
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT pwd "
+					+ "FROM project_member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(pwd)) {
+				bCheck=true;
+				sql="DELETE FROM project_member "
+						+ "WHERE id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ps.executeUpdate();
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 }
