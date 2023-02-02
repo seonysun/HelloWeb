@@ -66,7 +66,7 @@ public class MemberModel {
 		MemberDAO dao=new MemberDAO();
 		int count=dao.memberIdCheck(id);
 		request.setAttribute("count", count);
-		return "../member/idcheck_result.jsp";
+		return "../member/check.jsp";
 	}
 	
 	@RequestMapping("member/email_check.do")
@@ -75,7 +75,7 @@ public class MemberModel {
 		MemberDAO dao=new MemberDAO();
 		int count=dao.memberEmailCheck(email);
 		request.setAttribute("count", count);
-		return "../member/email_check.jsp";
+		return "../member/check.jsp";
 	}
 	
 	@RequestMapping("member/tel_check.do")
@@ -84,7 +84,7 @@ public class MemberModel {
 		MemberDAO dao=new MemberDAO();
 		int count=dao.memberPhoneCheck(phone);
 		request.setAttribute("count", count);
-		return "../member/tel_check.jsp";
+		return "../member/check.jsp";
 	}
 	
 	@RequestMapping("member/postfind.do")
@@ -140,6 +140,7 @@ public class MemberModel {
 	
 	@RequestMapping("member/idfind_ok.do")
 	public void member_idfind_ok(HttpServletRequest request,HttpServletResponse response) {
+			//데이터만 보내주면 되므로 리턴값 없이 메소드 생성
 		String tel=request.getParameter("tel");
 		MemberDAO dao=new MemberDAO();
 		String res=dao.memberIdfind(tel);
@@ -161,7 +162,7 @@ public class MemberModel {
 	}
 	
 	@RequestMapping("member/join_update.do")
-		//회원 정보 수정, 탈퇴 -> session 새로 저장
+		//회원 정보 수정, 탈퇴 -> session 새로 저장 필수
 	public String member_join_update(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
@@ -169,6 +170,7 @@ public class MemberModel {
 		MemberVO vo=dao.memberJoinUpdateData(id);
 		String phone=vo.getPhone();
 		phone=phone.substring(phone.indexOf("-")+1);
+							//저장된 전화번호는 010-****-****, 뒤에 8자리로만 비교하므로 데이터 자르기
 		vo.setPhone(phone);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../member/join_update.jsp");
@@ -177,7 +179,7 @@ public class MemberModel {
 	}
 	
 	@RequestMapping("member/join_update_ok.do")
-	public String member_join_update_ok(HttpServletRequest request,HttpServletResponse response) {
+	public void member_join_update_ok(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
@@ -206,8 +208,18 @@ public class MemberModel {
 		vo.setAddr2(addr2);
 		vo.setPhone(tel1+"-"+tel2);
 		vo.setContent(content);
-		dao.memberInsert(vo);
-		return "redirect:../main/main.do";
+		boolean bCheck=dao.memberJoinUpdate(vo);
+		try {
+			PrintWriter out=response.getWriter();
+			if(bCheck==true) {
+				out.println("y");
+				HttpSession session=request.getSession();
+				session.setAttribute("name", vo.getName());
+					//아이디는 바꿀 수 없고, name값만 수정될 수 있으니 session에 재등록
+			} else {
+				out.println("n");
+			}
+		} catch(Exception ex) {}
 	}
 	
 	@RequestMapping("member/join_delete.do")
@@ -227,9 +239,11 @@ public class MemberModel {
 		try {
 			PrintWriter out=response.getWriter();
 			if(bCheck==true) {
+				out.println("y");
+				session.invalidate();
+			} else {
 				out.println("n");
 			}
 		} catch(Exception ex) {}
-		
 	}
 }

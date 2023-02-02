@@ -61,7 +61,7 @@ $(function(){
 				let count=Number(result.trim())
 				if(count==0){
 					$('#tPrint').text(phone+"는(은) 사용 가능한 전화번호입니다")
-					$('#tel2').prop('readonly',true)
+					$('#tel1').prop('readonly',true)
 				} else{
 					$('#tPrint').text(phone+"는(은) 이미 사용중인 전화번호입니다")
 					$('#tel2').val("")

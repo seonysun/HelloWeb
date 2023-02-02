@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -21,6 +20,7 @@ $(function(){
     		url:'../member/idfind_ok.do',
     		data:{"tel":tel},
     		success:function(response){
+    						//ajax로 그 화면에 데이터를 바로 받아올 떄 response 사용
     			let res=response.trim()
     			if(res==='n'){
     				$('#tel_result').text("존재하지 않는 전화번호입니다")
@@ -78,14 +78,14 @@ $(function(){
 	  <div id="tabs-1" class="inline">
 	  	<p>
 	  		전화번호: <input type=text name=tel size=20 id=tel class="input-sm">&nbsp;
-	  		<input type=button value="검색" class="btn btn-sm btn-danger">
+	  		<input type=button value="검색" class="btn btn-sm btn-danger" id=telBtn>
 	  	</p>
 	  	<p id="tel_result"></p>
 	  </div>
 	  <div id="tabs-2" class="inline">
 	  	<p>
 	  		이메일: <input type=text name=email size=35 id=email class="input-sm">&nbsp;
-	  		<input type=button value="검색" class="btn btn-sm btn-danger">
+	  		<input type=button value="검색" class="btn btn-sm btn-danger" id=emailBtn>
 	  	</p>
 	  	<p id="email_result"></p>
 	  </div>

@@ -45,7 +45,7 @@
 	  </tr>
 	  <tr>
 	  	<td colspan=2 class="text-center">
-	  		<input type=submit value="글쓰기" class="btn btn-sm btn-danger">
+	  		<input type=submit value="수정하기" class="btn btn-sm btn-danger">
 	  		<input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
 	  	</td>
 	  </tr>

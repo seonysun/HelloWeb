@@ -52,25 +52,25 @@ public class MemberDAO {
 		return count;
 	}
 	//이메일 중복체크
-		public int memberEmailCheck(String email) {
-			int count=0;
-			try {
-				conn=CreateConnection.getConnection();
-				String sql="SELECT COUNT(*) FROM project_member "
-						+ "WHERE email=?";
-				ps=conn.prepareStatement(sql);
-				ps.setString(1, email);
-				ResultSet rs=ps.executeQuery();
-				rs.next();
-				count=rs.getInt(1);
-				rs.close();
-			} catch(Exception ex) {
-				ex.printStackTrace();
-			} finally {
-				CreateConnection.disConnection(conn, ps);
-			}
-			return count;
+	public int memberEmailCheck(String email) {
+		int count=0;
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			count=rs.getInt(1);
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
 		}
+		return count;
+	}
 	//전화번호 중복체크
 	public int memberPhoneCheck(String phone) {
 		int count=0;
@@ -156,7 +156,8 @@ public class MemberDAO {
 			if(count==0) {
 				vo.setMsg("NOID");
 			} else {
-				sql="SELECT id,pwd,name,admin FROM project_member "
+				sql="SELECT id,pwd,name,admin "
+						+ "FROM project_member "
 						+ "WHERE id=?";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, id);
@@ -218,19 +219,33 @@ public class MemberDAO {
 		boolean bCheck=false;
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="INSERT INTO project_member(name,sex,birth,email,post,addr1,addr2,phone,content) "
-					+ "VALUES(?,?,?,?,?,?,?,?,?) "
+			String sql="SELECT pwd FROM project_member "
 					+ "WHERE id=?";
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, vo.getName());
-			ps.setString(2, vo.getSex());
-			ps.setString(3, vo.getBirth());
-			ps.setString(4, vo.getEmail());
-			ps.setString(5, vo.getPost());
-			ps.setString(6, vo.getAddr1());
-			ps.setString(7, vo.getAddr2());
-			ps.setString(8, vo.getPhone());
-			ps.setString(9, vo.getContent());
+		    ps=conn.prepareStatement(sql);
+		    ps.setString(1, vo.getId());
+		    ResultSet rs=ps.executeQuery();
+		    rs.next();
+		    String db_pwd=rs.getString(1);
+		    rs.close();
+			
+		    if(db_pwd.equals(vo.getPwd())) {
+		    	bCheck=true;
+		    	sql="UPDATE project_member "
+		    			+ "SET name=?,sex=?,email=?,phone=?,content=?,birth=?,post=?,addr1=?,addr2=? "
+		    			+ "WHERE id=?";
+		    	ps=conn.prepareStatement(sql);
+		    	ps.setString(1,vo.getName());
+				ps.setString(2,vo.getSex());
+				ps.setString(3,vo.getEmail());
+				ps.setString(4,vo.getPhone());
+				ps.setString(5,vo.getContent());
+				ps.setString(6,vo.getBirth());
+				ps.setString(7,vo.getPost());
+				ps.setString(8,vo.getAddr1());
+				ps.setString(9,vo.getAddr2());
+				ps.setString(10,vo.getId());
+		    	ps.executeUpdate();
+		    }
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -307,7 +322,6 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	//PWD 찾기
 	//회원탈퇴
 	public boolean memberJoinDelete(String id, String pwd) {
 		boolean bCheck=false;
