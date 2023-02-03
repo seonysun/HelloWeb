@@ -114,7 +114,7 @@ public class FoodDAO {
 		ArrayList<FoodVO> list=new ArrayList<FoodVO>();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT fno,cno,name,address,tel,type,poster,score "
+			String sql="SELECT fno,cno,name,address,tel,type,poster,score,like_count "
 					+ "FROM project_food "
 					+ "WHERE cno=?";
 			ps=conn.prepareStatement(sql);
@@ -134,6 +134,7 @@ public class FoodDAO {
 				poster=poster.substring(0,poster.indexOf("^"));
 				vo.setPoster(poster);
 				vo.setScore(rs.getDouble(8));
+				vo.setLike_count(rs.getInt(9));
 				list.add(vo);
 			}
 			rs.close();
@@ -156,7 +157,7 @@ public class FoodDAO {
 			ps.setInt(1, fno);
 			ps.executeUpdate();
 			
-			sql="SELECT fno,cno,name,score,poster,tel,type,time,parking,menu,price,address,good,soso,bad "
+			sql="SELECT fno,cno,name,score,poster,tel,type,time,parking,menu,price,address,good,soso,bad,like_count "
 					+ "FROM project_food "
 					+ "WHERE fno=?";
 			ps=conn.prepareStatement(sql);
@@ -178,6 +179,7 @@ public class FoodDAO {
 			vo.setGood(rs.getInt(13));
 			vo.setSoso(rs.getInt(14));
 			vo.setBad(rs.getInt(15));
+			vo.setLike_count(rs.getInt(16));
 			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();

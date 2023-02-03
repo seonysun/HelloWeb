@@ -18,14 +18,15 @@ public class LikeDAO {
 			ps.setInt(1, vo.getNo());
 			ps.setString(2, vo.getId());
 			ps.executeUpdate();
-/*			
-			sql="INSERT INTO project_food(like_count) "
-					+ "VALUES((SELECT NVL(MAX(like_count)+1,1) FROM project_food)) "
+			
+			sql="UPDATE project_food "
+					+ "SET like_count=(SELECT NVL(MAX(like_count)+1,1) FROM project_food WHERE fno=?) "
 					+ "WHERE fno=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getNo());
+			ps.setInt(2, vo.getNo());
 			ps.executeUpdate();
-*/
+			
 			conn.commit();
 		} catch(Exception ex) {
 			ex.printStackTrace();
