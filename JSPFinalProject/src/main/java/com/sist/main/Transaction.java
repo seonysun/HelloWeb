@@ -28,10 +28,10 @@ public class Transaction {
 			} catch(Exception e) {}
 		} finally {
 			try {
+				conn.setAutoCommit(true); //다시 auto commit 켜기 -> conn은 전역변수
+
 				if(conn!=null) conn.close();
 				if(ps!=null) ps.close();
-				
-				conn.setAutoCommit(true); //다시 auto commit 켜기 -> conn은 전역변수
 			} catch(Exception ex) {}
 		}
 	}

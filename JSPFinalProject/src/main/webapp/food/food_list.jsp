@@ -34,7 +34,9 @@
   	  			  	<td width=30% class="text-center" rowspan=4>
   	  			  		<a href="../food/food_before_detail.do?fno=${fvo.fno }"><img src="${fvo.poster }" style="width: 270px;height: 180px" class="img-rounded"></a>
   	  			  	</td>
-  	  			  	<td width=70%><a href="../food/food_before_detail.do?fno=${fvo.fno }"><h4>${fvo.name }&nbsp;<span style="color: orange">${fvo.score }</span></h4></a></td>
+  	  			  	<td width=70% class=inline><a href="../food/food_before_detail.do?fno=${fvo.fno }"><h4>${fvo.name }&nbsp;<span style="color: orange">${fvo.score }</span></h4></a>
+  	  			  		<img src="../food/image/like.png" style="width: 30px;height: 30px;padding-right:10px" title="${fvo.like_count }">
+  	  			  	</td>
   	  			  </tr>
   	  			  <tr>
   	  			  	<td width=70%>${fvo.address }</td>
