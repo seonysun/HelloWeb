@@ -46,12 +46,12 @@ public class ReserveModel {
 		if(syear==null) syear=strYear;
 		if(smonth==null) smonth=strMonth;
 		
-		//전송된 날짜값
+		//전송된 날짜값 설정
 		int year=Integer.parseInt(syear);
 		int month=Integer.parseInt(smonth);
 		int day=Integer.parseInt(strDay);
 		
-		//요일
+		//요일 설정
 		Calendar cal=Calendar.getInstance();
 		cal.set(Calendar.YEAR, year);
 		cal.set(Calendar.MONTH, month-1);
@@ -66,8 +66,8 @@ public class ReserveModel {
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
-		request.setAttribute("week", week-1);
 		request.setAttribute("lastday", lastday);
+		request.setAttribute("week", week-1);
 		request.setAttribute("strWeek", strWeek);
 		return "../reserve/reserve_date.jsp";
 	}
