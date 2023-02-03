@@ -103,7 +103,7 @@ $(function(){
           <li><a href="../food/food_location.do">지역별 맛집 검색</a></li>
          <c:if test="${sessionScope.id!=null }">
           <li><a href="pages/full-width.html">맛집 추천</a></li>
-          <li><a href="../reserve/reserve_main.do">맛집 예약</a></li>
+          <li><a href="../reserve/reserve_main.do">맛집 예약</a></li> 
          </c:if>
         </ul>
       </li>
