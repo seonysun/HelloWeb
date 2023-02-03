@@ -10,14 +10,15 @@
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear"> 
+  <main class="clear"> 
   <h2 class="sectiontitle">관심 맛집</h2>
   	<table class=table>
   	  <tr>
   	  	<th colspan=2 class=text-center>번호</th>
   	  	<th class=text-center>업체명</th>
   	  	<th class=text-center>주소</th>
-  	  	<th colspan=2 class=text-center>전화</th>
+  	  	<th class=text-center>전화</th>
+  	  	<th class=text-center></th>
   	  </tr>
   	  <c:forEach var="vo" items="${list }">
 	  	  <tr>

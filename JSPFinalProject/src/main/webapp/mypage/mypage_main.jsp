@@ -23,6 +23,7 @@
       <h4>${sessionScope.name }님의 마이페이지</h4>
       <%-- 메뉴 --%>
       <jsp:include page="../mypage/mypage_menu.jsp"/>
+    </div>
     <div class="content three_quarter"> 
       <jsp:include page="${mypage_jsp }"/>
     </div>

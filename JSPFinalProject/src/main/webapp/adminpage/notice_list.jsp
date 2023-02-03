@@ -26,8 +26,8 @@ $(function(){
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear"> 
-  <h2 class="sectiontitle">공지사항</h2>
+  <main class="clear"> 
+  <h2>공지사항</h2>
   	<div style="height: 550px">
   	<table class="table">
   	  <tr>
