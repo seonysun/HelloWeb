@@ -106,4 +106,22 @@ public class AdminModel {
 		dao.noticeUpdate(vo);
 		return "redirect:notice_list.do";
 	}
+
+	@RequestMapping("adminpage/admin_reserve.do")
+	public String adminpage_reserve_list(HttpServletRequest request, HttpServletResponse response) {
+		ReserveDAO dao=new ReserveDAO();
+		List<ReserveVO> list=dao.reserveAdminpageData();
+		request.setAttribute("list", list);
+		request.setAttribute("admin_jsp", "../adminpage/reserve.jsp");
+		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	@RequestMapping("adminpage/admin_reserve_ok.do")
+	public String admin_reserve_ok(HttpServletRequest request, HttpServletResponse response) {
+		String rno=request.getParameter("rno");
+		ReserveDAO dao=new ReserveDAO();
+		dao.reserveAdminOk(Integer.parseInt(rno));
+		return "redirect:admin_reserve.do";
+	}
 }

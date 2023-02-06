@@ -41,4 +41,26 @@ public class MyPageModel {
 		dao.jjimDelete(Integer.parseInt(jno));
 		return "redirect:../mypage/jjim_list.do";
 	}
+
+	@RequestMapping("mypage/reserve.do")
+	public String mypage_reserve_list(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		ReserveDAO dao=new ReserveDAO();
+		List<ReserveVO> list=dao.reserveMypageData(id);
+		request.setAttribute("list", list);
+		request.setAttribute("mypage_jsp", "../mypage/reserve.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("mypage/reserve_info.do")
+	public String mypage_reserve_info(HttpServletRequest request, HttpServletResponse response) {
+		String rno=request.getParameter("rno");
+		ReserveDAO dao=new ReserveDAO();
+		ReserveVO vo=dao.mypageReserveInfo(Integer.parseInt(rno));
+		request.setAttribute("vo", vo);
+		return "../mypage/reserve_info.jsp";
+	}
 }

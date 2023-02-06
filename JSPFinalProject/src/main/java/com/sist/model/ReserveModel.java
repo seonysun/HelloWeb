@@ -131,27 +131,13 @@ public class ReserveModel {
 		return "redirect:../mypage/reserve.do";
 	}
 	
-	@RequestMapping("mypage/reserve.do")
-	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
+	@RequestMapping("reserve/reserve_delete.do")
+	public String reserve_delete(HttpServletRequest request, HttpServletResponse response) {
+		String rno=request.getParameter("rno");
 		ReserveDAO dao=new ReserveDAO();
-		List<ReserveVO> list=dao.reserveMypageData(id);
-		request.setAttribute("list", list);
-		request.setAttribute("mypage_jsp", "../mypage/reserve.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
-		CommonsModel.footerData(request);
-		return "../main/main.jsp";
+		dao.reserveDelete(Integer.parseInt(rno));
+		return "redirect:../mypage/reserve.do";
 	}
 	
-	@RequestMapping("adminpage/admin_reserve.do")
-	public String adminpage_reserve(HttpServletRequest request, HttpServletResponse response) {
-		ReserveDAO dao=new ReserveDAO();
-		List<ReserveVO> list=dao.reserveAdminpageData();
-		request.setAttribute("list", list);
-		request.setAttribute("admin_jsp", "../adminpage/reserve.jsp");
-		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-		CommonsModel.footerData(request);
-		return "../main/main.jsp";
-	}
+	
 }

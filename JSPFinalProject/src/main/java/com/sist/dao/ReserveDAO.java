@@ -163,6 +163,58 @@ public class ReserveDAO {
 		}
 		return list;
 	}
+	//예약 상세
+	public ReserveVO mypageReserveInfo(int rno) {
+		ReserveVO vo=new ReserveVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT rno,rdate,rtime,reserve_no,inwon,name,score,poster,address,tel,type,parking "
+					+ "FROM project_reserve r, food_location f "
+					+ "WHERE r.fno=f.fno "
+					+ "AND rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setRno(rs.getInt(1));
+			vo.setRdate(rs.getString(2));
+			vo.setRtime(rs.getString(3));
+			vo.setReserve_no(rs.getString(4));
+			vo.setInwon(rs.getInt(5));
+			vo.getFvo().setName(rs.getString(6));
+			vo.getFvo().setScore(rs.getDouble(7));
+			String poster=rs.getString(8);
+			poster=poster.substring(0,poster.indexOf("^")).replace("#", "&");
+			vo.getFvo().setPoster(poster);
+			String address=rs.getString(9);
+			address=address.substring(0,address.lastIndexOf("지")).trim();
+			vo.getFvo().setAddress(address);
+			vo.getFvo().setTel(rs.getString(10));
+			vo.getFvo().setType(rs.getString(11));
+			vo.getFvo().setParking(rs.getString(12));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	//예약 취소
+	public void reserveDelete(int rno) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="DELETE FROM project_reserve "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
 	//예약정보 관리자페이지 연결
 	public List<ReserveVO> reserveAdminpageData() {
 		List<ReserveVO> list=new ArrayList<ReserveVO>();
@@ -207,5 +259,19 @@ public class ReserveDAO {
 		return list;
 	}
 	//예약 승인
-	
+	public void reserveAdminOk(int rno) {
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE project_reserve "
+					+ "SET ok='y' "
+					+ "WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.executeUpdate();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
 }

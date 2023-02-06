@@ -28,7 +28,7 @@ $(function(){
 <div class="wrapper row3">
   <main class="clear"> 
   <h2>공지사항</h2>
-  	<div style="height: 550px">
+  	<div style="height: 700px">
   	<table class="table">
   	  <tr>
   	  	<td>
