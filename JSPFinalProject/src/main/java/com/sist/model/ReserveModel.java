@@ -138,6 +138,4 @@ public class ReserveModel {
 		dao.reserveDelete(Integer.parseInt(rno));
 		return "redirect:../mypage/reserve.do";
 	}
-	
-	
 }
