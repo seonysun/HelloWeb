@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.goods-mapper">
+	<resultMap type="CartVO" id="goodsCartMap">
+		<result property="bno" jdbcType="bno"/>
+		<result property="gno" jdbcType="gno"/>
+		<result property="id" jdbcType="id"/>
+		<result property="account" jdbcType="account"/>
+		<result property="total_price" jdbcType="total_price"/>
+		<result property="regdate" jdbcType="regdate"/>
+		<result property="buy_ok" jdbcType="buy_ok"/>
+		<result property="gvo.goods_poster" jdbcType="goods_poster"/>
+		<result property="gvo.goods_name" jdbcType="goods_name"/>
+		<result property="gvo.goods_price" jdbcType="goods_price"/>
+	</resultMap>
+	<select id="goodsCartListData" resultType="CartVO" parameterType="string">
+									<!-- resultType : 리턴값(ResultSet), parameterType : 매개변수(?에 채우는 값) -->
+		SELECT bno,gno,id,account,total_price,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,buy_ok,
+		goods_poster,goods_name,goods_price 
+		FROM project_goods_buy pgb, goods_all ga 
+		WHERE pgb.gno=ga.no 
+		AND id=#{id}
+	</select>
+	<insert id="goodsCartInsert" parameterType="CartVO">
+		INSERT INTO project_goods_buy 
+		VALUES(pgb_bno_seq.nextval,#{gno},#{id},#{account},#{total_price},'n',SYSDATE)
+	</insert>
+	<delete id="goodsCartDelete" parameterType="int">
+		DELETE FROM project_goods_buy WHERE bno=#{bno}
+	</delete>
+</mapper>
