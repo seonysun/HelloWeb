@@ -192,17 +192,26 @@ public class GoodsModel {
 		String total=request.getParameter("total");
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		GoodsDAO dao=new GoodsDAO();
 		CartVO vo=new CartVO();
 		vo.setGno(Integer.parseInt(no));
 		vo.setId(id);
 		vo.setAccount(Integer.parseInt(account));
 		vo.setTotal_price(Integer.parseInt(total));
+		CartDAO.goodsCartInsert(vo);
 		return "redirect:cart_list.do";
 	}
 	
 	@RequestMapping("goods/cart_list.do")
 	public String goods_cart_list(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		List<CartVO> list=CartDAO.goodsCartListData(id);
+		System.out.println(list.size());
+		if(list.size()>0) {
+			request.setAttribute("count", list.size());
+		    request.setAttribute("list", list);
+		} else
+			request.setAttribute("count", 0);
 		request.setAttribute("mypage_jsp", "../goods/cart_list.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
@@ -210,7 +219,8 @@ public class GoodsModel {
 	
 	@RequestMapping("goods/cart_cancel.do")
 	public String goods_cart_cancel(HttpServletRequest request, HttpServletResponse response) {
-		
+		String bno=request.getParameter("bno");
+		CartDAO.goodsCartDelete(Integer.parseInt(bno));
 		return "redirect:cart_list.do";
 	}
 }
